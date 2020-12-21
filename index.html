@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en" class="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MoonState </title>
+        <meta name="description" content="An app about the time of the day the sun is up.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="msapplication-TileColor" content="#cce7ff">
+        <meta name="theme-color" content="#cce7ff">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#0f3557">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/screen.css">
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+        <script src="./tempData.json"></script>
+        <script src="./script/app.js"></script>
+
+    </head>
+    <body>
+        <main class="c-app">
+            <div class="c-logo">
+                <h1 class="c-logo-title">
+                    <svg class="c-logo-image2" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="50" cy="62.5" r="49.6"/>
+<path class="st1" d="M50,105.3c-61.3,3.4-61.4-87,0-87V105.3z"/>
+</svg>
+                    <p class="c-title">MoonState</p>
+                    
+                </h1>
+            </div>
+            <div class="c-content">
+                <div class="c-grid-pages">
+                    <div class="c-grid-pages__items u-column1 js-card">
+                        <div class="c-page-imageview">
+                            <svg class="" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="50" cy="62.5" r="49.6"/>
+<path class="st1" d="M50,105.3c-61.3,3.4-61.4-87,0-87V105.3z"/>
+                            </svg>
+                        </div>
+                        <div class="c-page-moonset">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035
+			c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201
+			C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418
+			c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418
+			C447.361,287.923,358.746,385.406,255.997,385.406z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275
+			s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516
+			s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"/>
+	</g>
+</g>
+
+                            </svg>
+                            <div class="c-page-time">18:00</div>
+
+                        </div>
+                        <div class="c-page-date">15 okt-20 okt</div>
+                    </div>
+                    <div class="c-grid-pages__items u-column1 js-card">
+                        <div class="c-page-imageview">
+                            <svg class="c-page-image" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="50" cy="62.5" r="49.6"/>
+<path class="st1" d="M50,105.3c-61.3,3.4-61.4-87,0-87V105.3z"/>
+                            </svg>
+                        </div>
+                        <div class="c-page-moonset">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035
+			c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201
+			C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418
+			c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418
+			C447.361,287.923,358.746,385.406,255.997,385.406z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275
+			s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516
+			s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"/>
+	</g>
+</g>
+
+                            </svg>
+                            <div class="c-page-time">18:00</div>
+
+                        </div>
+                        <div class="c-page-date">15 okt-20 okt</div>
+                    </div>
+                    <div class="c-grid-pages__items u-column1 js-card">
+                        <div class="c-page-imageview">
+                            <svg class="c-page-image" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="50" cy="62.5" r="49.6"/>
+<path class="st1" d="M50,105.3c-61.3,3.4-61.4-87,0-87V105.3z"/>
+                            </svg>
+                        </div>
+                        <div class="c-page-moonset">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035
+			c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201
+			C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418
+			c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418
+			C447.361,287.923,358.746,385.406,255.997,385.406z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275
+			s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516
+			s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"/>
+	</g>
+</g>
+
+                            </svg>
+                            <div class="c-page-time">18:00</div>
+
+                        </div>
+                        <div class="c-page-date">15 okt-20 okt</div>
+                    </div>
+                    <div class="c-grid-pages__items u-column1 js-card">
+                        <div class="c-page-imageview">
+                            <svg class="c-page-image" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="50" cy="62.5" r="49.6"/>
+<path class="st1" d="M50,105.3c-61.3,3.4-61.4-87,0-87V105.3z"/>
+                            </svg>
+                        </div>
+                        <div class="c-page-moonset">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035
+			c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201
+			C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418
+			c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418
+			C447.361,287.923,358.746,385.406,255.997,385.406z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275
+			s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516
+			s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"/>
+	</g>
+</g>
+
+                            </svg>
+                            <div class="c-page-time">18:00</div>
+
+                        </div>
+                        <div class="c-page-date">15 okt-20 okt</div>
+                    </div>
+                    <div class="c-grid-pages__items u-column1 js-card">
+                        <div class="c-page-imageview">
+                            <svg class="c-page-image" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="50" cy="62.5" r="49.6"/>
+<path class="st1" d="M50,105.3c-61.3,3.4-61.4-87,0-87V105.3z"/>
+                            </svg>
+                        </div>
+                        <div class="c-page-moonset">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035
+			c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201
+			C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418
+			c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418
+			C447.361,287.923,358.746,385.406,255.997,385.406z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275
+			s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516
+			s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"/>
+	</g>
+</g>
+
+                            </svg>
+                            <div class="c-page-time">18:00</div>
+
+                        </div>
+                        <div class="c-page-date">15 okt-20 okt</div>
+                    </div>
+                    <div class="c-grid-pages__items u-column1 js-card">
+                        <div class="c-page-imageview">
+                            <svg class="c-page-image" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="50" cy="62.5" r="49.6"/>
+<path class="st1" d="M50,105.3c-61.3,3.4-61.4-87,0-87V105.3z"/>
+                            </svg>
+                        </div>
+                        <div class="c-page-moonset">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035
+			c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201
+			C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418
+			c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418
+			C447.361,287.923,358.746,385.406,255.997,385.406z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275
+			s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516
+			s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"/>
+	</g>
+</g>
+
+                            </svg>
+                            <div class="c-page-time">18:00</div>
+
+                        </div>
+                        <div class="c-page-date">15 okt-20 okt</div>
+                    </div>
+                </div>
+                <div class="c-button-view">
+                    <a href="#" class="c-button js-detail">Full Moon</a>
+                </div>
+                <svg style="display:none;">
+
+                    <!-- onze library van symbols die we gaan hergebruiken -->
+                 
+                    <symbol id="firstquarter" viewBox="0 0 512 512">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+                   <style type="text/css">
+                       .st0{stroke:#000000;stroke-miterlimit:10;}
+                       .st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+                   </style>
+                   <circle class="st0" cx="50" cy="62.5" r="49.6"/>
+                   <path class="st1" d="M50,107c59,3.5,59.1-88.7,0-88.7C50,50.2,50,79.8,50,107z"/>
+                   </svg>
+                    </symbol>
+                    <symbol id="thirdquarter" viewBox="0 0 512 512">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+    <style type="text/css">
+        .st0{stroke:#000000;stroke-miterlimit:10;}
+        .st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+    </style>
+    <circle class="st0" cx="50" cy="62.5" r="49.6"/>
+    <path class="st1" d="M50,107c-59.3,3.5-59.4-88.7,0-88.7C50,50.2,50,79.8,50,107z"/>
+    </svg>
+                    </symbol>
+                    <symbol id="waxingcrescent" viewBox="0 0 512 512">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+    <style type="text/css">
+        .st0{stroke:#000000;stroke-miterlimit:10;}
+        .st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+    </style>
+    <circle class="st0" cx="50" cy="62.5" r="49.6"/>
+    <path class="st1" d="M50,107c59,3.5,59.1-88.7,0-88.7C81.7,47.9,81.8,77.4,50,107z"/>
+    </svg>
+    
+                    </symbol>
+                    <symbol id="waningcrescent" viewBox="0 0 512 512">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+    <style type="text/css">
+        .st0{stroke:#000000;stroke-miterlimit:10;}
+        .st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+    </style>
+    <circle class="st0" cx="50" cy="62.5" r="49.6"/>
+    <path class="st1" d="M50,107c-59.8,3.5-59.9-88.7,0-88.7C17.9,47.9,17.8,77.4,50,107z"/>
+    </svg>
+                    </symbol>
+                    <symbol id="waxinggibbous" viewBox="0 0 512 512">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+    <style type="text/css">
+        .st0{stroke:#000000;stroke-miterlimit:10;}
+        .st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+    </style>
+    <circle class="st0" cx="50" cy="62.5" r="49.6"/>
+    <path class="st1" d="M50,107c59,3.5,59.1-88.7,0-88.7C81.7,47.9,81.8,77.4,50,107z"/>
+    </svg>
+    
+                    </symbol>
+                    <symbol id="waninggibous" viewBox="0 0 512 512">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+    <style type="text/css">
+        .st0{stroke:#000000;stroke-miterlimit:10;}
+        .st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+    </style>
+    <circle class="st0" cx="50" cy="62.5" r="49.6"/>
+    <path class="st1" d="M50,107c-59.3,3.5-59.4-88.7,0-88.7C86.5,28.9,87.7,94.7,50,107z"/>
+    </svg>
+                    </symbol>
+                    <symbol id="fullmoon" viewBox="0 0 512 512">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+    <style type="text/css">
+        .st0{stroke:#000000;stroke-miterlimit:10;}
+        .st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+    </style>
+    <circle class="st0" cx="50" cy="62.5" r="49.6"/>
+    <path class="st1" d="M50.1,18.4c62.4-0.1,59.6,88.6,0.2,88.7C-10.1,107.1-9.9,18.3,50.1,18.4z"/>
+    </svg>
+                    </symbol>
+                    <symbol id="newmoon" viewBox="0 0 512 512">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 100 125" style="enable-background:new 0 0 100 125;" xml:space="preserve">
+    <style type="text/css">
+        .st0{stroke:#000000;stroke-miterlimit:10;}
+    </style>
+    <circle class="st0" cx="50" cy="62.5" r="49.6"/>
+    </svg>
+                    </symbol>
+                    
+                 
+                    
+                 
+                 </svg>
+            </div>
+            
+        </main>
+	</body>
+</html>
