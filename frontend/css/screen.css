@@ -1,0 +1,658 @@
+/*------------------------------------*\
+#FONTS
+\*------------------------------------*/
+
+/*------------------------------------*\
+#Variables
+\*------------------------------------*/
+
+:root {
+    /* colors */
+    --color-alpha-light: MEDIUMSLATEBLUE;
+    --color-alpha: SLATEBLUE;
+
+    --color-neutral-light: LIGHTSLATEGRAY;
+    --color-neutral: SLATEGRAY;
+    --color-neutral-dark: DARKSLATEGRAY;
+    --global-color-white:#FFFFFF;
+    --global-color-light-red:#FF6565;
+    --global-color-blue:#3B86FF;
+    --global-color-purple:#A3A0FB;
+    --global-color-dark-blue:#43425D;
+    --global-font-color:#4D4F5C;
+    --global-background-color:#F0F0F7;
+
+    /* Shadows */
+
+    /* border radius */
+
+    /* transitions */
+    --transition-alpha: .1s;
+}
+
+/*------------------------------------*\
+#GENERIC
+\*------------------------------------*/
+
+/*
+    Generic: Page
+    ---
+    Global page styles + universal box-sizing:
+*/
+
+html {
+    font-size: 32px;
+    line-height: 1.5;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--color-neutral-dark);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--global-color-white);
+
+    /*whitespace*/
+    --global-baseline:5px;
+    --global-whitespace-xxs:var(--global-baseline);/*5px*/
+    --global-whitespace-xs:calc(var(--global-baseline)*2);/*10px*/
+    --global-whitespace-sm:calc(var(--global-baseline)*3);/*15px*/
+    --global-whitespace-md:calc(var(--global-baseline)*4);/*20px*/
+    --global-whitespace-lg:calc(var(--global-baseline)*5);/*25px*/
+    --global-whitespace-xl:calc(var(--global-baseline)*6);/*30px*/
+    
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/*
+* Remove text-shadow in selection highlight:
+* https://twitter.com/miketaylr/status/12228805301
+*
+* Customize the background color to match your design.
+*/
+
+::-moz-selection {
+    background: var(--color-alpha);
+    color: white;
+    text-shadow: none;
+}
+
+::selection {
+    background: var(--color-alpha);
+    color: white;
+    text-shadow: none;
+}
+
+/*------------------------------------*\
+#Elements
+\*------------------------------------*/
+
+/*
+Elements: Images
+---
+Default markup for images to make them responsive
+*/
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+/*
+    Elements: typography
+    ---
+    Default markup for typographic elements
+*/
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    
+}
+
+h1 {
+    font-size: 36px;
+    line-height: calc(var(--global-baseline)*10);
+    margin: 0 0 var(--global-whitespace-md);
+}
+
+h2 {
+    font-size: 28px;
+    line-height:calc(var(--global-baseline)*8);
+    margin: 0 0 var(--global-whitespace-lg);
+}
+
+h3 {
+    font-size: 26px;
+    line-height: calc(var(--global-baseline)*6);
+    margin: 0 0 var(--global-whitespace-md);
+}
+
+h4,
+h5,
+h6 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: calc(var(--global-baseline)*5);
+    margin: 0 0 var(--global-whitespace-md);
+}
+
+p,
+ol,
+ul,
+dl,
+table,
+address,
+figure {
+    margin: 0 0 var(--global-whitespace-md);
+}
+
+ul,
+ol {
+    padding-left: 24px;
+}
+
+li ul,
+li ol {
+    margin-bottom: 0;
+}
+
+blockquote {
+    font-style: normal;
+    font-size: 23px;
+    line-height: 32px;
+    margin: 0 0 24px;
+}
+
+blockquote * {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+figcaption {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 8px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: LightGrey;
+    margin: 0 0 24px;
+}
+
+a {
+    transition: all var(--transition-alpha);
+    color: var(--global-color-white);
+    outline-color: var(--color-alpha);
+    outline-width: medium;
+    outline-offset: 2px;
+    text-decoration: none;
+    
+}
+
+a:visited,
+a:active {
+    color: var(--global-color-white);
+}
+
+a:hover,
+a:focus {
+    color: lightgray;
+}
+
+label,
+input {
+    display: block;
+}
+
+select {
+    width: 100%;
+}
+
+input::placeholder {
+    color: var(--color-neutral-light);
+}
+
+/*------------------------------------*\
+#OBJECTS
+\*------------------------------------*/
+
+/*
+    Objects: Row
+    ---
+    Creates a horizontal row that stretches the viewport and adds padding around children
+*/
+
+.o-row {
+    position: relative;
+    padding: 24px 24px 0;
+}
+
+/*
+    Objects: Container
+    ---
+    Creates a horizontal container that sets de global max-width
+*/
+
+.o-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 79.5em; /* 79.5 * 16px = 1272 */
+    width: 100%;
+}
+
+/*
+    Objects: List
+    ---
+    Small reusable object to remove default list styling from lists
+*/
+
+.o-list {
+    list-style: none;
+    padding: 0;
+}
+
+/*
+    Object: Button reset
+    ---
+    Small button reset object
+*/
+
+.o-button-reset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+/*
+    Object: Hide accessible
+    ---
+    Accessibly hide any element
+*/
+
+.o-hide-accessible {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/*------------------------------------*\
+#COMPONENTS
+\*------------------------------------*/
+
+/*
+    Component: Logo
+    ---
+    Website main logo
+*/
+
+
+.c-app{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--global-background-color);
+    height: 100vh;
+}
+.c-detail-grid{
+    width: 25rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    column-gap: 1rem;
+    
+}
+.c-detail-grid p{
+    font-size: 2rem;
+    padding: 0.5rem;
+    max-height: 3rem;
+}
+.c-games{
+    display: flex;
+    justify-content: center;
+}
+.c-description{
+    max-width: 8rem;
+}
+
+.c-app__main,.c-app__menu,.c-app__game{
+    width: 70em;
+    padding: var(--global-whitespace-xl) calc(var(--global-whitespace-lg)*3);
+    margin: 5rem 0;
+}
+
+.c-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.c-title-games{
+    margin-bottom: 4rem;
+}
+.c-title h1{
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+.c-info{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-right: 0;
+    max-width: 40rem;
+    align-items: center;
+    text-align: center;
+
+}
+
+
+.c-button{
+    border: 2px solid var(--global-font-color);
+    border-radius: 0.5rem;
+    background-color: var(--global-font-color);
+    color: var(--global-background-color);
+    
+    width: 8rem;
+    text-align: center;
+}
+.c-app__menu .c-button ,.c-app__game .c-button{
+    width: 18rem;
+}
+.c-app__menu .c-button a,.c-app__game .c-button a{
+    font-size: 3rem;
+}
+.c-button:hover{
+    border-color: black;
+}
+.c-nav{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+
+}
+.c-logo{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+
+/*------------------------------------*\
+#UTILITIES
+\*------------------------------------*/
+
+/*
+    Utilities: color
+    ---
+    Utility classes to put specific colors onto elements
+*/
+
+.u-color-neutral {
+    color: var(--color-neutral);
+}
+
+.u-color-neutral-dark {
+    color: var(--color-neutral-dark);
+}
+
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-pt-clear {
+    padding-top: 0 !important;
+}
+
+.u-mb-clear {
+    margin-bottom: 0 !important;
+}
+
+.u-mb-xs {
+    margin-bottom: 4px !important;
+}
+
+.u-mb-sm {
+    margin-bottom: 8px !important;
+}
+
+.u-mb-md {
+    margin-bottom: 16px !important;
+}
+
+.u-mb-lg {
+    margin-bottom: 32px !important;
+}
+
+.u-mb-xl {
+    margin-bottom: 48px !important;
+}
+
+/*
+    Utilities: max-width
+    ---
+    Utility classes to put specific max widths onto elements
+*/
+
+.u-max-width-xs {
+    max-width: 27em !important;
+}
+
+.u-max-width-sm {
+    max-width: 39em !important;
+}
+
+.u-max-width-md {
+    max-width: 50em !important;
+}
+
+.u-max-width-lg {
+    max-width: 63.5em !important;
+}
+
+.u-max-width-none {
+    max-width: none !important;
+}
+
+
+/*
+    Utilities: align
+    ---
+    Utility classes align text or components
+*/
+
+.u-align-text-center {
+    text-align: center;
+}
+
+.u-align-center {
+    margin: 0 auto;
+}
+
+/*
+    Utilities: text
+    Utility classes to create smaller or bigger test
+*/
+
+.u-text-sm {
+    font-size: 14px;
+}
+/*colums*/
+.u-column1{
+    grid-column: span 1;
+    
+}
+.u-column2{
+    grid-column: span 1;
+}
+.u-column3{
+    grid-column: span 3;
+}
+.u-column4{
+    grid-column: span 4;
+}
+.u-column5{
+    grid-column: span 5;
+}
+.u-column6{
+    grid-column: span 6;
+}
+.u-column7{
+    grid-column: span 7;
+}
+.u-column8{
+    grid-column: span 8;
+}
+/*rows*/
+.u-row1{
+    grid-row: span 1;
+
+}
+.u-row2{
+    grid-row: span 2;
+}
+.u-row3{
+    grid-row: span 3;
+}
+.u-row4{
+    grid-row: span 4;
+}
+.u-row5{
+    grid-row: span 5;
+}
+.u-row6{
+    grid-row: span 6;
+}
+.u-row7{
+    grid-row: span 7;
+}
+.u-row8{
+    grid-row: span 8;
+}
+
+/*------------------------------------*\
+#MEDIA
+\*------------------------------------*/
+
+/*
+    Media Queries
+    ---
+    EXAMPLE Media Queries for Responsive Design.
+    These examples override the primary ('mobile first') styles.
+    USE THEM INLINE!
+*/
+
+/* Extra small devices (portrait phones, less than 576px)
+No media query since this is the default in mobile first design
+*/
+
+/* Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+*/
+
+/* Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+*/
+
+/* Large devices (landscape tablets, desktops, 992px and up)
+@media (min-width: 992px) {}
+*/
+
+/* Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+*/
+
+/*
+    Print styles.
+    ---
+    Inlined to avoid the additional HTTP request:
+    http://www.phpied.com/delay-loading-your-print-css/
+*/
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        /* Black prints faster:
+        http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+    /*
+    * Don't show links that are fragment identifiers,
+    * or use the `javascript:` pseudo protocol
+    */
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+    pre {
+        white-space: pre-wrap !important;
+    }
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+    /*
+    * Printing Tables:
+    * http://css-discuss.incutio.com/wiki/Printing_Tables
+    */
+    thead {
+        display: table-header-group;
+    }
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
