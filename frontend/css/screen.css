@@ -11,7 +11,7 @@
     --color-alpha-light: MEDIUMSLATEBLUE;
     --color-alpha: SLATEBLUE;
 
-    --color-neutral-light: LIGHTSLATEGRAY;
+    --color-neutral-light: #778899;
     --color-neutral: SLATEGRAY;
     --color-neutral-dark: DARKSLATEGRAY;
     --global-color-white:#FFFFFF;
@@ -42,13 +42,13 @@
 
 html {
     font-size: 32px;
-    line-height: 1.5;
+    
     font-family: 'Source Sans Pro', sans-serif;
     color: var(--color-neutral-dark);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--global-color-white);
+    background-color: black;
 
     /*whitespace*/
     --global-baseline:5px;
@@ -341,22 +341,47 @@ input::placeholder {
     justify-content: center;
 }
 .c-description{
-    max-width: 8rem;
+   margin: 0 2rem;
 }
 
 .c-app__main,.c-app__menu,.c-app__game{
     width: 70em;
-    padding: var(--global-whitespace-xl) calc(var(--global-whitespace-lg)*3);
-    margin: 5rem 0;
+    /*padding: var(--global-whitespace-xl) calc(var(--global-whitespace-lg)*3);*/
+    
+    height: 100%;
+}
+
+.c-navbar{
+    margin-top: 1rem;
+    border-bottom: 1px solid black;
+    height: 2rem;
+    display: flex;
+}
+.c-navbar-title img{
+    height: 2rem;
+    width: auto;
+}
+.c-navbar-title h1{
+    font-size: 3rem;
+}
+.c-navbar-title{
+    display: flex;
+    margin-left: 7.5rem;
+}
+.c-navbar-back{
+    height: 1rem;
+    width: 1rem;
+    margin-left: 1rem;
 }
 
 .c-title{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5rem;
 }
 .c-title-games{
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 .c-title h1{
     font-size: 2.5rem;
@@ -372,30 +397,41 @@ input::placeholder {
     text-align: center;
 
 }
-
-
+.c-game-content{
+    margin-left: 1rem;
+}
+.c-main-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 .c-button{
-    border: 2px solid var(--global-font-color);
-    border-radius: 0.5rem;
-    background-color: var(--global-font-color);
-    color: var(--global-background-color);
-    
-    width: 8rem;
-    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 .c-app__menu .c-button ,.c-app__game .c-button{
     width: 18rem;
 }
-.c-app__menu .c-button a,.c-app__game .c-button a{
-    font-size: 3rem;
+.c-nav .c-button a{
+    font-size: 1.5rem;
+    padding: 20px;
+    border: 2px solid var(--global-font-color);
+    border-radius: 1rem;
+    background-color: var(--global-font-color);
+    color: var(--global-background-color);
+    
+    width: 10rem;
+    height: 3rem;
+    text-align: center;
 }
 .c-button:hover{
     border-color: black;
 }
 .c-nav{
     margin-top: 2rem;
-    display: flex;
-    justify-content: center;
+
 
 }
 .c-logo{
