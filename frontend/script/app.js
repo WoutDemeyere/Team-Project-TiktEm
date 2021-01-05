@@ -1,5 +1,6 @@
 const lanIP = `${window.location.hostname}:5000`;
 const socket = io(`http://${lanIP}`);
+
 const sendmessage=function(game){
 	socket.emit("F2B_info", {gametype: game});
 	//of controle en toevoegen van info hier
@@ -28,7 +29,7 @@ const listenToSocket = function () {
   };
 document.addEventListener('DOMContentLoaded', function() {
 	// 1 We will query the API with longitude and latitude.
-	
+	listenToSocket();
 	console.info("dom loaded");
 	if(document.querySelector(".js-game")){
 		startgame();

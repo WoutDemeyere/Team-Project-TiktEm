@@ -13,11 +13,13 @@ clear = lambda: os.system('cls')
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
+app.config['SECRET_KEY'] = 'Hier mag je om het even wat schrijven, zolang het maar geheim blijft en een string is'
+
+socketio = SocketIO(app, cors_allowed_origins="*")
+CORS(app)
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, debug=False, host='0.0.0.0')
 
 def init():
     menu()
@@ -117,16 +119,13 @@ def simonSays(tiks):
                 socketio.emit("B2F_score", score,broadcast=True)
                 break      
         
-
-        
-
     
-        
-
 
 @socketio.on('F2B_start')
 def startGame():
-    menu()
+    socketio.emit("connected")
+    print("test")
+    # menu()
 
 
 def turnOn(item):
@@ -150,5 +149,3 @@ def awaitTik(item):
     item.green = 256
     item.red = 0
     item.blue = 0
-
-menu()
