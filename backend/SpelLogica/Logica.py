@@ -1,6 +1,26 @@
 from Models.Tik import Tik
 import time
 from datetime import datetime
+from flask import Flask, render_template
+from flask_socketio import SocketIO
+from flask_cors import CORS
+import random
+import os
+
+
+
+clear = lambda: os.system('cls')
+
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+if __name__ == '__main__':
+    socketio.run(app)
+
+def init():
+    menu()
 
 def menu():
     tiks = initTiks()
@@ -9,8 +29,15 @@ def menu():
     print(f"1: List tiks")
     print(f"2: close")
     value = input("Uw keuze: ")
+    clear()
+    print(f"Kies een speltype in het menu")
+    print(f"0: Speedrun")
+    print(f"1: Simon Says")
+
+    gametype = int(input("Uw keuze: "))
+
     if(value == "0"):
-        initGame(tiks)
+        initGame(tiks,gametype)
     elif(value == "1"):
         listTiks(tiks)
 
@@ -34,7 +61,7 @@ def listTiks(tiks):
         print(f"")
 
 
-def initGame(tiks):
+def initGame(tiks,gametype):
     print(f"Game starting")
     time.sleep(1)
     print(f"3..")
@@ -44,6 +71,12 @@ def initGame(tiks):
     print(f"1..")
     time.sleep(1)
     print(f"Start")
+    if gametype == 0:
+        speedRun(tiks)
+    elif gametype == 1:
+        simonSays(tiks)
+    
+def speedRun(tiks):
     starttime = datetime.now()
     for item in tiks:
         active = True
@@ -59,9 +92,41 @@ def initGame(tiks):
     endtime = datetime.now()
     score = (endtime - starttime).total_seconds()
     print(f"Congratulations you finished the sequence in {score} seconds")
+    socketio.emit("B2F_score", score,broadcast=True)
+
+def simonSays(tiks):
+    game = True
+    sequence = []
+    clear()
+    while(game == True):
+        clear()
+        sequence.append(random.randint(0,3))
+        for i in sequence:
+            turnOn(tiks[i])
+            print(f"Tik nr {tiks[i].id} lit up, remember it!")
+            time.sleep(1.5)
+            turnOff(tiks[i])
+            clear()
+        for i in sequence:
+            awaitTik(tiks[i])
+            value = int(input("Press the next number in the sequence and press enter: "))
+            if(value != i):
+                game = False
+                score = len(sequence)-1
+                print(f"Wrong Tik your score was {score}")
+                socketio.emit("B2F_score", score,broadcast=True)
+                break      
+        
+
+        
+
+    
+        
 
 
-
+@socketio.on('F2B_start')
+def startGame():
+    menu()
 
 
 def turnOn(item):
@@ -72,5 +137,18 @@ def turnOn(item):
     item.blue = 0
     # Send to correct tik via mqtt
 
+def turnOff(item):
+    item.tikstatus = False
+    item.lightstatus = False
+    item.green = 0
+    item.red = 0
+    item.blue = 0
+
+def awaitTik(item):
+    item.tikstatus = True
+    item.lightstatus = False
+    item.green = 256
+    item.red = 0
+    item.blue = 0
 
 menu()
