@@ -19,9 +19,6 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
 
-def init():
-    menu()
-
 def menu(data):
     tiks = initTiks()
     print(f"Kies een optie in het menu")
