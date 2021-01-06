@@ -3,6 +3,7 @@ import time
 from datetime import datetime
 from flask import Flask, render_template
 from flask_socketio import SocketIO
+from flask_mqtt import Mqtt
 from flask_cors import CORS
 import random
 import os
@@ -15,9 +16,22 @@ import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Hier mag je om het even wat schrijven, zolang het maar geheim blijft en een string is'
 
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['MQTT_BROKER_URL'] = 'localhost'
+app.config['MQTT_BROKER_PORT'] = 1883
+app.config['MQTT_USERNAME'] = ''
+app.config['MQTT_PASSWORD'] = ''
+app.config['MQTT_KEEPALIVE'] = 5
+app.config['MQTT_TLS_ENABLED'] = False
+
 socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
+
+@mqtt.on_message()
+def handle_mqtt_message(client, userdata, message):
+    payload = message.payload.decode()
+    tiktem.update_status(payload)
 
 def init():
     menu()
