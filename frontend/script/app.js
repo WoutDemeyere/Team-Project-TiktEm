@@ -1,5 +1,5 @@
-const lanIP ;
-const socket ;
+let lanIP ;
+let socket ;
 
 const sendmessage=function(game){
 	var data=`[
