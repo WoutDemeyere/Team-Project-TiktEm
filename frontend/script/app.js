@@ -89,6 +89,7 @@ const sendmessage=function(game){
 	document.querySelector(".js-description").innerHTML=gamedescription;
 	document.querySelector(".js-start").addEventListener("click",function(){
 		socket.emit("F2B_start",{"gameid":gameid});
+		handleData(`http://${lanIP}/api/v1/start`, callbackShowToken, callbackShowErrorNoLogin, "POST", body);
 		console.log("start game",gameid);
 	});
 }
