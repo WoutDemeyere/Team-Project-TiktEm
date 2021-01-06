@@ -1,5 +1,5 @@
-const lanIP = `${window.location.hostname}:5000`;
-const socket = io(`http://${lanIP}`);
+const lanIP ;
+const socket ;
 
 const sendmessage=function(game){
 	var data=`[
@@ -119,5 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		
 	}
+	if(document.querySelector(".js-game")){
+		lanIP=`${window.location.hostname}:5000`;
+		socket= io(`http://${lanIP}`);
+
+	}
+	
 	
 });
