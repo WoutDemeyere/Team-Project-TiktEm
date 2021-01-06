@@ -18,8 +18,6 @@ app.config['SECRET_KEY'] = 'Hier mag je om het even wat schrijven, zolang het ma
 socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
-if __name__ == '__main__':
-    socketio.run(app, debug=False, host='0.0.0.0')
 
 def init():
     menu()
@@ -119,13 +117,15 @@ def simonSays(tiks):
                 socketio.emit("B2F_score", score,broadcast=True)
                 break      
         
-    
+@app.route('/')
+def hallo():
+    return "Server is running, er zijn momenteel geen API endpoints beschikbaar."
 
 @socketio.on('F2B_start')
 def startGame():
     socketio.emit("connected")
-    print("test")
-    # menu()
+    print("test",flush=True)
+    menu()
 
 
 def turnOn(item):
@@ -149,3 +149,6 @@ def awaitTik(item):
     item.green = 256
     item.red = 0
     item.blue = 0
+
+if __name__ == '__main__':
+    socketio.run(app, debug=False, host='0.0.0.0')
