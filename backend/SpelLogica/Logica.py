@@ -9,7 +9,7 @@ import os
 
 
 
-clear = lambda: os.system('cls')
+#clear = lambda: os.system('cls')
 
 
 app = Flask(__name__)
@@ -22,19 +22,19 @@ CORS(app)
 def init():
     menu()
 
-def menu():
+def menu(data):
     tiks = initTiks()
     print(f"Kies een optie in het menu")
     print(f"0: Begin spel")
     print(f"1: List tiks")
     print(f"2: close")
     value = input("Uw keuze: ")
-    clear()
-    print(f"Kies een speltype in het menu")
-    print(f"0: Speedrun")
-    print(f"1: Simon Says")
+    #clear()
+    # print(f"Kies een speltype in het menu")
+    # print(f"0: Speedrun")
+    # print(f"1: Simon Says")
 
-    gametype = int(input("Uw keuze: "))
+    gametype = data['gameid'] #int(input("Uw keuze: "))
 
     if(value == "0"):
         initGame(tiks,gametype)
@@ -71,9 +71,9 @@ def initGame(tiks,gametype):
     print(f"1..")
     time.sleep(1)
     print(f"Start")
-    if gametype == 0:
+    if gametype == 1:
         speedRun(tiks)
-    elif gametype == 1:
+    elif gametype == 2:
         simonSays(tiks)
     
 def speedRun(tiks):
@@ -97,16 +97,17 @@ def speedRun(tiks):
 def simonSays(tiks):
     game = True
     sequence = []
-    clear()
+    #clear()
     while(game == True):
-        clear()
+        #clear()
         sequence.append(random.randint(0,3))
         for i in sequence:
             turnOn(tiks[i])
             print(f"Tik nr {tiks[i].id} lit up, remember it!")
             time.sleep(1.5)
             turnOff(tiks[i])
-            clear()
+            
+            #clear()
         for i in sequence:
             awaitTik(tiks[i])
             value = int(input("Press the next number in the sequence and press enter: "))
@@ -122,10 +123,10 @@ def hallo():
     return "Server is running, er zijn momenteel geen API endpoints beschikbaar."
 
 @socketio.on('F2B_start')
-def startGame():
+def startGame(data):
     socketio.emit("connected")
-    print("test",flush=True)
-    menu()
+    print(data,flush=True)
+    menu(data)
 
 
 def turnOn(item):
