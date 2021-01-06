@@ -8,6 +8,7 @@ from flask_mqtt import Mqtt
 from flask_cors import CORS
 import random
 import os
+import json
 
 
 
@@ -34,7 +35,8 @@ tiktem = TiktEm(mqtt, 4)
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
     payload = message.payload.decode()
-    tiktem.update_status(payload)
+    payload_dict = json.loads(payload)
+    tiktem.update_status(payload_dict)
 
 def init():
     menu()
@@ -58,7 +60,6 @@ def menu(data):
     elif(value == "1"):
         listTiks(tiks)
 
-
 def initTiks():
     tiks = []
     tik1 = Tik(0,False,False,256,256,256)
@@ -76,7 +77,6 @@ def listTiks(tiks):
         print(f"Id: {item.id}")
         print(f"Status: {item.tikstatus}")
         print(f"")
-
 
 def initGame(tiks,gametype):
     print(f"Game starting")
@@ -139,34 +139,53 @@ def simonSays(tiks):
 def hallo():
     return "Server is running, er zijn momenteel geen API endpoints beschikbaar."
 
+def test():
+    print("STARTING TEST GAME")
+    tiktem.reset_tiks()
+    tiktem.set_game(0)
+
+    # curr_tik_status = tiktem.get_tik_status(0)
+    # while curr_tik_status == False:
+    #     print('TIK IS NOT PRESSED')
+    #     curr_tik_status = tiktem.get_tik_status(0)
+    #     print(tiktem.get_tik_status(0))
+    #     time.sleep(0.5)
+    
+    # print('TIK IS PRESSED')
+
+    starttime = datetime.now()
+
+
+    for item in tiktem.tiks:
+        active = True
+        print(f"Tik {item.id} has lit up")
+        while active == True:
+            # turnOn(item)
+            item.turn_on(0, 255, 0) #green
+            
+            # Input here changed to input through mqtt when set up
+            # value = int(input("Input: "))
+            value = tiktem.get_tik_status(item.id)
+            
+           
+            if value == True:
+                print(f"Tik {item.id} has value: {value}")
+                active = False
+            # else:
+            #     print(f"Stil waiting you twat")
+            time.sleep(0.5)
+        
+    endtime = datetime.now()
+    score = (endtime - starttime).total_seconds()
+    print(f"Congratulations you finished the sequence in {score} seconds")
+    socketio.emit("B2F_score", score,broadcast=True)
+
 @socketio.on('F2B_start')
 def startGame(data):
     socketio.emit("connected")
     print(data,flush=True)
-    menu(data)
-
-
-def turnOn(item):
-    item.tikstatus = True
-    item.lightstatus = True
-    item.green = 256
-    item.red = 0
-    item.blue = 0
-    # Send to correct tik via mqtt
-
-def turnOff(item):
-    item.tikstatus = False
-    item.lightstatus = False
-    item.green = 0
-    item.red = 0
-    item.blue = 0
-
-def awaitTik(item):
-    item.tikstatus = True
-    item.lightstatus = False
-    item.green = 256
-    item.red = 0
-    item.blue = 0
+    test()
 
 if __name__ == '__main__':
+    mqtt.subscribe('tiktem/tiks')
     socketio.run(app, debug=False, host='0.0.0.0')

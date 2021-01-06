@@ -58,7 +58,7 @@ class Tik:
         self._blue = value
     
     def turn_on(self, red, green, blue):
-        self._tikstatus = True
+        #self._tikstatus = True
         self._lightstatus = True
         self._red = red
         self._green = green
