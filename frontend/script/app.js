@@ -111,7 +111,7 @@ const listenToSocket = function () {
   };
 document.addEventListener('DOMContentLoaded', function() {
 	// 1 We will query the API with longitude and latitude.
-	listenToSocket();
+	
 	console.info("dom loaded");
 	document.querySelector(".js-back").addEventListener("click",function(){window.history.back();});
 	if(document.querySelector(".js-game")){
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	if(document.querySelector(".js-game")){
 		lanIP=`${window.location.hostname}:5000`;
 		socket= io(`http://${lanIP}`);
-
+		listenToSocket();
 	}
 	
 	
