@@ -39,24 +39,24 @@ def handle_mqtt_message(client, userdata, message):
 def init():
     menu()
 
-def menu(data):
-    tiks = initTiks()
-    print(f"Kies een optie in het menu")
-    print(f"0: Begin spel")
-    print(f"1: List tiks")
-    print(f"2: close")
-    value = input("Uw keuze: ")
-    #clear()
-    # print(f"Kies een speltype in het menu")
-    # print(f"0: Speedrun")
-    # print(f"1: Simon Says")
+# def menu(data):
+#     tiks = initTiks()
+#     print(f"Kies een optie in het menu")
+#     print(f"0: Begin spel")
+#     print(f"1: List tiks")
+#     print(f"2: close")
+#     value = input("Uw keuze: ")
+#     #clear()
+#     # print(f"Kies een speltype in het menu")
+#     # print(f"0: Speedrun")
+#     # print(f"1: Simon Says")
 
-    gametype = data['gameid'] #int(input("Uw keuze: "))
+#     gametype = data['gameid'] #int(input("Uw keuze: "))
 
-    if(value == "0"):
-        initGame(tiks,gametype)
-    elif(value == "1"):
-        listTiks(tiks)
+#     if(value == "0"):
+#         initGame(tiks,gametype)
+#     elif(value == "1"):
+#         listTiks(tiks)
 
 def initTiks():
     tiks = []
@@ -87,7 +87,7 @@ def initGame(tiks,gametype):
     time.sleep(1)
     print(f"Start")
     if gametype == 1:
-        speedRun(tiks)
+        test()
     elif gametype == 2:
         simonSays(tiks)
     
@@ -178,10 +178,45 @@ def test():
     print(f"Congratulations you finished the sequence in {score} seconds")
     socketio.emit("B2F_score", score,broadcast=True)
 
+def simonsaysTiktem():
+    tiks = tiktem.tiks
+    game = True
+    sequence = []
+    while(game == True):
+        sequence.append(random.randint(0,3))
+        for i in sequence:
+            tiks[i].turn_on(0,255,0)
+            tiktem.update_tiks()
+            print(f"Tik nr {tiks[i].id} lit up, remember it!")
+            time.sleep(1.5)
+            tiks[i].turn_off()
+            tiktem.update_tiks()
+        for i in sequence:
+            waiting = True
+            while(waiting = True):
+                for item in tiks:
+                    value = tiktem.get_tik_status(item.id)
+                    if(value == 1 and item.id != i):
+                        game = False
+                        waiting= False
+                        score = len(sequence)-1
+                        print(f"Wrong Tik your score was {score}")
+                        socketio.emit("B2F_score", score,broadcast=True)
+                        break      
+                    else:
+                        waiting = False
+                        item.turn_on(0,255,0)
+                        tiktem.update_tiks()
+                        time.sleep(0.5)
+                        item.turn_off()
+                        tiktem.update_tiks()
+
 @socketio.on('F2B_start')
 def startGame(data):
     socketio.emit("connected")
     print(data,flush=True)
+    gametype = data['gameid']
+    initGame(tiks,gametype)
     test()
 
 if __name__ == '__main__':

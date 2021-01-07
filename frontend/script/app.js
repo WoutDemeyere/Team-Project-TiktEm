@@ -106,6 +106,10 @@ const listenToSocket = function () {
 	socket.on("connected", function () {
 	  console.log("verbonden met socket webserver");
 	});
+
+	socket.on("B2F_score", function(data){
+		console.log(`You scored ${data}`);
+	});
   
 	
   };
