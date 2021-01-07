@@ -11,9 +11,7 @@ import os
 import json
 
 
-
 #clear = lambda: os.system('cls')
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Hier mag je om het even wat schrijven, zolang het maar geheim blijft en een string is'
@@ -30,7 +28,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 mqtt = Mqtt(app)
 
-tiktem = TiktEm(mqtt, 4)
+tiktem = TiktEm(mqtt, 2)
 
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
@@ -143,6 +141,7 @@ def test():
     print("STARTING TEST GAME")
     tiktem.reset_tiks()
     tiktem.set_game(0)
+    tiktem.update_tiks()
 
     # curr_tik_status = tiktem.get_tik_status(0)
     # while curr_tik_status == False:
@@ -158,22 +157,21 @@ def test():
 
     for item in tiktem.tiks:
         active = True
-        print(f"Tik {item.id} has lit up")
+        print(f"Tik {item.id} has lit up")  
+        item.turn_on(0, 255, 0)
+        tiktem.update_tiks()
         while active == True:
-            # turnOn(item)
-            item.turn_on(0, 255, 0) #green
-            
-            # Input here changed to input through mqtt when set up
-            # value = int(input("Input: "))
             value = tiktem.get_tik_status(item.id)
             
            
             if value == True:
                 print(f"Tik {item.id} has value: {value}")
                 active = False
+                item.turn_off()
+                tiktem.update_tiks()
             # else:
             #     print(f"Stil waiting you twat")
-            time.sleep(0.5)
+            #time.sleep(0.5)
         
     endtime = datetime.now()
     score = (endtime - starttime).total_seconds()
@@ -187,5 +185,8 @@ def startGame(data):
     test()
 
 if __name__ == '__main__':
-    mqtt.subscribe('tiktem/tiks')
+    mqtt.subscribe('tiktem/tiksout')
     socketio.run(app, debug=False, host='0.0.0.0')
+
+
+#    "{\"tik_id\": 3, \"tik_status\": true, \"light_status\": true, \"red\": 255, \"green\":255, \"blue\": 255}"
