@@ -1,6 +1,34 @@
-const lanIP = `${window.location.hostname}:5000`;
-const socket = io(`http://${lanIP}`);
+let lanIP ;
+let socket ;
+let title,description,start,back,game;
 
+
+const loadpageElements=function(){
+	title=document.querySelector(".js-title");
+	description=document.querySelector(".js-description");
+	start=document.querySelector(".js-start");
+	back=document.querySelector(".js-back");
+	game=document.querySelector(".js-game");
+	addlisteners();
+
+}
+const addlisteners= function(){
+	if(start){
+		start.addEventListener("click",function(){
+			socket.emit("F2B_start",{"gameid":gameid});
+			console.log("start game",gameid);
+		});
+	}
+	if(back){
+		back.addEventListener("click",function(){window.history.back();});
+	}
+	if(game){
+		startgame();
+		socket= io(`http://${lanIP}`);
+		io= `${window.location.hostname}:5000`;
+		listenToSocket();
+	}
+}
 const sendmessage=function(game){
 	var data=`[
 		{
@@ -85,39 +113,25 @@ const sendmessage=function(game){
 		default:
 			break;
 	};
-	document.querySelector(".js-title").innerHTML=gametitle;
-	document.querySelector(".js-description").innerHTML=gamedescription;
-	document.querySelector(".js-start").addEventListener("click",function(){
-		socket.emit("F2B_start",{"gameid":gameid});
-		// handleData(`http://${lanIP}/api/v1/start`, callbackShowToken, callbackShowErrorNoLogin, "POST", body);
-		console.log("start game",gameid);
-	});
+	title=gametitle;
+	description=gamedescription;
+	
 }
 const startgame=function(){
 	const queryString = window.location.search;
-	//console.log(queryString);
 	const urlParams = new URLSearchParams(queryString);
 	const gametype=urlParams.get("game");
 	console.log(gametype);
-	//send message to start game
 	sendmessage(gametype);
 }
 const listenToSocket = function () {
 	socket.on("connected", function () {
 	  console.log("verbonden met socket webserver");
 	});
-  
-	
   };
 document.addEventListener('DOMContentLoaded', function() {
 	// 1 We will query the API with longitude and latitude.
-	listenToSocket();
+	loadpageElements();
 	console.info("dom loaded");
-	document.querySelector(".js-back").addEventListener("click",function(){window.history.back();});
-	if(document.querySelector(".js-game")){
-		startgame();
-		
-		
-	}
 	
 });
