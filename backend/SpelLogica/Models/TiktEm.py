@@ -12,7 +12,7 @@ class TiktEm:
     
     def init_tiks(self):
         for i in range(self.amount):
-            tik = Tik(i,False,False,256,256,256)
+            tik = Tik(i,False,False,256,256,256,0, self.mqtt)
             self.tiks.append(tik)
 
     def reset_tiks(self):
@@ -23,7 +23,7 @@ class TiktEm:
         self.curr_gameid = game_id
         if game_id == '0':
             self.reset_tiks()
-            self.tiks[0].turn_on(0,255,0)
+            self.tiks[0].turn_on(0,255,0, 0)
             self.tiks[1].turn_off()
             self.tiks[2].turn_off()
             self.tiks[3].turn_off()
@@ -43,19 +43,18 @@ class TiktEm:
 
     def update_status(self, data):
         #print(f'updated tik {data['tik_id']} {data['light_status']}')
-        print(f'UPDATED TIK {data}', flush=True)
+        #print(f'UPDATED TIK {data}', flush=True)
         self.tiks[data['tik_id']].tikstatus = data['tik_status']
         self.tiks[data['tik_id']].lightstatus = data['light_status']
         #self.tiks[data['tik_id']].red = data['red']
         #self.tiks[data['tik_id']].green = data['green']
         #self.tiks[data['tik_id']].blue = data['blue']
     
-    def update_tiks(self):
-        for i in range(self.amount):
-            
-            data = {"tik_id":self.tiks[i].id, "game_id":self.curr_gameid, "tik_status":self.tiks[i].tikstatus, "light_status":self.tiks[i].lightstatus, "red":self.tiks[i].red, "green":self.tiks[i].green, "blue":self.tiks[i].blue}
-            data_raw = json.dumps(data)
-            print(f'tik: {i} : {data}')
-            self.mqtt.publish(f'tiktem/tik{i}', data_raw)
-            time.sleep(0.05)
+    # def update_tiks(self):
+    #     for i in range(self.amount):       
+    #         data = {"tik_id":self.tiks[i].id, "game_id":self.curr_gameid, "tik_status":self.tiks[i].tikstatus, "light_status":self.tiks[i].lightstatus, "red":self.tiks[i].red, "green":self.tiks[i].green, "blue":self.tiks[i].blue}
+    #         data_raw = json.dumps(data)
+    #         print(f'tik: {i} : {data}')
+    #         self.mqtt.publish(f'tiktem/tik{i}', data_raw)
+    #         time.sleep(0.05)
     

@@ -91,7 +91,7 @@ def initGame(tiks,gametype):
     elif gametype == 2:
         simonSays(tiks)
     
-def speedRun(tiks):
+# def speedRun(tiks):
     starttime = datetime.now()
     for item in tiks:
         active = True
@@ -109,39 +109,93 @@ def speedRun(tiks):
     print(f"Congratulations you finished the sequence in {score} seconds")
     socketio.emit("B2F_score", score,broadcast=True)
 
-def simonSays(tiks):
-    game = True
-    sequence = []
-    #clear()
-    while(game == True):
-        #clear()
-        sequence.append(random.randint(0,3))
-        for i in sequence:
-            turnOn(tiks[i])
-            print(f"Tik nr {tiks[i].id} lit up, remember it!")
-            time.sleep(1.5)
-            turnOff(tiks[i])
+# def simonSays(tiks):
+#     game = True
+#     sequence = []
+#     #clear()
+#     while(game == True):
+#         #clear()
+#         sequence.append(random.randint(0,3))
+#         for i in sequence:
+#             turnOn(tiks[i])
+#             print(f"Tik nr {tiks[i].id} lit up, remember it!")
+#             time.sleep(1.5)
+#             turnOff(tiks[i])
             
-            #clear()
-        for i in sequence:
-            awaitTik(tiks[i])
-            value = int(input("Press the next number in the sequence and press enter: "))
-            if(value != i):
-                game = False
-                score = len(sequence)-1
-                print(f"Wrong Tik your score was {score}")
-                socketio.emit("B2F_score", score,broadcast=True)
-                break      
+#             #clear()
+#         for i in sequence:
+#             awaitTik(tiks[i])
+#             value = int(input("Press the next number in the sequence and press enter: "))
+#             if(value != i):
+#                 game = False
+#                 score = len(sequence)-1
+#                 print(f"Wrong Tik your score was {score}")
+#                 socketio.emit("B2F_score", score,broadcast=True)
+#                 break      
         
+
+
+
+
 @app.route('/')
 def hallo():
     return "Server is running, er zijn momenteel geen API endpoints beschikbaar."
 
-def test():
+def simonSays():
+    tiktem.reset_tiks()
+    tiktem.set_game(1)
+    #tiktem.update_tiks()
+
+    
+    game = True
+    sequence = []
+    while(game == True):
+        sequence.append(random.randint(0,1))
+        pressed_tik = 0
+        
+        for i in sequence:
+            tiktem.tiks[i].turn_on(0, 255, 0, 500)
+            #print(f"Tik nr {tiktem.tiks[i].id} lit up, remember it!")
+            time.sleep(1)
+            tiktem.tiks[i].turn_off()
+            #tiktem.update_tiks()
+            
+        for i in sequence:
+            print(sequence)
+            #awaitTik(tiks[i])
+            #value = int(input("Press the next number in the sequence and press enter: "))
+            #value = tiktem.get_tik_status(i)
+            pressed = False
+            while pressed == False:
+                for tik in tiktem.tiks:
+                    if tiktem.get_tik_status(tik.id) == True:
+                        pressed = True
+
+                        if tik.id == i:
+                            tik.turn_on(0,0,255, 800)
+                            time.sleep(0.4)
+                            tik.turn_off()
+                            time.sleep(1)
+
+                        elif tik.id != i:
+                            tik.turn_on(255,0,0, 300)
+                            time.sleep(0.4)
+                            tik.turn_off()
+
+                            game = False
+                            score = len(sequence)-1
+                            print(f"Wrong Tik your score was {score}")
+                            socketio.emit("B2F_score", score,broadcast=True)
+                            break    
+                    
+                  
+
+
+def speedRun():
     print("STARTING TEST GAME")
     tiktem.reset_tiks()
     tiktem.set_game(0)
-    tiktem.update_tiks()
+    #tiktem.update_tiks()
 
     # curr_tik_status = tiktem.get_tik_status(0)
     # while curr_tik_status == False:
@@ -154,21 +208,18 @@ def test():
 
     starttime = datetime.now()
 
-
     for item in tiktem.tiks:
         active = True
         print(f"Tik {item.id} has lit up")  
-        item.turn_on(0, 255, 0)
-        tiktem.update_tiks()
+        item.turn_on(0, 255, 0, 800)
+        #tiktem.update_tiks()
         while active == True:
             value = tiktem.get_tik_status(item.id)
-            
-           
             if value == True:
                 print(f"Tik {item.id} has value: {value}")
                 active = False
                 item.turn_off()
-                tiktem.update_tiks()
+                #tiktem.update_tiks()
             # else:
             #     print(f"Stil waiting you twat")
             #time.sleep(0.5)
@@ -182,7 +233,11 @@ def test():
 def startGame(data):
     socketio.emit("connected")
     print(data,flush=True)
-    test()
+
+    if data['gameid'] == 1:
+        speedRun()
+    elif data['gameid'] == 2:
+        simonSays()
 
 if __name__ == '__main__':
     mqtt.subscribe('tiktem/tiksout')
