@@ -13,12 +13,7 @@ const loadpageElements=function(){
 
 }
 const addlisteners= function(){
-	if(start){
-		start.addEventListener("click",function(){
-			socket.emit("F2B_start",{"gameid":gameid});
-			console.log("start game",gameid);
-		});
-	}
+	
 	if(back){
 		back.addEventListener("click",function(){window.history.back();});
 	}
@@ -115,7 +110,12 @@ const sendmessage=function(game){
 	};
 	title=gametitle;
 	description=gamedescription;
-	
+	if(start){
+		start.addEventListener("click",function(){
+			socket.emit("F2B_start",{"gameid":gameid});
+			console.log("start game",gameid);
+		});
+	}
 }
 const startgame=function(){
 	const queryString = window.location.search;
