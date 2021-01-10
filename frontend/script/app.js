@@ -1,6 +1,6 @@
 let lanIP ;
 let socket ;
-let title,description,start,back,game,tiks;
+let title,description,start,back,game,tiks,score,currenttime=0,scoreboard;
 
 
 const loadpageElements=function(){
@@ -10,8 +10,52 @@ const loadpageElements=function(){
 	back=document.querySelector(".js-back");
 	game=document.querySelector(".js-game");
 	tiks=document.querySelectorAll(".js-tik");
+	score=document.querySelector(".js-score");
+	scoreboard=document.querySelector(".js-scoreboard");
 	addlisteners();
 
+}
+const loadscoreboard = function(scorelist){
+	let tempstring="",number=1,sortedlist;
+	
+	
+	scorelist.sort(getsortorder("score"));
+	sortedlist=scorelist.reverse()
+	console.log(scorelist);
+	
+	sortedlist.forEach(scoreitem => {
+		if(number==1){
+			tempstring+=`<div class="c-scoreboard__item u-score__1">
+		<div class="c-scoreboard__place">${number}</div>
+		<div class="c-scoreboard__name">${scoreitem.name}</div>
+		<div class="c-scoreboard__score">${scoreitem.score}</div>
+	</div>`;
+		}else{
+			if (number==2) {
+				tempstring+=`<div class="c-scoreboard__item u-score__2">
+		<div class="c-scoreboard__place">${number}</div>
+		<div class="c-scoreboard__name">${scoreitem.name}</div>
+		<div class="c-scoreboard__score">${scoreitem.score}</div>
+	</div>`;
+			}else{
+				if (number==3) {
+					tempstring+=`<div class="c-scoreboard__item u-score__3">
+		<div class="c-scoreboard__place">${number}</div>
+		<div class="c-scoreboard__name">${scoreitem.name}</div>
+		<div class="c-scoreboard__score">${scoreitem.score}</div>
+	</div>`;
+				}else tempstring+=`<div class="c-scoreboard__item">
+				<div class="c-scoreboard__place">${number}</div>
+				<div class="c-scoreboard__name">${scoreitem.name}</div>
+				<div class="c-scoreboard__score">${scoreitem.score}</div>
+			</div>`;
+			}
+		}
+		
+	number+=1;
+	});
+	
+	scoreboard.innerHTML=tempstring;
 }
 const addlisteners= function(){
 	
@@ -26,6 +70,12 @@ const addlisteners= function(){
 	}
 	if(tiks[0]){
 		console.log(tiks)
+	}
+	if(score){
+		starttimer();
+	}
+	if(scoreboard){
+		testscoreboard();
 	}
 }
 const sendmessage=function(game){
@@ -51,6 +101,16 @@ const sendmessage=function(game){
 		});
 	}
 }
+const starttimer=function(){
+	
+	window.setInterval(UpdateTime,100);
+}
+const UpdateTime=function(){
+	currenttime+=100;
+	//console.log(currenttime);
+	score.innerHTML=currenttime/1000;
+	
+}
 const startgame=function(){
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
@@ -67,47 +127,6 @@ const getsortorder=function(prop){
         }    
         return 0;    
     }
-}
-const loadscoreboard = function(scorelist){
-		let tempstring="",number=1,sortedlist;
-		
-		
-		scorelist.sort(getsortorder("score"));
-		sortedlist=scorelist.reverse()
-		console.log(scorelist);
-		
-		sortedlist.forEach(scoreitem => {
-			if(number==1){
-				tempstring+=`<div class="c-scoreboard__item u-score__1">
-			<div class="c-scoreboard__place">${number}</div>
-			<div class="c-scoreboard__name">${scoreitem.name}</div>
-			<div class="c-scoreboard__score">${scoreitem.score}</div>
-		</div>`;
-			}else{
-				if (number==2) {
-					tempstring+=`<div class="c-scoreboard__item u-score__2">
-			<div class="c-scoreboard__place">${number}</div>
-			<div class="c-scoreboard__name">${scoreitem.name}</div>
-			<div class="c-scoreboard__score">${scoreitem.score}</div>
-		</div>`;
-				}else{
-					if (number==3) {
-						tempstring+=`<div class="c-scoreboard__item u-score__3">
-			<div class="c-scoreboard__place">${number}</div>
-			<div class="c-scoreboard__name">${scoreitem.name}</div>
-			<div class="c-scoreboard__score">${scoreitem.score}</div>
-		</div>`;
-					}else tempstring+=`<div class="c-scoreboard__item">
-					<div class="c-scoreboard__place">${number}</div>
-					<div class="c-scoreboard__name">${scoreitem.name}</div>
-					<div class="c-scoreboard__score">${scoreitem.score}</div>
-				</div>`;
-				}
-			}
-			
-		number+=1;
-		});
-		document.querySelector(".js-scoreboard").innerHTML=tempstring;
 }
 const testscoreboard=function(){
 	let scorelist=[{"name":"marijn","score":200},{"name":"marijn","score":300},{"name":"marijn","score":100},{"name":"marijn","score":700},{"name":"marijn","score":600},{"name":"marijn","score":200}]
@@ -130,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 1 We will query the API with longitude and latitude.
 	loadpageElements();
 	console.info("dom loaded");
-	testscoreboard();
+	
+	
 	
 });
