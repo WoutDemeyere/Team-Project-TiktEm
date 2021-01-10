@@ -1,6 +1,6 @@
 let lanIP ;
 let socket ;
-let title,description,start,back,game,tiks,score,currenttime=0,scoreboard;
+let title,description,start,back,game,tiks,score,currenttime=0,scoreboard,gametype;
 
 
 const loadpageElements=function(){
@@ -10,7 +10,7 @@ const loadpageElements=function(){
 	back=document.querySelector(".js-back");
 	game=document.querySelector(".js-game");
 	tiks=document.querySelectorAll(".js-tik");
-	score=document.querySelector(".js-score");
+	tijd=document.querySelector(".js-tijd");
 	scoreboard=document.querySelector(".js-scoreboard");
 	addlisteners();
 
@@ -71,7 +71,7 @@ const addlisteners= function(){
 	if(tiks[0]){
 		console.log(tiks)
 	}
-	if(score){
+	if(tijd &&gametype==1){
 		starttimer();
 	}
 	if(scoreboard){
@@ -102,19 +102,19 @@ const sendmessage=function(game){
 	}
 }
 const starttimer=function(){
-	
+	//speedrun timer
 	window.setInterval(UpdateTime,100);
 }
 const UpdateTime=function(){
 	currenttime+=100;
 	//console.log(currenttime);
-	score.innerHTML=currenttime/1000;
+	tijd.innerHTML=currenttime/1000;
 	
 }
 const startgame=function(){
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
-	const gametype=urlParams.get("game");
+	gametype=urlParams.get("game");
 	console.log(gametype);
 	sendmessage(gametype);
 }
