@@ -373,7 +373,15 @@ input::placeholder {
     width: 1rem;
     margin-left: 1rem;
 }
-
+.c-scoreboard{
+    margin: auto 2rem;
+}
+.c-scoreboard__item{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 1rem;
+}
 .c-title{
     display: flex;
     justify-content: center;
@@ -399,6 +407,7 @@ input::placeholder {
 }
 .c-game-content{
     margin-left: 1rem;
+    margin-right: 1rem;
 }
 .c-main-content{
     display: flex;
@@ -593,6 +602,16 @@ input::placeholder {
 .u-row8{
     grid-row: span 8;
 }
+.u-score__1{
+    background-color: #FFD700;
+}
+.u-score__2{
+    background-color: #BEC7C7;
+}
+.u-score__3{
+    background-color: #CD7F32;
+}
+
 
 /*------------------------------------*\
 #MEDIA
