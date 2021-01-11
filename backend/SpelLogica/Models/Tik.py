@@ -20,7 +20,6 @@ class Tik:
         if (nieuwid != ""):
             self._id = nieuwid
         else:
-            # self._naam = "onbekend"
             raise ValueError("Geen geldig id, kan niet leeg zijn {}")
 
     @property
@@ -70,7 +69,6 @@ class Tik:
         self._tone = value
     
     def turn_on(self, red, green, blue, tone):
-        #self._tikstatus = True
         self._lightstatus = True
         self._red = red
         self._green = green
