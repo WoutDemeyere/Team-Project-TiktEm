@@ -11,7 +11,7 @@ class TiktEm:
         self.curr_gameid = 0
     
     def init_tiks(self):
-        for i in range(self.amount):
+        for i in range(0, self.amount):
             tik = Tik(i,False,False,256,256,256,0, self.mqtt)
             self.tiks.append(tik)
 
@@ -40,12 +40,16 @@ class TiktEm:
     
     def get_tik_status(self, tik_id):
         return self.tiks[tik_id].tikstatus
+    
+    def get_colorhunt_status(self, tik_id):
+        return self.tiks[tik_id].colorhunt_status
 
     def update_status(self, data):
         #print(f'updated tik {data['tik_id']} {data['light_status']}')
         #print(f'UPDATED TIK {data}', flush=True)
         self.tiks[data['tik_id']].tikstatus = data['tik_status']
         self.tiks[data['tik_id']].lightstatus = data['light_status']
+        #self.tiks[tik_id].colorhunt_status = data['tik_status']
         #self.tiks[data['tik_id']].red = data['red']
         #self.tiks[data['tik_id']].green = data['green']
         #self.tiks[data['tik_id']].blue = data['blue']

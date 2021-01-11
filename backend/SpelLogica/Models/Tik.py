@@ -9,6 +9,7 @@ class Tik:
         self.blue = blue
         self.tone = tone
         self.mqtt = mqtt_client
+        self.colorhunt_status = False
 
     @property
     def id(self):
