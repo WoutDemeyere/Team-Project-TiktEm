@@ -16,6 +16,7 @@ import os
 import json
 import threading
 import sys
+#from rich import print
 
 #   Flask Config
 app = Flask(__name__)
@@ -50,27 +51,39 @@ def start_game():
 
     game_id = int(request.args.get('gameid'))
 
-    if game_id == 1:
-        print("- Starting Speedrun -\n")
-        print("-----\n")
-        speedRun() 
-    elif game_id == 2:
-        print("- Starting Simon Says (singleplayer) -\n")
-        simonSays()
-    elif game_id == 3:
-        print("- Starting TikTakBoem -\n")
-        pass
-    elif game_id == 4:
-        print("- Starting Colorhunt (singleplayer) -\n")
-        colorhunt()
-    elif game_id == 5:
-        pass
-    elif game_id == 6:
-        pass
-    
-    
-    return jsonify(f"Started game {game_id}"),200
+    try:
+        if game_id < 7:
+            if game_id == 1:
+                print("- Starting Speedrun -\n")
+                print("-----\n")
+                speedRun() 
+            elif game_id == 2:
+                print("- Starting Simon Says (singleplayer) -\n")
+                simonSays()
+            elif game_id == 3:
+                print("- Starting TikTakBoem -\n")
+                pass
+            elif game_id == 4:
+                print("- Starting Colorhunt (singleplayer) -\n")
+                colorhunt()
+            elif game_id == 5:
+                pass
+            elif game_id == 6:
+                pass
 
+            return jsonify(f"Started game {game_id}"),200
+
+        else:
+            raise ValueError
+
+    except ValueError as er:
+        print(f"><--->< Game id {game_id} is not valid")
+        return jsonify(f"Wrong game id: {game_id}"),400
+    
+    except Exception as ex:
+        print(f"><--->< Something went wrong : {ex}")
+        return jsonify(f"Something went wrong"),500
+    
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
     payload = message.payload.decode()
