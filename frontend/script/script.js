@@ -2,13 +2,42 @@ var mainContent, singleplayerButton, multiplayerButton, singleplayerContainer, m
 
 const listenToCollapsables = () => {
     singleplayerButton.addEventListener('click', function() {
-        mainContent.classList.add('c-collapsed');
-
-        singleplayerContainer.innerHTML = "";
-        singleplayerContainer.classList.add("c-icon-button-container--collapsed");
-
-        singleplayerContainer.innerHTML = "";
+        foldMulti()
+        collapseSingle();
+        
     })
+
+    multiplayerButton.addEventListener('click', function() {
+        foldSingle();
+        collapseMulti();
+       
+    })
+}
+
+const collapseSingle  = function() {
+    mainContent.classList.add('c-collapsed');
+    singleplayerContainer.classList.add("c-icon-button-container--collapsed");
+    singleplayerButton.style.display = "none";
+    document.querySelector('.js-single-hidden-options').style.height = "100%";
+}
+
+const foldSingle = function() {
+    singleplayerContainer.classList.remove("c-icon-button-container--collapsed");
+    singleplayerButton.style.display = "block";
+    document.querySelector('.js-single-hidden-options').style.height = "0";
+}
+ 
+const collapseMulti = function() {
+    mainContent.classList.add('c-collapsed');
+    multiplayerContainer.classList.add("c-icon-button-container--collapsed");
+    multiplayerButton.style.display = "none";
+    document.querySelector('.js-multi-hidden-options').style.height = "100%";
+}
+
+const foldMulti = function() {
+    multiplayerContainer.classList.remove("c-icon-button-container--collapsed");
+    multiplayerButton.style.display = "block";
+    document.querySelector('.js-multi-hidden-options').style.height = "0";
 }
 
 const getDomElements = function() {

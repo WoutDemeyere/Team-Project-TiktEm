@@ -25,8 +25,9 @@
 
     /* borders */
     --global-borderRadius: 2.5rem;
+    
     /* transitions */
-
+    --global-transition: cubic-bezier(0.22, 0.61, 0.36, 1);
     /* whitespace */
     --global-baseline:8px;
     --global-whitespace-xxs:var(--global-baseline);/*5px*/
@@ -285,7 +286,7 @@ input:disabled {
 #COMPONENTS
 \*------------------------------------*/
 .c-collapsed .c-info-container,
-.c-collapsed div .c-icon__single{
+.c-collapsed .c-icon__single {
     display: none;
 }
 
@@ -389,13 +390,15 @@ input:disabled {
 
 .c-icon__single-col {
     margin-top: var(--global-whitespace-md);
-    stroke:var(--global-color-dark-green);
-    height: 125px;
+    stroke: var(--global-color-dark-green);
+    height: 110px;
 }
 
-/*
-    Component: Button
-*/
+.c-icon-play {
+    height: 90px;
+    fill: var(--global-color-dark-green);
+    stroke: var(--global-color-dark-green);
+}
 
 .c-icon-button-container {
     width: 100%;
@@ -408,14 +411,19 @@ input:disabled {
     height: 100%;
     border-radius: 2.5rem;
     margin: var(--global-whitespace-md) 0 var(--global-whitespace-xxl) 0;
-    background-color: var(--global-color-white);
 }
 
-.c-coll-header {
+.c-visible-options-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
+
+/*
+    Component: Button
+*/
 .c-button-nav {
     width: 100%;
     color: #000;
@@ -438,14 +446,46 @@ input:disabled {
 }
 
 
-.c-options-container {
-    width: 90%;
-    height: auto;
+.c-hidden-options-container {
+    background-color: var(--global-color-white);
+    overflow: hidden;
+    height: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: var(--global-borderRadius);
+    transition: all 0.5s var(--global-transition);
 }
 
+.c-options-container {
+    width: 90%;
+    height: inherit;
+}
 
+.c-coll-header {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-coll-title {
+    font-weight: 300;
+    font-size: calc(var(--global-font-size) * 3.5);
+    color: #000;
+}
+
+.c-coll-ul-header {
+    margin-top: var(--global-whitespace-xl);
+    align-self: flex-start;
+    font-weight: 400;
+    font-size: calc(var(--global-font-size) * 2);
+    color: #000;
+    
+}
 
 .c-custom-option {
+    /* position: relative; */
     --custom-option-background: var(--global-color-dark-green);
     --custom-option-borderRadius: var(--global-borderRadius);
     /* --custom-option-borderColor: var(--global-input-borderColor); */
@@ -460,7 +500,11 @@ input:disabled {
 }
 
 .c-option-field {
+    position: relative;
+    margin: var(--global-whitespace-xl) 0;
     width: 100%;
+    background-color: var(--global-color-light-green);
+    border-radius: var(--global-borderRadius);
 }
 
 .c-custom-option__fake-input {
@@ -468,22 +512,44 @@ input:disabled {
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-right: 8px;
     background: var(--custom-option-background);
     border-radius: var(--custom-option-borderRadius);
     height: 70px;
     /* border: 1px solid var(--custom-option-borderColor); */
-    transition: all var(--custom-option-transition);
+    /* transition: all var(--custom-option-transition); */
     box-shadow: var(--custom-option-boxShadow, 0);
     font-size: calc(var(--global-font-size) * 2.5);
 }
 
+.c-collapsible-content {
+    height: 0;
+    overflow: hidden;
+    background-color: var(--global-color-light-green);
+    transition: all 0.2s var(--global-transition);
+    display: flex;
+    border-radius: var(--global-borderRadius);
+}
 
-.c-coll-title {
-    font-weight: 300;
-    font-size: calc(var(--global-font-size) * 4);
+.c-coll-play-container {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-coll-info {
+    padding: var(--global-whitespace-xs);
+    width: 75%;
+    font-size: calc(var(--global-font-size) * 1.5);
     color: #000;
 }
+
+.c-option--hidden:checked ~ .c-collapsible-content {
+    height: 140px ;
+    transition: height 0.2s var(--global-transition);
+}
+
 
 
 /*------------------------------------*\
