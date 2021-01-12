@@ -1,44 +1,125 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>TiktEm/menu</title>
-        <meta name="description" content="This is my HTML5 boilerplate.">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/screenV2.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
-        <script src="script/app.js"></script>
-        <script src="script/dataHandler.js"></script>
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TiktEm/menu</title>
+    <meta name="description" content="This is my HTML5 boilerplate.">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- <link rel="stylesheet" href="css/screenV2.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <!-- <script src="script/app.js"></script> -->
+    <script src="script/dataHandler.js"></script>
+    <script src="script/script.js"></script>
+</head>
+
+<body>
+    <div class="c-main">
         <div class="c-app">
-            <div class="c-app__main">
-               
-                <div class="c-title">
-                    <div class="c-logo u-center">
-                        <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
-                    </div>
-                    <h1 class="u-center ">
-                        Alleen of met vrienden
-                    </h1>
+
+            <div class="c-header">
+                <div class="c-logo u-center">
+                    <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
                 </div>
-                <div class="c-main-content"> 
-                    <div class="c-info">
-                        
-                        <p class="c-info-text u-align-text-center">
-                            Bij TiktEm is er de mogelijkheid om records te zetten op het score bord of elkaar te verslaan in multiplayer games.                   
-                        </p>
-                        
+            </div>
+
+            <div class="c-main-content js-main-content c-collapsed">
+                <div class="c-info-container">
+                    <h1 class="c-title">Alleen of met vrienden?</h1>
+                    <p class="c-info">
+                        Bij TiktEm is er de mogelijkheid om records te zetten op het score bord of elkaar te verslaan in
+                        multiplayer games.
+                    </p>
+                </div>
+
+                <div class="c-icon-button-container c-icon-button-container--collapsed js-single-container">
+
+                    <div class="c-coll-header">
+                        <svg class="c-icon c-icon__single-col u-mb-xl" data-name="Layer 1"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160.7 161.81">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: none;
+                                        stroke-linecap: round;
+                                        stroke-linejoin: round;
+                                        stroke-width: 15px;
+                                    }
+                                </style>
+                            </defs>
+                            <path class="cls-1" d="M36.44,182.69c11.57-81,129.36-83.06,145.7,0"
+                                transform="translate(-28.94 -28.38)" />
+                            <circle class="cls-1" cx="80.35" cy="50.14" r="42.64" />
+                        </svg>
+
+                        <span class="c-coll-title">Singleplayer</span>
                     </div>
-                    <div class="u-center">
-                        <img class="c-playericon-single" src="img/singleplayer.png" alt="singleplayer"> 
-                    </div>
-                                      
-                    <div class="c-nav">
+
+                    <!-- <ul class="o-list c-options-container">
+                        <li class="c-option-field">
+                            <input type="radio" class="o-hide-accessible" id="radio1">
+                            <label class="c-label c-custom-option" for="radio1">
+                                <span class="c-custom-option__fake-input">
+                                    Speedrun
+                                </span>
+                            </label>
+                        </li>
+
+                        <li class="c-option-field"></li>
+                        <li class="c-option-field"></li>
+                        <li class="c-option-field"></li>
+                    </ul> -->
+                    <!-- <svg class="c-icon c-icon__single u-mb-xl" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 160.7 161.81">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: none;
+                                    stroke-linecap: round;
+                                    stroke-linejoin: round;
+                                    stroke-width: 15px;
+                                }
+                            </style>
+                        </defs>
+                        <path class="cls-1" d="M36.44,182.69c11.57-81,129.36-83.06,145.7,0"
+                            transform="translate(-28.94 -28.38)" />
+                        <circle class="cls-1" cx="80.35" cy="50.14" r="42.64" />
+                    </svg>
+                    <button class="o-button-reset c-button-nav js-single" href="gamemenu.html">Singleplayer</button> -->
+                </div>
+
+                <div class="c-icon-button-container js-multi-container  u-mb-xxl">
+                    <svg class="c-icon c-icon__single u-mb-xl" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 209.38 161.81">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: none;
+                                    stroke-linecap: round;
+                                    stroke-linejoin: round;
+                                    stroke-width: 15px;
+                                }
+                            </style>
+                        </defs>
+                        <path class="cls-1" d="M12.6,183.49c11.57-81,129.36-83.06,145.7,0"
+                            transform="translate(-5.1 -29.18)" />
+                        <circle class="cls-1" cx="80.35" cy="50.14" r="42.64" />
+                        <path class="cls-1"
+                            d="M131.74,36.68c43.92,3.49,59.92,47.06,22.81,83.83,45.62,10.21,52.43,63,52.43,63"
+                            transform="translate(-5.1 -29.18)" />
+                    </svg>
+                    <button class="o-button-reset c-button-nav c-button-collapse js-multi"
+                        href="gamemenu.html">Multiplayer</button>
+                </div>
+
+
+                <!-- <div class="c-nav">
                         <div class="c-button">
                             <a href="singleplayer.html" >Singleplayer</a>
 
@@ -52,9 +133,10 @@
                         <div class="c-button">
                             <a href="multiplayer.html" >Multiplayer</a>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

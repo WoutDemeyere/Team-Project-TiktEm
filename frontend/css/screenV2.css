@@ -5,6 +5,7 @@
     --global-color-light-blue:#61D1F9;
     --global-color-dark-green:#3EBD9C;
     --global-color-light-green:#B1EFDF;
+
     --global-color-font:var(--global-color-white);
     --global-color-background:var(--global-color-dark-blue);
     /* Shadows */
@@ -14,6 +15,7 @@
     /* transitions */
     --transition-alpha: .1s;
 }
+
 html {
     font-size: 16px;
     
@@ -31,16 +33,15 @@ html {
     --global-whitespace-sm:calc(var(--global-baseline)*3);/*15px*/
     --global-whitespace-md:calc(var(--global-baseline)*4);/*20px*/
     --global-whitespace-lg:calc(var(--global-baseline)*5);/*25px*/
-    --global-whitespace-xl:calc(var(--global-baseline)*6);/*30px*/
-
-    
+    --global-whitespace-xl:calc(var(--global-baseline)*6);/*30px*/ 
 }
-.c-app{
-    /*max-width: 26;*/
+
+.c-main{
     margin: 0 auto;
     height: 100vh;
 }
-.c-app__main{
+
+.c-app{
     padding: var(--global-whitespace-lg) var(--global-whitespace-xl) var(--global-whitespace-md) var(--global-whitespace-xl);
     background-color: var(--global-color-dark-blue);
     height: 100vh;
@@ -72,6 +73,7 @@ html {
     margin: 1rem 1rem 6rem 1rem;
     font-size: 2.75rem;
 }
+
 .c-playericon-single ,.c-playericon-multi{
     
     height: 10rem;

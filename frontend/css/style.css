@@ -1,0 +1,697 @@
+/*------------------------------------*\
+#FONTS
+\*------------------------------------*/
+
+/*------------------------------------*\
+#Variables
+\*------------------------------------*/
+
+:root {
+    /* colors */
+    --global-color-white:#ffffff;
+    --global-color-dark-blue:#3FAED5;
+    --global-color-light-blue:#61D1F9;
+    --global-color-dark-green:#3EBD9C;
+    --global-color-light-green:#B1EFDF;
+
+    
+    --global-color-font:var(--global-color-white);
+    --global-color-background:var(--global-color-dark-blue);
+
+    /* fonts */
+    --global-font-size: 1rem;
+
+    /* shadows */
+
+    /* borders */
+    --global-borderRadius: 2.5rem;
+    /* transitions */
+
+    /* whitespace */
+    --global-baseline:8px;
+    --global-whitespace-xxs:var(--global-baseline);/*5px*/
+    --global-whitespace-xs:calc(var(--global-baseline)*2);/*10px*/
+    --global-whitespace-sm:calc(var(--global-baseline)*3);/*15px*/
+    --global-whitespace-md:calc(var(--global-baseline)*4);/*20px*/
+    --global-whitespace-lg:calc(var(--global-baseline)*5);/*25px*/
+    --global-whitespace-xl:calc(var(--global-baseline)*6);/*30px*/ 
+    --global-whitespace-xxl:calc(var(--global-baseline)*8);
+}
+
+/*------------------------------------*\
+#GENERIC
+\*------------------------------------*/
+
+/*
+    Generic: Page
+    ---
+    Global page styles + universal box-sizing:
+*/
+
+html {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--global-color-font);
+    font-family: 'Ubuntu', sans-serif;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: white;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/*
+* Remove text-shadow in selection highlight:
+* https://twitter.com/miketaylr/status/12228805301
+*
+* Customize the background color to match your design.
+*/
+
+::-moz-selection {
+    background: orange;
+    color: white;
+    text-shadow: none;
+}
+
+::selection {
+    background: orange;
+    color: white;
+    text-shadow: none;
+}
+
+/*------------------------------------*\
+#Elements
+\*------------------------------------*/
+
+/*
+Elements: Images
+---
+Default markup for images to make them responsive
+*/
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+/*
+    Elements: typography
+    ---
+    Default markup for typographic elements
+*/
+
+h1,
+h2,
+h3 {
+    font-weight: 600;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: calc(var(--global-font-size) * 4);
+    line-height: calc(var(--global-font-size) * 2.3125);
+    /* margin: 0 0 24px; */
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 40px;
+    margin: 0 0 24px;
+}
+
+h3 {
+    font-size: 26px;
+    line-height: 32px;
+    margin: 0 0 24px;
+}
+
+h4,
+h5,
+h6 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin: 0 0 24px;
+}
+
+p,
+ol,
+ul,
+dl,
+table,
+address,
+figure {
+    margin: 0 0 24px;
+}
+
+ul,
+ol {
+    padding-left: 24px;
+}
+
+li ul,
+li ol {
+    margin-bottom: 0;
+}
+
+blockquote {
+    font-style: normal;
+    font-size: 23px;
+    line-height: 32px;
+    margin: 0 0 24px;
+}
+
+blockquote * {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+figcaption {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 8px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: LightGrey;
+    margin: 0 0 24px;
+}
+
+a {
+    transition: all var(--transition-alpha);
+    outline-color: var(--color-alpha);
+    outline-width: medium;
+    outline-offset: 2px;
+}
+
+a:visited,
+a:active {
+    color:  #000;
+}
+
+a:hover,
+a:focus {
+    color: var(--color-alpha-light);
+}
+
+label,
+input {
+    display: inline-block;
+}
+
+select {
+    width: 100%;
+}
+
+input::placeholder {
+    color: var(--color-neutral);
+}
+
+input:disabled {
+    cursor: not-allowed;
+}
+
+/*------------------------------------*\
+#OBJECTS
+\*------------------------------------*/
+
+
+/*
+    Objects: List
+    ---
+    Small reusable object to remove default list styling from lists
+*/
+
+.o-list {
+    list-style: none;
+    padding: 0;
+}
+
+/*
+    Object: Button reset
+    ---
+    Small button reset object
+*/
+
+.o-button-reset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+/*
+    Object: Hide accessible
+    ---
+    Accessibly hide any element
+*/
+
+.o-hide-accessible {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/*------------------------------------*\
+#COMPONENTS
+\*------------------------------------*/
+.c-collapsed .c-info-container,
+.c-collapsed div .c-icon__single{
+    display: none;
+}
+
+/*
+    Component: Main
+*/
+.c-main{
+    margin: 0 auto;
+    height: 100vh;
+}
+
+/*
+    Component: App
+*/
+
+.c-app{
+    /* padding: var(--global-whitespace-lg) var(--global-whitespace-xl) var(--global-whitespace-md) var(--global-whitespace-xl); */
+    padding: 0 var(--global-whitespace-xl);
+    padding-top: var(--global-whitespace-lg);
+    background-color: var(--global-color-background);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*
+    Component: Header
+*/
+
+.c-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 10%;
+}
+
+.c-logo-image {
+    margin: var(--global-whitespace-sm);
+}
+
+/*
+    Component: Main content
+*/
+
+.c-main-content {
+    height: 85%;
+    /* width: 100%; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+}
+
+/*
+    Component: Title
+*/
+.c-title{
+    margin-top: 1rem;
+    text-align: center;
+}
+
+
+/*
+    Component: Info
+*/
+.c-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*
+    Component: Info
+*/
+.c-info {
+    font-weight: 400;
+    width: 85%;
+    margin-top: var(--global-whitespace-md);
+    font-size: calc(var(--global-font-size) * 2);
+    line-height: calc(var(--global-font-size) * 2.7);
+    text-align: center;
+    align-self: center;
+}
+
+/*
+    Component: Icons
+*/
+.c-icon__musc {
+    stroke: #FFF;
+    height: 650px;
+}
+
+.c-icon__single {
+    stroke: #FFF;
+    height: 275px;
+}
+
+.c-icon__single-col {
+    margin-top: var(--global-whitespace-md);
+    stroke:var(--global-color-dark-green);
+    height: 125px;
+}
+
+/*
+    Component: Button
+*/
+
+.c-icon-button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-icon-button-container--collapsed {
+    height: 100%;
+    border-radius: 2.5rem;
+    margin: var(--global-whitespace-md) 0 var(--global-whitespace-xxl) 0;
+    background-color: var(--global-color-white);
+}
+
+.c-coll-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.c-button-nav {
+    width: 100%;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    background-color: var(--global-color-white);
+    /* border: 1px solid white; */
+    text-decoration: none;
+    border-radius: 2.5rem;
+    padding: 1rem 0;
+    font-size: 2.5rem;
+}
+
+.c-button-expand {
+    height: 100%;
+}
+
+.c-button-nav--start {
+    margin: 5rem 0.5rem;
+}
+
+
+.c-options-container {
+    width: 90%;
+    height: auto;
+}
+
+
+
+.c-custom-option {
+    --custom-option-background: var(--global-color-dark-green);
+    --custom-option-borderRadius: var(--global-borderRadius);
+    /* --custom-option-borderColor: var(--global-input-borderColor); */
+    /* --custom-option-hover-borderColor: var(--global-input-hover-borderColor); */
+    /* --custom-option-focus-borderColor: var(--global-input-focus-borderColor); */
+    /* --custom-option-focus-boxShadowColor: var(--global-input-focus-boxShadowColor); */
+    /* --custom-option-focus-boxShadow: var(--global-input-focus-boxShadowSpread) var(--custom-option-focus-boxShadowColor); */
+    /* --custom-option__symbol-fill: var(--global-color-alpha); */
+    /* --custom-option-transition: var(--global-transitionDuration-alpha) var(--global-transitionEasing-out); */
+    display: flex;
+    align-items: center;
+}
+
+.c-option-field {
+    width: 100%;
+}
+
+.c-custom-option__fake-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-right: 8px;
+    background: var(--custom-option-background);
+    border-radius: var(--custom-option-borderRadius);
+    height: 70px;
+    /* border: 1px solid var(--custom-option-borderColor); */
+    transition: all var(--custom-option-transition);
+    box-shadow: var(--custom-option-boxShadow, 0);
+    font-size: calc(var(--global-font-size) * 2.5);
+}
+
+
+.c-coll-title {
+    font-weight: 300;
+    font-size: calc(var(--global-font-size) * 4);
+    color: #000;
+}
+
+
+/*------------------------------------*\
+#UTILITIES
+\*------------------------------------*/
+
+/*
+    Utilities: color
+    ---
+    Utility classes to put specific colors onto elements
+*/
+
+.u-color-neutral-light {
+    color: lightGray;
+}
+
+.u-color-neutral {
+    color: Gray;
+}
+
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-center{
+    display: flex;
+    justify-content: center;
+}
+
+.u-pt-clear {
+    padding-top: 0 !important;
+}
+
+.u-mb-clear {
+    margin-bottom: 0 !important;
+}
+
+.u-mb-xs {
+    margin-bottom: var(--global-whitespace-xs) !important;
+}
+
+.u-mb-sm {
+    margin-bottom: var(--global-whitespace-sm) !important;
+}
+
+.u-mb-md {
+    margin-bottom: var(--global-whitespace-md) !important;
+}
+
+.u-mb-lg {
+    margin-bottom: var(--global-whitespace-lg) !important;
+}
+
+.u-mb-xl {
+    margin-bottom: var(--global-whitespace-xl) !important;
+}
+
+.u-mb-xxl {
+    margin-bottom: var(--global-whitespace-xxl) !important;
+}
+
+/*
+    Utilities: max-width
+    ---
+    Utility classes to put specific max widths onto elements
+*/
+
+.u-max-width-xs {
+    max-width: 27em !important;
+}
+
+.u-max-width-sm {
+    max-width: 32em !important;
+}
+
+.u-max-width-md {
+    max-width: 50em !important;
+}
+
+.u-max-width-lg {
+    max-width: 63.5em !important;
+}
+
+.u-max-width-none {
+    max-width: none !important;
+}
+
+
+/*
+    Utilities: align
+    ---
+    Utility classes align text or components
+*/
+
+.u-align-text-center {
+    text-align: center;
+}
+
+.u-align-center {
+    margin: 0 auto;
+}
+
+/*
+    Utilities: text
+    Utility classes to create smaller or bigger test
+*/
+
+.u-text-sm {
+    font-size: 14px;
+}
+
+/*------------------------------------*\
+#MEDIA
+\*------------------------------------*/
+
+/*
+    Media Queries
+    ---
+    EXAMPLE Media Queries for Responsive Design.
+    These examples override the primary ('mobile first') styles.
+    USE THEM INLINE!
+*/
+
+/* Extra small devices (portrait phones, less than 576px)
+No media query since this is the default in mobile first design
+*/
+
+/* Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+*/
+
+/* Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+*/
+
+/* Large devices (landscape tablets, desktops, 992px and up)
+@media (min-width: 992px) {}
+*/
+
+/* Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+*/
+
+/*
+    Print styles.
+    ---
+    Inlined to avoid the additional HTTP request:
+    http://www.phpied.com/delay-loading-your-print-css/
+*/
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        /* Black prints faster:
+        http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+    /*
+    * Don't show links that are fragment identifiers,
+    * or use the `javascript:` pseudo protocol
+    */
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+    pre {
+        white-space: pre-wrap !important;
+    }
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+    /*
+    * Printing Tables:
+    * http://css-discuss.incutio.com/wiki/Printing_Tables
+    */
+    thead {
+        display: table-header-group;
+    }
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
