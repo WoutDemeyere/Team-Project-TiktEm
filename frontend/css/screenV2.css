@@ -1,0 +1,110 @@
+:root {
+    /* colors */
+    --global-color-white:#ffffff;
+    --global-color-dark-blue:#3FAED5;
+    --global-color-light-blue:#61D1F9;
+    --global-color-dark-green:#3EBD9C;
+    --global-color-light-green:#B1EFDF;
+    --global-color-font:var(--global-color-white);
+    --global-color-background:var(--global-color-dark-blue);
+    /* Shadows */
+
+    /* border radius */
+
+    /* transitions */
+    --transition-alpha: .1s;
+}
+html {
+    font-size: 16px;
+    
+    font-family: "Roboto", sans-serif;
+    color: var(--global-color-font);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #E4E4E4;
+
+    /*whitespace*/
+    --global-baseline:8px;
+    --global-whitespace-xxs:var(--global-baseline);/*5px*/
+    --global-whitespace-xs:calc(var(--global-baseline)*2);/*10px*/
+    --global-whitespace-sm:calc(var(--global-baseline)*3);/*15px*/
+    --global-whitespace-md:calc(var(--global-baseline)*4);/*20px*/
+    --global-whitespace-lg:calc(var(--global-baseline)*5);/*25px*/
+    --global-whitespace-xl:calc(var(--global-baseline)*6);/*30px*/
+
+    
+}
+.c-app{
+    /*max-width: 26;*/
+    margin: 0 auto;
+    height: 100vh;
+}
+.c-app__main{
+    padding: var(--global-whitespace-lg) var(--global-whitespace-xl) var(--global-whitespace-md) var(--global-whitespace-xl);
+    background-color: var(--global-color-dark-blue);
+    height: 100vh;
+}
+.c-nav a {
+    margin: 0 0.5rem;
+    display: flex;
+    justify-content: center;
+    background-color: var(--global-color-white);
+    border: 1px solid white;
+    border-radius: 2.5rem;
+    padding: 1rem 0;
+    text-decoration: none;
+    font-size: 2.5rem;
+}
+
+
+.c-image-strong{
+    height: 35rem;
+    width: 35rem;
+    margin-bottom: 6rem;
+}
+.c-title h1{
+    /*font-weight: 400;*/
+    margin-top: 1rem;
+    font-size: 5rem;
+}
+.c-info-text{
+    margin: 1rem 1rem 6rem 1rem;
+    font-size: 2.75rem;
+}
+.c-playericon-single ,.c-playericon-multi{
+    
+    height: 10rem;
+    width: auto;
+    margin-top: var(--global-whitespace-xl);
+    margin-bottom: var(--global-whitespace-xl);
+}
+.c-playericon-multi{
+    margin-top: 5rem;
+}
+
+/*
+    Utilities: max-width
+    ---
+    Utility classes to put specific max widths onto elements
+*/
+.u-center{
+    display: flex;
+    justify-content: center;
+}
+.u-align-text-center {
+    text-align: center;
+}
+.u-margin-top-sm{
+    margin-top: 2rem;
+}
+.u-margin-top-md{
+    margin-top: 4rem;
+}
+.u-margin-top-lg{
+    margin-top: 6rem;
+}
+.u-fontsize-md{
+    font-size: 3rem;
+    font-weight: 700;
+}
