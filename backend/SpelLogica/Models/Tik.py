@@ -88,5 +88,5 @@ class Tik:
     def update(self):
         data = {"tik_id":self.id, "tik_status":self.tikstatus, "light_status":self.lightstatus, "red":self.red, "green":self.green, "blue":self.blue, "tone":self.tone}
         data_raw = json.dumps(data)
-        print(f'tik: {self.id} : {data}')
+        #print(f'tik: {self.id} : {data}')
         self.mqtt.publish(f'tiktem/tik{self.id}', data_raw)

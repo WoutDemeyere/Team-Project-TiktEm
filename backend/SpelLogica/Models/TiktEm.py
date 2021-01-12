@@ -9,6 +9,7 @@ class TiktEm:
         self.tiks = []
         self.init_tiks()
         self.curr_gameid = 0
+        self.colorhunt_score = 0
     
     def init_tiks(self):
         for i in range(0, self.amount):
