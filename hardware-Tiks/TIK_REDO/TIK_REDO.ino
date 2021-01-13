@@ -132,7 +132,6 @@ void setup_wifi() {
 
     led_on(255, 165, 0);
     buzzer(500);
-    led_of();
 
     if (client.connect(TIK_HOSTNAME_ARR, mqttUser, mqttPassword)) {
       led_on(0, 255, 0);
@@ -156,11 +155,20 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
 
+    led_on(255, 165, 0);
+     buzzer(500);
+   
+
     if (client.connect(TIK_HOSTNAME_ARR, mqttUser, mqttPassword)) {
+      led_on(0, 255, 0);
+      buzzer(800);
+      led_of();
+
       Serial.println("connected");
       client.subscribe(TIK_SUBTOPIC_ARR);
+
+      
     } else {
-      led_of();
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println("try again in 5 seconds");
