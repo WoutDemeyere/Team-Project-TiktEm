@@ -9,6 +9,8 @@ from flask_cors import CORS
 import random
 import os
 import json
+import threading
+import sys
 
 
 #clear = lambda: os.system('cls')
@@ -29,6 +31,8 @@ CORS(app)
 mqtt = Mqtt(app)
 
 tiktem = TiktEm(mqtt, 2)
+
+colorhuntscore = 0
 
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
@@ -145,18 +149,19 @@ def simonSays():
     tiktem.reset_tiks()
     tiktem.set_game(1)
     #tiktem.update_tiks()
-
-    
     game = True
     sequence = []
     while(game == True):
-        sequence.append(random.randint(0,1))
+        seq = random.randint(0, tiktem.amount-1)
+        print(seq)
+        sequence.append(seq)
         pressed_tik = 0
         
         for i in sequence:
+            time.sleep(0.5)
             tiktem.tiks[i].turn_on(0, 255, 0, 500)
             #print(f"Tik nr {tiktem.tiks[i].id} lit up, remember it!")
-            time.sleep(1)
+            time.sleep(0.5)
             tiktem.tiks[i].turn_off()
             #tiktem.update_tiks()
             
@@ -173,13 +178,13 @@ def simonSays():
 
                         if tik.id == i:
                             tik.turn_on(0,0,255, 800)
-                            time.sleep(0.4)
+                            time.sleep(0.3)
                             tik.turn_off()
-                            time.sleep(1)
+                            #time.sleep(1)
 
                         elif tik.id != i:
                             tik.turn_on(255,0,0, 300)
-                            time.sleep(0.4)
+                            time.sleep(0.3)
                             tik.turn_off()
 
                             game = False
@@ -187,10 +192,7 @@ def simonSays():
                             print(f"Wrong Tik your score was {score}")
                             socketio.emit("B2F_score", score,broadcast=True)
                             break    
-                    
-                  
-
-
+                                  
 def speedRun():
     print("STARTING TEST GAME")
     tiktem.reset_tiks()
@@ -229,6 +231,102 @@ def speedRun():
     print(f"Congratulations you finished the sequence in {score} seconds")
     socketio.emit("B2F_score", score,broadcast=True)
 
+def colorhuntlight(colorhunttype,tikid):
+    global colorhuntscore 
+    tiktem.tiks[tikid].turn_off()
+    #time.sleep(0.5)
+    if(colorhunttype == 0):
+        tiktem.tiks[tikid].turn_on(255, 0, 0, 800)
+        starttime = datetime.now()
+        currenttime = datetime.now()
+        # while((currenttime - starttime).total_seconds() < 3):
+        t_end = time.time() + 3
+
+        while time.time() < t_end:
+            value = tiktem.get_tik_status(tikid)
+            if(value==True):
+                #tiktem.tiks[tikid].turn_off()
+                #tiktem.tiks[tikid].tikstatus = True
+                colorhuntscore += 4
+                #sys.exit()
+
+        tiktem.tiks[tikid].turn_off()
+        tiktem.tiks[tikid].tikstatus = True
+        print("KILLED THREAD", flush=True)
+        sys.exit()
+        
+                #return ""
+        #3 seconds rood
+    elif(colorhunttype == 1):
+        tiktem.tiks[tikid].turn_on(0, 0, 255, 800)
+        starttime = datetime.now()
+        currenttime = datetime.now()
+
+        t_end = time.time() + 5
+        # while((currenttime - starttime).total_seconds() < 5):
+        while time.time() < t_end:
+            value = tiktem.get_tik_status(tikid)
+            if(value==True):
+                #tiktem.tiks[tikid].turn_off()
+                #tiktem.tiks[tikid].tikstatus = True
+                colorhuntscore += 4
+                # sys.exit()
+
+        tiktem.tiks[tikid].turn_off()
+        tiktem.tiks[tikid].tikstatus = True
+        print("KILLED THREAD", flush=True)
+        sys.exit()
+        #5 seconds blauw
+    elif(colorhunttype == 2):
+        tiktem.tiks[tikid].turn_on(0, 255, 0, 800)
+
+        starttime = datetime.now()
+        currenttime = datetime.now()
+
+        t_end = time.time() + 8
+        
+        # while((currenttime - starttime).total_seconds() < 8):
+        while time.time() < t_end:
+            value = tiktem.get_tik_status(tikid)
+            #colorhunt_dead = tiktem.get_colorhunt_status(tikid)
+            if(value==True):
+                # tiktem.tiks[tikid].turn_off()
+                # tiktem.tiks[tikid].tikstatus = True
+                colorhuntscore += 4
+                # sys.exit()
+
+        tiktem.tiks[tikid].turn_off()
+        tiktem.tiks[tikid].tikstatus = True
+        print("KILLED THREAD", flush=True)
+        sys.exit()
+        #8 seconds groen
+
+def colorhunt():
+    tiktem.reset_tiks()
+    colorhuntscore = 0
+    tiks = tiktem.tiks
+
+    for item in tiks:
+        colortype = random.randint(0,2)
+        x = threading.Thread(target=colorhuntlight, args=(colortype,item.id))
+        x.start()
+
+    time.sleep(1)
+
+    t_end = time.time() + 25
+    while time.time() < t_end:
+        for item in tiks:
+            value = tiktem.get_tik_status(item.id)
+            if(value==True):
+                item.turn_off()
+                colortype = random.randint(0,2)
+                x = threading.Thread(target=colorhuntlight, args=(colortype,item.id))
+                x.start()
+
+    time.sleep(2)
+    print(f"Congratulations you finished colorhunt with a score of {colorhuntscore} ", flush=True)
+    socketio.emit("B2F_score", colorhuntscore, broadcast=True)
+
 @socketio.on('F2B_start')
 def startGame(data):
     socketio.emit("connected")
@@ -238,10 +336,12 @@ def startGame(data):
         speedRun()
     elif data['gameid'] == 2:
         simonSays()
+    elif data['gameid'] == 4:
+        print("STARTED COLORHUNT")
+        colorhunt()
 
 if __name__ == '__main__':
     mqtt.subscribe('tiktem/tiksout')
     socketio.run(app, debug=False, host='0.0.0.0')
 
 
-#    "{\"tik_id\": 3, \"tik_status\": true, \"light_status\": true, \"red\": 255, \"green\":255, \"blue\": 255}"

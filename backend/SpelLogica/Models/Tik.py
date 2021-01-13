@@ -9,6 +9,7 @@ class Tik:
         self.blue = blue
         self.tone = tone
         self.mqtt = mqtt_client
+        self.colorhunt_status = False
 
     @property
     def id(self):
@@ -19,7 +20,6 @@ class Tik:
         if (nieuwid != ""):
             self._id = nieuwid
         else:
-            # self._naam = "onbekend"
             raise ValueError("Geen geldig id, kan niet leeg zijn {}")
 
     @property
@@ -69,7 +69,6 @@ class Tik:
         self._tone = value
     
     def turn_on(self, red, green, blue, tone):
-        #self._tikstatus = True
         self._lightstatus = True
         self._red = red
         self._green = green
@@ -89,5 +88,5 @@ class Tik:
     def update(self):
         data = {"tik_id":self.id, "tik_status":self.tikstatus, "light_status":self.lightstatus, "red":self.red, "green":self.green, "blue":self.blue, "tone":self.tone}
         data_raw = json.dumps(data)
-        print(f'tik: {self.id} : {data}')
+        #print(f'tik: {self.id} : {data}')
         self.mqtt.publish(f'tiktem/tik{self.id}', data_raw)
