@@ -120,12 +120,12 @@ def simonSays():
         sequence.append(seq)
         pressed_tik = 0
         
-        for i in sequence:
-            time.sleep(0.5)
+        for i in sequence:       
             tiktem.tiks[i].turn_on(0, 255, 0, 500)
             print(f"-+- Tik nr {tiktem.tiks[i].id} lit up, remember it!\n")
             time.sleep(0.5)
             tiktem.tiks[i].turn_off()
+            time.sleep(0.4)
             
         for i in sequence:
             #print(sequence)
@@ -137,13 +137,15 @@ def simonSays():
 
                         if tik.id == i:
                             tik.turn_on(0,0,255, 800)
-                            time.sleep(0.3)
+                            time.sleep(0.5)
                             tik.turn_off()
+                            time.sleep(0.5)
 
                         elif tik.id != i:
                             tik.turn_on(255,0,0, 300)
-                            time.sleep(0.3)
+                            time.sleep(0.5)
                             tik.turn_off()
+                            time.sleep(0.5)
 
                             game = False
                             score = len(sequence)-1
