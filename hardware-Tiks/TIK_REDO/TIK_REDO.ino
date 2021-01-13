@@ -66,7 +66,7 @@ int touchChangeCount = 0;
 bool touchActive = false;
 int touchInActiveCount = 0;
 int touchGemiddelde = 0;
-int touchTreshold = 20;
+int touchTreshold = 10;
 
 void led_on(int r, int g, int b) {
   pixels.clear();
