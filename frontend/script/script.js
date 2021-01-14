@@ -1,20 +1,32 @@
 var mainContent, singleplayerButton, multiplayerButton, singleplayerContainer, multiplayerContainer;
 
+const handleNavItems = function () {
+    for (const nav of navs) {
+        nav.addEventListener('click', function () {
+            for (const nav of navs) {
+                nav.classList.remove('c-nav-is-selected')
+            }
+            
+            nav.classList.add('c-nav-is-selected')
+        });
+    }
+}
+
 const listenToCollapsables = () => {
     singleplayerButton.addEventListener('click', function() {
-        this.parentNode.style.flexGrow = "1";
-        multiplayerButton.parentNode.style.flexGrow = "0";
+        multiplayerButton.parentNode.parentNode.classList.remove('c-has-collapsed')
+        this.parentNode.parentNode.classList.add('c-has-collapsed')
         mainContent.classList.add('c-collapsed')
     })  
 
     multiplayerButton.addEventListener('click', function() {
-        this.parentNode.style.flexGrow = "1";
-        singleplayerButton.parentNode.style.flexGrow = "0";
+        singleplayerButton.parentNode.parentNode.classList.remove('c-has-collapsed');
+        this.parentNode.parentNode.classList.add('c-has-collapsed'); 
         mainContent.classList.add('c-collapsed')
     })  
 }
 
-const getDomElements = function() {
+const getDomElements = () => {
     mainContent = document.querySelector('.js-main-content');
     singleplayerButton = document.querySelector('.js-single');
     multiplayerButton = document.querySelector('.js-multi');
