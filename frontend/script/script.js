@@ -1,16 +1,5 @@
 var mainContent, singleplayerButton, multiplayerButton, singleplayerContainer, multiplayerContainer;
 
-const handleNavItems = function () {
-    for (const nav of navs) {
-        nav.addEventListener('click', function () {
-            for (const nav of navs) {
-                nav.classList.remove('c-nav-is-selected')
-            }
-            
-            nav.classList.add('c-nav-is-selected')
-        });
-    }
-}
 
 const listenToCollapsables = () => {
     singleplayerButton.addEventListener('click', function() {

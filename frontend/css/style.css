@@ -431,6 +431,15 @@ input:disabled {
     width: 90%;
 }
 
+.c-header-logo-solo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 90%;
+
+}
+
 
 .c-logo-image {
     align-self: center;
@@ -444,11 +453,12 @@ input:disabled {
 .c-main-content {
     height: 90%;
     width: 90%;
-    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: center;
+
+    overflow: hidden;
 }
 
 /*
@@ -768,6 +778,41 @@ input:disabled {
     display: none;
 }
 
+/*
+    All things for the game start
+*/
+
+.c-game-start-menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.c-menu-move-up {
+    transform: translateY(-1500px);
+}
+
+/*
+    All things for the Countdown
+*/
+
+.c-countdown-container {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--global-color-background);
+}
+
+.c-countdown {
+    font-size: calc(var(--global-font-size) * 18);
+    transition: font-size 0.5s var(--global-transition);
+} 
+
 
 /*
     All things for the input
@@ -883,6 +928,11 @@ input:disabled {
     stroke: var(--global-color-dark-green);
 }
 
+.c-stop-button__icon {
+    height: 150px;
+    stroke: #f05555;
+}
+
 /* .c-play-button__icon:active {
     stroke: var(--global-color-flash-green);
 } */
@@ -893,6 +943,38 @@ input:disabled {
     font-size: calc(var(--global-font-size) * 5);
 }
 
+/*
+    All things for timer
+*/
+
+.c-game-info-container {
+    width: 100%;
+    height: 25%;
+
+    border-radius: var(--global-borderRadius);
+    background-color: var(--global-color-white);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: var(--global-whitespace-lg);
+}
+
+.c-game-info__header {
+    color: #000;
+    font-size: calc(var(--global-font-size) * 4);
+}
+
+.c-game-time__time {
+    color: #000;
+    font-size: calc(var(--global-font-size) * 8);
+}
+
+.c-game-info__tiks {
+    color: #000;
+    font-size: calc(var(--global-font-size) * 6);
+}
 
 
 

@@ -11,6 +11,17 @@ const listenToSideNavButtons = () => {
     });
 }
 
+const handleNavItems = function () {
+    for (const nav of navs) {
+        nav.addEventListener('click', function () {
+            for (const nav of navs) {
+                nav.classList.remove('c-nav-is-selected')
+            }
+            nav.classList.add('c-nav-is-selected')
+        });
+    }
+}
+
 const getDomElements = () => {
     sideOpen = document.querySelector('.js-sidenav-open');
     sideClose = document.querySelector('.js-sidenav-close');
