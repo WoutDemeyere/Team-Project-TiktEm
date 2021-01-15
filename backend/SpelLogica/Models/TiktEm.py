@@ -10,6 +10,11 @@ class TiktEm:
         self.init_tiks()
         self.curr_gameid = 0
         self.colorhunt_score = 0
+
+        self.color_team1 = False
+        self.color_team2 = False
+
+        self.colorteams=[{"color":"blue","sequence":0,"team":1},{"color":"red","sequence":0,"team":2}]
     
     def init_tiks(self):
         for i in range(0, self.amount):

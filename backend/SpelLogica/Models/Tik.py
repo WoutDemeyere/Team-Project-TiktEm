@@ -34,6 +34,7 @@ class Tik:
         return self._lightstatus
     @lightstatus.setter
     def lightstatus(self, nieuwelightstatus):
+        # print(f"SETING LIGHTSTATERTUS TO {nieuwelightstatus}")
         self._lightstatus = nieuwelightstatus
 
     @property
