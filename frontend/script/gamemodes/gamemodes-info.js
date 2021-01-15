@@ -1,7 +1,7 @@
 const gamemodeInfo = {
     "speedrun": {
         "title": "Speedrun",
-
+        "id": 1,
         "html": `<div class="c-game-info-container">
                     <p class="c-game-info__header">Verstreken tijd</p>
                     <p class="c-game-time__time js-timer">00.00</p>

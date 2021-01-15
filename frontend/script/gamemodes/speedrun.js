@@ -16,8 +16,8 @@ const getSpeedrunDomElements = () => {
     tiksLeftHTML = document.querySelector('.js-speedrun-tiks-left');
 }
 
-const startGame = () => {
-    console.log('Starting speedrun')
-    getSpeedrunDomElements();
-    runTimer();
+const callBackStartGame = () => {
+    console.log(`Starting ${gamemodeInfo[gamename].title}`);
+    getSpeedrunDomElements();  
+    runTimer(); 
 }

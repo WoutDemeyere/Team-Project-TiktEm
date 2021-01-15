@@ -442,8 +442,13 @@ input:disabled {
 
 
 .c-logo-image {
-    align-self: center;
+    object-position: center;
+    text-align: center;  
     margin: var(--global-whitespace-sm);
+}
+
+.c-hidden-flex {
+    width: 5%;
 }
 
 /*
@@ -489,6 +494,16 @@ input:disabled {
     margin-top: var(--global-whitespace-md);
     font-size: calc(var(--global-font-size) * 2);
     line-height: calc(var(--global-font-size) * 2.7);
+    text-align: center;
+    align-self: center;
+}
+
+.c-info-under {
+    font-weight: 300;
+    width: 85%;
+    margin-top: var(--global-whitespace-md);
+    font-size: calc(var(--global-font-size) * 1.8);
+    line-height: calc(var(--global-font-size) * 2);
     text-align: center;
     align-self: center;
 }
@@ -549,6 +564,14 @@ input:disabled {
     justify-self: flex-start;
     margin-left: var(--global-whitespace-lg);
 }
+
+.c-icon-battery {
+    height: 350px;
+    /* fill: var(--global-color); */
+    justify-self: flex-start;
+    /* margin-left: var(--global-whitespace-lg); */
+}
+
 
 .c-icon-button-container {
     width: 100%;
@@ -1112,6 +1135,59 @@ input:disabled {
     text-align: center;
     font-size: calc(var(--global-font-size) * 6);
     line-height: calc(var(--global-font-size) * 6.4);
+}
+
+/*
+    All thigns for the battery
+*/
+
+.c-batterys-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.c-battery-container {
+    padding: var(--global-whitespace-sm);
+    width: 50%;
+    height: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-battery {
+    /* width: 80%; */
+    margin:0 var(--global-whitespace-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-battery__percentage {
+    text-align: center;
+    font-size: calc(var(--global-font-size) * 4.5);
+    line-height: calc(var(--global-font-size) * 5);
+}
+
+.c-battery__number {
+    text-align: center;
+    font-size: calc(var(--global-font-size) * 4.5);
+    line-height: calc(var(--global-font-size) * 5);
+}
+
+.c-icon-battery-container {
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+}
+
+.c-baterry-state {
+    align-self: center;
+    /* transform: translateY(50px); */
 }
 
 

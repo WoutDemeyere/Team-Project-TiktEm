@@ -14,6 +14,11 @@ const loadGameHTML = () => {
     mainContent.innerHTML += gamemodeInfo[gameName].html
 }
 
+const callbackGameError = () => {
+    console.error(`Error at ${gamemodeInfo[gameName].title} start`)
+    alert('Er ging iets mis in de backend')
+}
+
 const getGameDomElements = () => {
     gameTitleHTML = document.querySelector('.js-title');
     mainContent = document.querySelector('.js-main-content');
