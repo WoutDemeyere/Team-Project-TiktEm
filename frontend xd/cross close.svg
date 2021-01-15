@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+  <defs>
+    <style>
+      .a {
+        fill: none;
+      }
+
+      .b {
+        fill: #fff;
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <path class="a" d="M0,0H18V18H0Z"/>
+  <line class="b" x1="2.51" y1="3.55" x2="15.75" y2="14.25"/>
+  <line class="b" x1="15.75" y1="3.55" x2="2.51" y2="14.25"/>
+</svg>

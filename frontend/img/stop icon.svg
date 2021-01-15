@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107.46 107.46">
+  <defs>
+    <style>
+      .a {
+        fill: #fff;
+        stroke: #f05555;
+        stroke-linejoin: round;
+        stroke-width: 15px;
+      }
+    </style>
+  </defs>
+  <rect class="a" x="7.5" y="7.5" width="92.46" height="92.46"/>
+</svg>

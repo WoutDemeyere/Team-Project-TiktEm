@@ -1,65 +1,75 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Impekable</title>
-        <meta name="description" content="This is my HTML5 boilerplate.">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/screen.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">   
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-        <script src="script/app.js"></script>
-        <script src="script/gameinfo.js"></script>
-        <script src="script/dataHandler.js"></script>
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TiktEm - Gamemode menu</title>
+    <meta name="description" content="This is my HTML5 boilerplate.">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- <link rel="stylesheet" href="css/screenV2.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+
+    <script src="script/dataHandler.js"></script>
+    <script src="script/gamemodes/gamemodes-info.js"></script>
+    <script src="script/game.js"></script>
+    <script src="script/countdown.js"></script>
+    
+</head>
+
+<body>
+    <div class="c-main">
         <div class="c-app">
-            
-            <div class="c-app__game js-game">
-                <div class="c-navbar">
-                    <div class="c-navbar-back js-back">
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     viewBox="0 0 31.494 31.494" style="enable-background:new 0 0 31.494 31.494;" xml:space="preserve">
-    <path style="fill:#1E201D;" d="M10.273,5.009c0.444-0.444,1.143-0.444,1.587,0c0.429,0.429,0.429,1.143,0,1.571l-8.047,8.047h26.554
-    c0.619,0,1.127,0.492,1.127,1.111c0,0.619-0.508,1.127-1.127,1.127H3.813l8.047,8.032c0.429,0.444,0.429,1.159,0,1.587
-    c-0.444,0.444-1.143,0.444-1.587,0l-9.952-9.952c-0.429-0.429-0.429-1.143,0-1.571L10.273,5.009z"/>
-                    </svg>
-                    
+
+            <div class="c-header-logo-solo u-mb-md">
+                <!-- <svg class="c-icon c-icon-burger js-sidenav-open" id="menu-black-18dp"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none" />
+                    <path id="Path_15" data-name="Path 15"
+                        d="M4,18H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2Zm0-5H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Z"
+                        fill="#fff" />
+                </svg> -->
+
+                <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
+
+                <!-- <div class="c-hidden-flex"></div> -->
+            </div>
+
+            <div class="c-countdown-container">
+                <span class="c-countdown js-countdown">5</span>
+            </div>
+
+            <div class="c-main-content js-main-content">
+                    <div class="c-info-container">
+                        <h1 class="c-title js-title"></h1>
                     </div>
-                    <div class="c-navbar-title">
-                        
-                            <img src="/img/color-icon-22.jpg" alt="TiktEm">
-                        
-                        
-                    <h1 class="c-tiktem">
-                        TiktEm
-                    </h1>
+
+                    <!-- <div class="c-game-info-container">
+                        <p class="c-game-info__header">Verstreken tijd</p>
+                        <p class="c-game-time__time js-timer">00.00</p>
                     </div>
-                    
-                </div>
-                <div class="c-title">
-                    <h1 class="js-title">
-                        Title
-                    </h1>
-                </div>
-                <div class="c-game-content">
-                    <div class="c-description">
-                        <h1>spelinfo:</h1>
-                        <p class="js-description">
-                            allemaal uitelge
-                        </p>
-                    </div>
-                    <div class="c-nav">
-                        <div class="c-button js-start" >
-                            <a href="#" > Start</a>
-                        </div>
-                    </div>
-                </div>
+
+                    <div class="c-game-info-container">
+                        <p class="c-game-info__header">Te tikken Tiks</p>
+                        <p class="c-game-info__tiks js-speedrun-tiks-left">0</p>
+                    </div> 
+
+                    <div class="c-play-button-container">
+                        <a href="game.html">
+                            <svg class="c-stop-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.46 66.46">
+                                <rect id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" fill="#fff" stroke-linejoin="round" stroke-width="15"/>
+                            </svg>                              
+                        </a>
+                        <span class="c-play-button__text">STOP</span>
+                    </div> -->
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

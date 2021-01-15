@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TiktEm - Gamemode menu</title>
+    <meta name="description" content="This is my HTML5 boilerplate.">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- <link rel="stylesheet" href="css/screenV2.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <!-- <script src="script/app.js"></script> -->
+    <script src="script/dataHandler.js"></script>
+    <script src="script/sidemenu.js"></script>
+    <!-- <script src="script/script.js"></script> -->
+</head>
+
+<body>
+    <div class="c-main">
+        <div class="c-side-menu js-side-menu">
+            <div class="c-side-menu__header">
+                <svg class="c-icon-close js-sidenav-close" data-name="cross close" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 18 18">
+                    <path id="Path_16" data-name="Path 16" d="M0,0H18V18H0Z" fill="none" />
+                    <line id="Line_5" data-name="Line 5" x2="13.24" y2="10.7" transform="translate(2.51 3.55)"
+                        fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                    <line id="Line_6" data-name="Line 6" x1="13.24" y2="10.7" transform="translate(2.51 3.55)"
+                        fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                </svg>
+
+                <p class="c-side-menu__header--title">Menu</p>
+
+                <div class="c-hidden-flex"></div>
+            </div>
+
+            <div class="c-side-menu__nav">
+                <nav>
+                    <ul class="o-list c-nav">
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a class="c-nav-item__link">Play</a>
+                            <hr class="c-nav-line">
+                        </li>
+
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a class="c-nav-item__link">Leaderboard</a>
+                            <hr class="c-nav-line">
+                        </li>
+
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a class="c-nav-item__link">Battery status</a>
+                            <hr class="c-nav-line">
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="c-app">
+
+            <div class="c-header u-mb-md">
+                <a href="gamemenu.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="c-icon c-icon-back" viewBox="0 0 6.585 11.175">
+                        <path id="keyboard_arrow_left-black-18dp" d="M14.71,15.88,10.83,12l3.88-3.88A1,1,0,0,0,13.3,6.71L8.71,11.3a1,1,0,0,0,0,1.41L13.3,17.3a1,1,0,0,0,1.41,0,1.017,1.017,0,0,0,0-1.42Z" transform="translate(-8.417 -6.417)" fill="#fff"/>
+                    </svg>
+                </a>
+
+                <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
+
+                <div class="c-hidden-flex"></div>
+            </div>
+
+            <div class="c-main-content js-main-content">
+
+                <div class="c-game-start-menu js-game-start-menu">
+                    <div class="c-info-container">
+                        <h1 class="c-title">Results</h1>
+                        <p class="c-info">
+                            Je vervolledigde het parkour in
+                        </p>
+                    </div>
+
+                    <p class="c-result__time">38.22s</p>
+
+                    <div class="c-leaderboard-sm-container">
+                        <span class="c-leaderboard__header">Leaderboard</span>
+
+                        <table class="c-leaderboard__table">
+                            <tr class="c-table-header">
+                                <th class="c-table-header__text">Plaats</th>
+                                <th class="c-table-header__text">Naam</th>
+                                <th class="c-table-header__text">Score</th>
+                            </tr>
+
+                            <tr class="c-table-row c-talbe-row-1">
+                                <th class="c-table-row-text">1</th>
+                                <th class="c-table-row-text">Kattie Vanduzer</th>
+                                <th class="c-table-row-text">42.34</th>
+                            </tr>
+
+                            <tr class="c-table-row c-talbe-row-2">
+                                <th class="c-table-row-text">2</th>
+                                <th class="c-table-row-text">Emmanuel Bise</th>
+                                <th class="c-table-row-text">42.34</th>
+                            </tr>
+
+                            <tr class="c-table-row c-talbe-row-3">
+                                <th class="c-table-row-text">3</th>
+                                <th class="c-table-row-text">German Orsborn</th>
+                                <th class="c-table-row-text">42.34</th>
+                            </tr>
+
+                            <tr class="c-table-row">
+                                <th class="c-table-row-text">4</th>
+                                <th class="c-table-row-text">Rusty Olivares</th>
+                                <th class="c-table-row-text">42.34</th>
+                            </tr>
+
+                            <tr class="c-table-row">
+                                <th class="c-table-row-text">5</th>
+                                <th class="c-table-row-text">Kenton Kellison</th>
+                                <th class="c-table-row-text">42.34</th>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="c-play-button-container">
+                        <a href="game.html">
+                            <svg class="c-play-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
+                                <path id="play_icon" data-name="play icon" d="M7.5,7.5v64l56.889-32Z" fill="#fff"
+                                    stroke-linejoin="round" stroke-width="15" />
+                            </svg>
+                        </a>
+                        <span class="c-play-button__text">PLAY AGAIN</span>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
