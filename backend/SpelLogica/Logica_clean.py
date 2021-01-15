@@ -114,7 +114,7 @@ def speedRun():
     endtime = datetime.now()
     score = (endtime - starttime).total_seconds()
     print(f"\n+++++ Congratulations you finished the sequence in {score} seconds +++++ \n")
-    socketio.emit("B2F_score", score,broadcast=True)
+    socketio.emit("B2F_speedrun_ended", score,broadcast=True)
 
 def simonSays():
     tiktem.reset_tiks()
@@ -300,7 +300,7 @@ def colorteamCheck(color,sequence,team):
     #light up selected light
     active=True
 
-    
+
     r=0
     g=0
     b=0
@@ -332,8 +332,16 @@ def colorteamCheck(color,sequence,team):
             print(tiktem.color_team1, tiktem.color_team2)
             
             sys.exit()
-     
+
+
+def mqtt_test():
+    while True:
+        tiktem.tiks[0].turn_on(255, 255, 255, 500)
+        time.sleep(0.01)
+        tiktem.tiks[0].turn_off()
+        time.sleep(0.01)
 
 if __name__ == '__main__':
     mqtt.subscribe('tiktem/tiksout')
+    #mqtt_test()
     socketio.run(app, debug=False, host='0.0.0.0', port=5000)
