@@ -312,6 +312,7 @@ input:disabled {
 .c-main{
     margin: 0 auto;
     height: 100vh;
+    /* max-width: 500px; */
 }
 
 /*
@@ -407,7 +408,7 @@ input:disabled {
     opacity: 0;
     border: 2px solid var(--global-color-white);
     color: #FFF;
-    transition: flex-grow 0.8s var(--global-transition);
+    transition: flex-grow 0.2s var(--global-transition);
     /* transition: opacity 0.2s var(--global-transition); */
 }
 
@@ -449,6 +450,10 @@ input:disabled {
 
 .c-hidden-flex {
     width: 5%;
+}
+
+.c-hidden-flex2 {
+    width: 10%;
 }
 
 /*
@@ -934,6 +939,10 @@ input:disabled {
     align-items: center;
 }
 
+.c-leaderboard-table {
+    overflow-y: auto;
+}
+
 .c-leaderboard-table__header {
     margin-top: var(--global-whitespace-xl);
     display: flex;
@@ -953,7 +962,7 @@ input:disabled {
     color: #000;
     font-weight: 300;
     font-size: calc(var(--global-font-size) * 3.8);
-
+    /* text-align: center; */
 }
 
 .c-leaderboard__select-info {
@@ -1000,6 +1009,7 @@ input:disabled {
 .c-leaderboard-table-container {
     width: 50%;
     height: 100%;
+    /* overflow: auto; */
     padding: var(--global-whitespace-md);
     transition: transform 0.5s var(--global-transition);
 }
@@ -1018,6 +1028,12 @@ input:disabled {
 
     padding: var(--global-whitespace-md);
 }
+.c-table-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--global-whitespace-lg);
+}
 
 .c-table-header__text {
     font-weight: 300;
@@ -1031,15 +1047,22 @@ input:disabled {
     height: auto;
     background-color: var(--global-color-white);
     color: #000;
+    display: flex;
+    flex-direction: column;
     /* padding: var(--global-whitespace-md); */
     overflow-y: scroll;
-    height: 100%;
+    height: auto;
 }
 
-
+.c-table-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: var(--global-whitespace-lg) 0;
+}
 
 .c-table-row-text {
-    font-weight: 350;
+    font-weight: 300;
     font-size: calc(var(--global-font-size) * 2.5);
 }
 
@@ -1048,6 +1071,7 @@ input:disabled {
     color: var(--global-color-gold);
 }
 .c-talbe-row-1 .c-table-row-text  {
+    font-weight: 600;
     font-size: calc(var(--global-font-size) * 3);
 }
 
@@ -1055,6 +1079,7 @@ input:disabled {
     color: var(--global-color-light-gray);
 }
 .c-talbe-row-2 .c-table-row-text  {
+    font-weight: 400;
     font-size: calc(var(--global-font-size) * 2.8);
 }
 
@@ -1062,6 +1087,7 @@ input:disabled {
     color: var(--global-color-bronze);
 }
 .c-talbe-row-3 .c-table-row-text  {
+    font-weight: 400;
     font-size: calc(var(--global-font-size) * 2.6);
 }
 

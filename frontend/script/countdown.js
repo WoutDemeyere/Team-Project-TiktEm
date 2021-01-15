@@ -9,7 +9,7 @@ const handelCountdown = () => {
             countdownHTML.innerHTML = "GO";
         } else if(number < 0) { 
             clearInterval(x);  
-            handleData(`http://${lanIP}/tiktem/v1/startgame?gameid=${gamemodeInfo[gamename].id}`, callBackStartGame, callbackShowErrorGame, "GET", null);
+            handleData(`http://${lanIP}/tiktem/v1/startgame?gameid=${gamemodeInfo[gameName].id}`, callBackStartGame, callbackShowErrorGame, "GET", null);
             countdownHTML.parentNode.style.display = "none";
         } else {
             countdownHTML.innerHTML = number;      

@@ -14,7 +14,7 @@ const loadGameHTML = () => {
     mainContent.innerHTML += gamemodeInfo[gameName].html
 }
 
-const callbackGameError = () => {
+const callbackShowErrorGame = () => {
     console.error(`Error at ${gamemodeInfo[gameName].title} start`)
     alert('Er ging iets mis in de backend')
 }

@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <!-- <script src="script/app.js"></script> -->
     <script src="script/dataHandler.js"></script>
+    <script src="script/gamemodes/gamemodes-info.js"></script>
     <script src="script/sidemenu.js"></script>
     <script src="script/leaderboard-menu.js"></script>
 
@@ -45,19 +46,19 @@
                     <ul class="o-list c-nav">
                         <li class="c-nav-item js-nav-item">
                             <hr class="c-nav-line">
-                            <a class="c-nav-item__link">Play</a>
+                            <a href="gamemenu.html" class="c-nav-item__link">Play</a>
                             <hr class="c-nav-line">
                         </li>
 
                         <li class="c-nav-item js-nav-item">
                             <hr class="c-nav-line">
-                            <a class="c-nav-item__link">Leaderboard</a>
+                            <a href="leaderboard.html" class="c-nav-item__link">Leaderboard</a>
                             <hr class="c-nav-line">
                         </li>
 
                         <li class="c-nav-item js-nav-item">
                             <hr class="c-nav-line">
-                            <a class="c-nav-item__link">Battery status</a>
+                            <a href="battery.html" class="c-nav-item__link">Battery status</a>
                             <hr class="c-nav-line">
                         </li>
                     </ul>
@@ -107,164 +108,150 @@
                                 wilt
                                 krijgen</p>
                             <div class="c-leaderboard__select-container">
-                                <button
-                                    class="o-button-reset c-leaderboard__select--button js-leaderboard-select">Speedrun</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select">Tik
-                                    Tak Boem</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select">Simon
-                                    Says</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select">Color
-                                    Hunt</button>
-                                <button
-                                    class="o-button-reset c-leaderboard__select--button js-leaderboard-select">Speedrun
-                                    versus</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select">Simon
-                                    Says versus</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="speedrun" >Speedrun</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="simonsays" >Simon Says</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="tiktakboem" >Tik Tak Boem</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="colorhunt" >Color Hunt</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="speedrun-versus" >Speedrun versus</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="simonsays-versus" >Simon Says versus</button>
                             </div>
                         </div>
 
                         <div class="c-leaderboard-table-container js-leaderboard-table-container">
                             <div class="c-leaderboard-table__header">
-                                <div class="c-leaderboard-table__header--icons">
-                                    
-                                    <svg class="c-icon-leaderboard-back js-leaderboard-back" xmlns="http://www.w3.org/2000/svg" class="c-icon c-icon-back" viewBox="0 0 6.585 11.175">
-                                        <path id="keyboard_arrow_left-black-18dp" d="M14.71,15.88,10.83,12l3.88-3.88A1,1,0,0,0,13.3,6.71L8.71,11.3a1,1,0,0,0,0,1.41L13.3,17.3a1,1,0,0,0,1.41,0,1.017,1.017,0,0,0,0-1.42Z" transform="translate(-8.417 -6.417)"/>
-                                    </svg>
-                                      
-                                    <svg class="c-icon-leaderboard" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 48">
-                                    <defs>
-                                        <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%"
-                                            viewBox="0 0 135 101">
-                                            <image width="135" height="101"
-                                                xlink:href="data:image/png;base64,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" />
-                                        </pattern>
-                                    </defs>
-                                    <rect id="scoreboard" width="64" height="48" fill="url(#pattern)" />
+                                <div class="c-leaderboard-table__header--icons u-mb-xl">
+
+                                    <svg class="c-icon-leaderboard-back js-leaderboard-back"
+                                        xmlns="http://www.w3.org/2000/svg" class="c-icon c-icon-back"
+                                        viewBox="0 0 6.585 11.175">
+                                        <path id="keyboard_arrow_left-black-18dp"
+                                            d="M14.71,15.88,10.83,12l3.88-3.88A1,1,0,0,0,13.3,6.71L8.71,11.3a1,1,0,0,0,0,1.41L13.3,17.3a1,1,0,0,0,1.41,0,1.017,1.017,0,0,0,0-1.42Z"
+                                            transform="translate(-8.417 -6.417)" />
                                     </svg>
 
-                                    <div class="c-hidden-flex"></div>
+                                    <svg class="c-icon-leaderboard" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 48">
+                                        <defs>
+                                            <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%"
+                                                viewBox="0 0 135 101">
+                                                <image width="135" height="101"
+                                                    xlink:href="data:image/png;base64,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" />
+                                            </pattern>
+                                        </defs>
+                                        <rect id="scoreboard" width="64" height="48" fill="url(#pattern)" />
+                                    </svg>
+
+                                    <div class="c-hidden-flex2"></div>
                                 </div>
-                                
-                                <p class="c-leaderboard-menu__header--title">Speedrun</p>
+
+                                <p class="c-leaderboard-menu__header--title js-leaderboard-title">Speedrun</p>
                             </div>
-    
+
                             <div class="c-leaderboard__table">
-                                <table class="c-leaderboard__table">
+                                <table class="c-leaderboard__table js-leaderboard-table">
                                     <tr class="c-table-header">
                                         <th class="c-table-header__text">Plaats</th>
                                         <th class="c-table-header__text">Naam</th>
                                         <th class="c-table-header__text">Score</th>
                                     </tr>
-    
+
                                     <tr class="c-table-row c-talbe-row-1">
-                                        <th class="c-table-row-text">1</th>
-                                        <th class="c-table-row-text">Kattie Vanduzer</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">1</td>
+                                        <td class="c-table-row-text">Kattie Vanduzer</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row c-talbe-row-2">
-                                        <th class="c-table-row-text">2</th>
-                                        <th class="c-table-row-text">Emmanuel Bise</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">2</td>
+                                        <td class="c-table-row-text">Emmanuel Bise</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row c-talbe-row-3">
-                                        <th class="c-table-row-text">3</th>
-                                        <th class="c-table-row-text">German Orsborn</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">3</td>
+                                        <td class="c-table-row-text">German Orsborn</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">4</th>
-                                        <th class="c-table-row-text">Rusty Olivares</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
+
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
                                     <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
+                                        <td class="c-table-row-text">4</td>
+                                        <td class="c-table-row-text">Rusty Olivares</td>
+                                        <td class="c-table-row-text">42.34</td>
                                     </tr>
-    
-                                    <tr class="c-table-row">
-                                        <th class="c-table-row-text">5</th>
-                                        <th class="c-table-row-text">Kenton Kellison</th>
-                                        <th class="c-table-row-text">42.34</th>
-                                    </tr>
+
+
                                 </table>
                             </div>
                         </div>
-
                     </div>
 
-                    
+
 
                 </div>
             </div>
