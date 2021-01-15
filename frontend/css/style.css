@@ -524,10 +524,30 @@ input:disabled {
     justify-self: flex-start;
 }
 
+.c-icon-back {
+    height: 35px;
+    fill: var(--global-color-white);
+    justify-self: flex-start;
+}
+
 .c-icon-close {
     height: 50px;
     fill: var(--global-color-white);
     justify-self: flex-start;
+}
+
+.c-icon-leaderboard {
+    height: 120px;
+    fill: var(--global-color-white);
+    justify-self: flex-start;
+}
+
+.c-icon-leaderboard-back {
+    height: 50px;
+    stroke: var(--global-color-dark-green);
+    fill: var(--global-color-dark-green);
+    justify-self: flex-start;
+    margin-left: var(--global-whitespace-lg);
 }
 
 .c-icon-button-container {
@@ -859,27 +879,138 @@ input:disabled {
     All things for the leaderboard at start
 */
 
-.c-leaderboard-container {   
+.c-move-left {
+    transform: translateX(-800px);
+    transition: transform 0.5s var(--global-transition);
+}
+
+.c-leaderboard-container {
+    direction: ltr;
+    height: 100%;
+    width: 100%;
+    direction: ltr;
+    border-radius: var(--global-borderRadius);
+    background-color: var(--global-color-white);
+    /* overflow: auto; */
+    /* display: flex; */
+    overflow: hidden;
+}
+
+.c-leaderboard-container-temp {
+    width: 200%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.c-leaderboard-menu__header {
+    margin-top: var(--global-whitespace-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-leaderboard-table__header {
+    margin-top: var(--global-whitespace-xl);
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-leaderboard-table__header--icons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.c-leaderboard-menu__header--title {
+    color: #000;
+    font-weight: 300;
+    font-size: calc(var(--global-font-size) * 3.8);
+
+}
+
+.c-leaderboard__select-info {
+    color: #000;
+    font-weight: 400;
+    font-size: calc(var(--global-font-size) * 2);
+}
+
+.c-leaderboard__select-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.c-leaderboard__select--button {
+    margin-bottom: var(--global-whitespace-xxl);
+    font-size: calc(var(--global-font-size) * 3.5);
+    width: 100%;
+    height: 80px;
+    border-radius: var(--global-borderRadius);
+    background-color: var(--global-color-dark-green);
+}
+
+.c-leaderboard-sm-container {   
     margin: var(--global-whitespace-xl) 0; 
 }
 
-.c-leaderboard__header {
+
+.c-move-left {
+    transform: translateX(-800px);
+}
+
+.c-leaderboard-menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 50%;
+    padding: var(--global-whitespace-xl);
+    transition: transform 0.5s var(--global-transition);
+}
+
+.c-leaderboard-table-container {
+    width: 50%;
+    height: 100%;
+    padding: var(--global-whitespace-md);
+    transition: transform 0.5s var(--global-transition);
+}
+
+.c-leaderboard-sm__header {
     font-size: calc(var(--global-font-size) * 1.6);
     padding-left: var(--global-whitespace-sm);
 }
 
-.c-leaderboard__table {
+.c-leaderboard-sm__table {
     border-radius: var(--global-borderRadius);
     width: 100%;
     height: 500px;
     background-color: var(--global-color-white);
     color: #000;
+
+    padding: var(--global-whitespace-md);
 }
 
 .c-table-header__text {
     font-weight: 300;
     font-size: calc(var(--global-font-size) * 1.8);
     color: var(--global-color-dark-green);
+}
+
+.c-leaderboard__table {
+    border-radius: var(--global-borderRadius);
+    width: 100%;
+    height: auto;
+    background-color: var(--global-color-white);
+    color: #000;
+    /* padding: var(--global-whitespace-md); */
+    overflow-y: scroll;
+    height: 100%;
 }
 
 
@@ -976,6 +1107,12 @@ input:disabled {
     font-size: calc(var(--global-font-size) * 6);
 }
 
+
+.c-result__time {
+    text-align: center;
+    font-size: calc(var(--global-font-size) * 6);
+    line-height: calc(var(--global-font-size) * 6.4);
+}
 
 
 /*------------------------------------*\

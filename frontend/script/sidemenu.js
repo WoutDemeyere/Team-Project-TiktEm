@@ -1,14 +1,25 @@
-var sideOpen, sideClose, sideMenu;
+var sideOpen, sideClose, sideMenu, mainApp;
 
 const listenToSideNavButtons = () => {
     sideOpen.addEventListener('click', function () {
         sideMenu.style.width = "85%" 
+
+        mainApp.addEventListener('click', function() {
+            sideMenu.style.width = "85%";
+            
+            mainApp.addEventListener('click', function() {
+                sideMenu.style.width = "0" 
+            })
+        })
+
         handleNavItems();
     });
 
     sideClose.addEventListener('click', function () {
         sideMenu.style.width = "0" 
     });
+
+    
 }
 
 const handleNavItems = function () {
@@ -22,17 +33,19 @@ const handleNavItems = function () {
     }
 }
 
-const getDomElements = () => {
+const getSideMenuDomElements = () => {
     sideOpen = document.querySelector('.js-sidenav-open');
     sideClose = document.querySelector('.js-sidenav-close');
     sideMenu = document.querySelector('.js-side-menu')
     navs = document.querySelectorAll('.js-nav-item');
+
+    mainApp = document.querySelector('.js-main-app');
 }
 
-const init = () => {
+const initSideMenu = () => {
     console.log('Sidemenu script loaded!')
-    getDomElements();
+    getSideMenuDomElements();
     listenToSideNavButtons();
 }
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', initSideMenu);

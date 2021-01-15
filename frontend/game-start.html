@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <!-- <script src="script/app.js"></script> -->
     <script src="script/dataHandler.js"></script>
-    <script src="script/sidemenu.js"></script>
+    <script src="script/gamestart.js"></script>
     <!-- <script src="script/script.js"></script> -->
 </head>
 
@@ -66,13 +66,11 @@
         <div class="c-app">
 
             <div class="c-header u-mb-md">
-                <svg class="c-icon c-icon-burger js-sidenav-open" id="menu-black-18dp"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none" />
-                    <path id="Path_15" data-name="Path 15"
-                        d="M4,18H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2Zm0-5H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Z"
-                        fill="#fff" />
-                </svg>
+                <a href="gamemenu.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="c-icon c-icon-back" viewBox="0 0 6.585 11.175">
+                        <path id="keyboard_arrow_left-black-18dp" d="M14.71,15.88,10.83,12l3.88-3.88A1,1,0,0,0,13.3,6.71L8.71,11.3a1,1,0,0,0,0,1.41L13.3,17.3a1,1,0,0,0,1.41,0,1.017,1.017,0,0,0,0-1.42Z" transform="translate(-8.417 -6.417)" fill="#fff"/>
+                    </svg>
+                </a>
 
                 <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
 
@@ -81,75 +79,72 @@
 
             <div class="c-main-content js-main-content">
 
-                <div class="c-game-start-menu js-game-start-menu">
-                    <div class="c-info-container">
-                        <h1 class="c-title">Almost ready</h1>
-                        <p class="c-info">
-                            Kies een username zodat je herkenbaar bent op het leaderboard
-                        </p>
-                    </div>
+                <div class="c-info-container">
+                    <h1 class="c-title">Almost ready</h1>
+                    <p class="c-info">
+                        Kies een username zodat je herkenbaar bent op het leaderboard
+                    </p>
+                </div>
 
-                    <div class="c-input-container">
-                        <p class="c-form-field js-email-field">
-                            <input class="c-input js-email-input" type="text" id="username" placeholder="Username"
-                                required>
-                            <span class="c-input__bottom-text">Opgepast: deze username zal voor iedereen zichtbaar zijn,
-                                kies verstandig.</span>
-                        </p>
-                    </div>
+                <div class="c-input-container">
+                    <p class="c-form-field js-email-field">
+                        <input class="c-input js-email-input" type="text" id="username" placeholder="Username" required>
+                        <span class="c-input__bottom-text">Opgepast: deze username zal voor iedereen zichtbaar zijn,
+                            kies verstandig.</span>
+                    </p>
+                </div>
 
-                    <div class="c-leaderboard-container">
-                        <span class="c-leaderboard__header">Leaderboard</span>
+                <div class="c-leaderboard-sm-container">
+                    <span class="c-leaderboard-sm__header">Leaderboard</span>
 
-                        <table class="c-leaderboard__table">
-                            <tr class="c-table-header">
-                                <th class="c-table-header__text">Plaats</th>
-                                <th class="c-table-header__text">Naam</th>
-                                <th class="c-table-header__text">Score</th>
-                            </tr>
+                    <table class="c-leaderboard-sm__table">
+                        <tr class="c-table-header">
+                            <th class="c-table-header__text">Plaats</th>
+                            <th class="c-table-header__text">Naam</th>
+                            <th class="c-table-header__text">Score</th>
+                        </tr>
 
-                            <tr class="c-table-row c-talbe-row-1">
-                                <th class="c-table-row-text">1</th>
-                                <th class="c-table-row-text">Kattie Vanduzer</th>
-                                <th class="c-table-row-text">42.34</th>
-                            </tr>
+                        <tr class="c-table-row c-talbe-row-1">
+                            <th class="c-table-row-text">1</th>
+                            <th class="c-table-row-text">Kattie Vanduzer</th>
+                            <th class="c-table-row-text">42.34</th>
+                        </tr>
 
-                            <tr class="c-table-row c-talbe-row-2">
-                                <th class="c-table-row-text">2</th>
-                                <th class="c-table-row-text">Emmanuel Bise</th>
-                                <th class="c-table-row-text">42.34</th>
-                            </tr>
+                        <tr class="c-table-row c-talbe-row-2">
+                            <th class="c-table-row-text">2</th>
+                            <th class="c-table-row-text">Emmanuel Bise</th>
+                            <th class="c-table-row-text">42.34</th>
+                        </tr>
 
-                            <tr class="c-table-row c-talbe-row-3">
-                                <th class="c-table-row-text">3</th>
-                                <th class="c-table-row-text">German Orsborn</th>
-                                <th class="c-table-row-text">42.34</th>
-                            </tr>
+                        <tr class="c-table-row c-talbe-row-3">
+                            <th class="c-table-row-text">3</th>
+                            <th class="c-table-row-text">German Orsborn</th>
+                            <th class="c-table-row-text">42.34</th>
+                        </tr>
 
-                            <tr class="c-table-row">
-                                <th class="c-table-row-text">4</th>
-                                <th class="c-table-row-text">Rusty Olivares</th>
-                                <th class="c-table-row-text">42.34</th>
-                            </tr>
+                        <tr class="c-table-row">
+                            <th class="c-table-row-text">4</th>
+                            <th class="c-table-row-text">Rusty Olivares</th>
+                            <th class="c-table-row-text">42.34</th>
+                        </tr>
 
-                            <tr class="c-table-row">
-                                <th class="c-table-row-text">5</th>
-                                <th class="c-table-row-text">Kenton Kellison</th>
-                                <th class="c-table-row-text">42.34</th>
-                            </tr>
-                        </table>
-                    </div>
+                        <tr class="c-table-row">
+                            <th class="c-table-row-text">5</th>
+                            <th class="c-table-row-text">Kenton Kellison</th>
+                            <th class="c-table-row-text">42.34</th>
+                        </tr>
+                    </table>
+                </div>
 
-                    <div class="c-play-button-container">
-                        <a href="game.html">
-                            <svg class="c-play-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
-                                <path id="play_icon" data-name="play icon" d="M7.5,7.5v64l56.889-32Z" fill="#fff"
-                                    stroke-linejoin="round" stroke-width="15" />
-                            </svg>
-                        </a>
-                        <span class="c-play-button__text">PLAY</span>
+                <div class="c-play-button-container">
+                    <a class="js-play-button" href="game.html">
+                        <svg class="c-play-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
+                            <path id="play_icon" data-name="play icon" d="M7.5,7.5v64l56.889-32Z" fill="#fff"
+                                stroke-linejoin="round" stroke-width="15" />
+                        </svg>
+                    </a>
+                    <span class="c-play-button__text">PLAY</span>
 
-                    </div>
                 </div>
 
             </div>

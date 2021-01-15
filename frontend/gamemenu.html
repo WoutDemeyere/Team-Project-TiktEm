@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <!-- <script src="script/app.js"></script> -->
     <script src="script/dataHandler.js"></script>
-    <script src="script/script.js"></script>
+    <script src="script/gamemenu.js"></script>
     <script src="script/sidemenu.js"></script>
 
 </head>
@@ -25,15 +25,18 @@
     <div class="c-main">
         <div class="c-side-menu js-side-menu">
             <div class="c-side-menu__header">
-                <svg class="c-icon-close js-sidenav-close" data-name="cross close" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 18 18">
-                    <path id="Path_16" data-name="Path 16" d="M0,0H18V18H0Z" fill="none"/>
-                    <line id="Line_5" data-name="Line 5" x2="13.24" y2="10.7" transform="translate(2.51 3.55)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-                    <line id="Line_6" data-name="Line 6" x1="13.24" y2="10.7" transform="translate(2.51 3.55)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-                  </svg>     
-                  
-                  <p class="c-side-menu__header--title">Menu</p>
+                <svg class="c-icon-close js-sidenav-close" data-name="cross close" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 18 18">
+                    <path id="Path_16" data-name="Path 16" d="M0,0H18V18H0Z" fill="none" />
+                    <line id="Line_5" data-name="Line 5" x2="13.24" y2="10.7" transform="translate(2.51 3.55)"
+                        fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                    <line id="Line_6" data-name="Line 6" x1="13.24" y2="10.7" transform="translate(2.51 3.55)"
+                        fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                </svg>
 
-                  <div class="c-hidden-flex"></div>
+                <p class="c-side-menu__header--title">Menu</p>
+
+                <div class="c-hidden-flex"></div>
             </div>
 
             <div class="c-side-menu__nav">
@@ -41,19 +44,19 @@
                     <ul class="o-list c-nav">
                         <li class="c-nav-item js-nav-item">
                             <hr class="c-nav-line">
-                            <a  class="c-nav-item__link">Play</a>
+                            <a class="c-nav-item__link">Play</a>
                             <hr class="c-nav-line">
                         </li>
 
                         <li class="c-nav-item js-nav-item">
                             <hr class="c-nav-line">
-                            <a  class="c-nav-item__link">Leaderboard</a>
+                            <a class="c-nav-item__link">Leaderboard</a>
                             <hr class="c-nav-line">
                         </li>
 
                         <li class="c-nav-item js-nav-item">
                             <hr class="c-nav-line">
-                            <a  class="c-nav-item__link">Battery status</a>
+                            <a class="c-nav-item__link">Battery status</a>
                             <hr class="c-nav-line">
                         </li>
                     </ul>
@@ -61,17 +64,20 @@
             </div>
         </div>
 
-        <div class="c-app">
+        <div class="c-app js-main-app">
 
             <div class="c-header u-mb-md">
-                <svg class="c-icon c-icon-burger js-sidenav-open" id="menu-black-18dp" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none"/>
-                    <path id="Path_15" data-name="Path 15" d="M4,18H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2Zm0-5H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Z" fill="#fff"/>
+                <svg class="c-icon c-icon-burger js-sidenav-open" id="menu-black-18dp"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none" />
+                    <path id="Path_15" data-name="Path 15"
+                        d="M4,18H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2Zm0-5H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Z"
+                        fill="#fff" />
                 </svg>
-                  
+
                 <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
 
-                <div class="c-hidden-flex"></div> 
+                <div class="c-hidden-flex"></div>
             </div>
 
             <div class="c-main-content js-main-content">
@@ -152,23 +158,23 @@
                                                     </p>
 
                                                     <div class="c-coll-play-container">
-                                                        <a href="game-start.html">
+                                                        <a href="game-start.html?gamename=speedrun">
                                                             <svg class="c-icon-play" data-name="Layer 1"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 78.42 84.62">
-                                                            <defs>
-                                                                <style>
-                                                                    .cls-1 {
-                                                                        stroke-linejoin: round;
-                                                                        stroke-width: 15px;
-                                                                    }
-                                                                </style>
-                                                            </defs>
-                                                            <polygon class="cls-1"
-                                                                points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
-                                                        </svg>
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 78.42 84.62">
+                                                                <defs>
+                                                                    <style>
+                                                                        .cls-1 {
+                                                                            stroke-linejoin: round;
+                                                                            stroke-width: 15px;
+                                                                        }
+                                                                    </style>
+                                                                </defs>
+                                                                <polygon class="cls-1"
+                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                            </svg>
                                                         </a>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -188,20 +194,22 @@
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <svg class="c-icon-play" data-name="Layer 1"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 78.42 84.62">
-                                                            <defs>
-                                                                <style>
-                                                                    .cls-1 {
-                                                                        stroke-linejoin: round;
-                                                                        stroke-width: 15px;
-                                                                    }
-                                                                </style>
-                                                            </defs>
-                                                            <polygon class="cls-1"
-                                                                points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
-                                                        </svg>
+                                                        <a href="game-start.html?gamename=simonsays">
+                                                            <svg class="c-icon-play" data-name="Layer 1"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 78.42 84.62">
+                                                                <defs>
+                                                                    <style>
+                                                                        .cls-1 {
+                                                                            stroke-linejoin: round;
+                                                                            stroke-width: 15px;
+                                                                        }
+                                                                    </style>
+                                                                </defs>
+                                                                <polygon class="cls-1"
+                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                            </svg>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -221,20 +229,22 @@
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <svg class="c-icon-play" data-name="Layer 1"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 78.42 84.62">
-                                                            <defs>
-                                                                <style>
-                                                                    .cls-1 {
-                                                                        stroke-linejoin: round;
-                                                                        stroke-width: 15px;
-                                                                    }
-                                                                </style>
-                                                            </defs>
-                                                            <polygon class="cls-1"
-                                                                points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
-                                                        </svg>
+                                                        <a href="game-start.html?gamename=tiktakboem">
+                                                            <svg class="c-icon-play" data-name="Layer 1"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 78.42 84.62">
+                                                                <defs>
+                                                                    <style>
+                                                                        .cls-1 {
+                                                                            stroke-linejoin: round;
+                                                                            stroke-width: 15px;
+                                                                        }
+                                                                    </style>
+                                                                </defs>
+                                                                <polygon class="cls-1"
+                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                            </svg>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -254,20 +264,22 @@
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <svg class="c-icon-play" data-name="Layer 1"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 78.42 84.62">
-                                                            <defs>
-                                                                <style>
-                                                                    .cls-1 {
-                                                                        stroke-linejoin: round;
-                                                                        stroke-width: 15px;
-                                                                    }
-                                                                </style>
-                                                            </defs>
-                                                            <polygon class="cls-1"
-                                                                points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
-                                                        </svg>
+                                                        <a href="game-start.html?gamename=colorhunt">
+                                                            <svg class="c-icon-play" data-name="Layer 1"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 78.42 84.62">
+                                                                <defs>
+                                                                    <style>
+                                                                        .cls-1 {
+                                                                            stroke-linejoin: round;
+                                                                            stroke-width: 15px;
+                                                                        }
+                                                                    </style>
+                                                                </defs>
+                                                                <polygon class="cls-1"
+                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                            </svg>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -352,20 +364,22 @@
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <svg class="c-icon-play" data-name="Layer 1"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 78.42 84.62">
-                                                            <defs>
-                                                                <style>
-                                                                    .cls-1 {
-                                                                        stroke-linejoin: round;
-                                                                        stroke-width: 15px;
-                                                                    }
-                                                                </style>
-                                                            </defs>
-                                                            <polygon class="cls-1"
-                                                                points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
-                                                        </svg>
+                                                        <a href="game-start.html?gamename=speedrun-versus">
+                                                            <svg class="c-icon-play" data-name="Layer 1"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 78.42 84.62">
+                                                                <defs>
+                                                                    <style>
+                                                                        .cls-1 {
+                                                                            stroke-linejoin: round;
+                                                                            stroke-width: 15px;
+                                                                        }
+                                                                    </style>
+                                                                </defs>
+                                                                <polygon class="cls-1"
+                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                            </svg>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -385,20 +399,22 @@
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <svg class="c-icon-play" data-name="Layer 1"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 78.42 84.62">
-                                                            <defs>
-                                                                <style>
-                                                                    .cls-1 {
-                                                                        stroke-linejoin: round;
-                                                                        stroke-width: 15px;
-                                                                    }
-                                                                </style>
-                                                            </defs>
-                                                            <polygon class="cls-1"
-                                                                points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
-                                                        </svg>
+                                                        <a href="game-start.html?gamename=simonsays-versus">
+                                                            <svg class="c-icon-play" data-name="Layer 1"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 78.42 84.62">
+                                                                <defs>
+                                                                    <style>
+                                                                        .cls-1 {
+                                                                            stroke-linejoin: round;
+                                                                            stroke-width: 15px;
+                                                                        }
+                                                                    </style>
+                                                                </defs>
+                                                                <polygon class="cls-1"
+                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                            </svg>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </li>

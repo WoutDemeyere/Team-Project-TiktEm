@@ -15,6 +15,7 @@ const loadpageElements=function(){
 	addlisteners();
 
 }
+
 const loadscoreboard = function(scorelist){
 	let tempstring="",number=1,sortedlist;
 	
@@ -57,6 +58,7 @@ const loadscoreboard = function(scorelist){
 	
 	scoreboard.innerHTML=tempstring;
 }
+
 const addlisteners= function(){
 	
 	if(back){

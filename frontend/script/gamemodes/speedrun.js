@@ -4,11 +4,11 @@ const runTimer = () => {
     y = setInterval(() => {
         speedrunTimer += 0.01;
         speedrunTimerHTML.innerHTML = speedrunTimer.toFixed(2);
-    }, 10);
-}
 
-const startGame = () => {
-    runTimer();
+        if(speedrunTimer >= 5) {
+            location.href = `game-end.html`
+        }
+    }, 10);
 }
 
 const getSpeedrunDomElements = () => {
@@ -16,9 +16,8 @@ const getSpeedrunDomElements = () => {
     tiksLeftHTML = document.querySelector('.js-speedrun-tiks-left');
 }
 
-const initSpeedrun = () => {
-    console.log('Speedrun script loaded!')
+const startGame = () => {
+    console.log('Starting speedrun')
     getSpeedrunDomElements();
+    runTimer();
 }
-
-document.addEventListener('DOMContentLoaded', initSpeedrun);
