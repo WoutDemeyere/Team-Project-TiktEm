@@ -41,8 +41,6 @@ endpoint = '/tiktem/v1'
 
 tiktem = TiktEm(mqtt, 2)
 
-global1=0
-global2=0
 winner=""
 stop=0
 
@@ -240,17 +238,17 @@ def colorhuntlight(colorhunttype,tikid):
 
 def colorteam():
     tiktem.reset_tiks()
-    #TiktEm.reset_tiks()
-    #2 teams
+    try:
+        #start teamcheck1
+        x = threading.Thread(target=colorteamCheck, args=(tiktem.colorteams[0]))
+        x.start()
+        #start teamcheck2
+        y = threading.Thread(target=colorteamCheck, args=(tiktem.colorteams[1]))
+        y.start()
+    except Exception as ex:
+                print(f"><--->< Something went wrong : {ex}")   
     
-    #firtst button of sequence of both teams
-    x = threading.Thread(target=colorteamCheck, args=("red", 0, 1))
-    x.start()
-
-    y = threading.Thread(target=colorteamCheck, args=("red", 0, 1))
-    y.start()
-
-
+    
 
     while(stop==0):
         #get from frontend stop=1 get from route
@@ -258,35 +256,44 @@ def colorteam():
             tiktem.color_team1 = False
             tiktem.colorteams[0]["sequence"] +=1
             print(f"team2 have pushed the {tiktem.colorteams[0]['sequence']}e button")
-            global1=0
-            # x = threading.Thread(target=colorteamCheck, args=(team[0]))
-            x = threading.Thread(target=colorteamCheck, args=("red", 0, 1))
-            x.start()
+            try:
+                x = threading.Thread(target=colorteamCheck, args=(tiktem.colorteams[0]))
+                x.start()
+            except Exception as ex:
+                print(f"><--->< Something went wrong (start check team1) : {ex}")
+            
 
         if(tiktem.color_team2):
             tiktem.color_team2 = False
             tiktem.colorteams[1]["sequence"]+=1
             print(f"team2 have pushed the {tiktem.colorteams[1]['sequence']}e button")
-            global2=0
-            y = threading.Thread(target=colorteamCheck, args=("blue", 0, 2))
-            y.start()
+            try:
+                y = threading.Thread(target=colorteamCheck, args=(tiktem.colorteams[1]))
+                y.start()
+            except Exception as ex:
+                print(f"><--->< Something went wrong (start check team2) : {ex}")
 
-        #kan ook in for loop
-        if(tiktem.colorteams[0]["sequence"]==10):
-            print(f"team {tiktem.colorteams[0]['color']} has won")
-            winner=tiktem.colorteams[0]['color']
-            break
-        elif(tiktem.colorteams[1]["sequence"]==10):
-            print(f"team {tiktem.colorteams[1]['color']} has won")
-            winner=tiktem.colorteams[1]['color']
-            break
+        try:
+            if(tiktem.colorteams[0]["sequence"]==10):
+                print(f"team {tiktem.colorteams[0]['color']} has won")
+                tiktem.winner=tiktem.colorteams[0]['color']
+                break
+            elif(tiktem.colorteams[1]["sequence"]==10):
+                print(f"team {tiktem.colorteams[1]['color']} has won")
+                tiktem.winner=tiktem.colorteams[1]['color']
+                break
+        except Exception as ex:
+            print(f"><--->< Something went wrong(winner check) : {ex}")
+        
+    
+    socketio.emit("B2F_end_colorteam", tiktem.winner, broadcast=True)
 
 def colorteamCheck(color,sequence,team):
     print(tiktem.colorteams)
     openTiks=[]
+    
     #checking wich tik available
     for tik in tiktem.tiks:
-
         lightstatus=tik.lightstatus
         #print(tik)
         if(lightstatus==False):
@@ -296,11 +303,7 @@ def colorteamCheck(color,sequence,team):
 
     #select possible tik
     selection=random.randint(0, len(openTiks)-1)
-
     #light up selected light
-    active=True
-
-
     r=0
     g=0
     b=0
@@ -314,7 +317,7 @@ def colorteamCheck(color,sequence,team):
 
     openTiks[selection].turn_on(r, g, b, 500)
     #check if selected light gets pushed
-    
+    active=True
     while active == True:
         #checking push status of selected tik
         value = tiktem.get_tik_status(openTiks[selection].id)
@@ -326,10 +329,8 @@ def colorteamCheck(color,sequence,team):
                 tiktem.color_team1 = True
                 
             elif(tiktem.colorteams[0]["team"]==2):
-                tiktem.color_team2 = True
-            
-            print(tiktem.colorteams)
-            print(tiktem.color_team1, tiktem.color_team2)
+                tiktem.color_team2 = True    
+            print(f"live score |team1:{tiktem.color_team1}|tem2:{tiktem.color_team2}")
             
             sys.exit()
 

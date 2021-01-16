@@ -15,6 +15,8 @@ class TiktEm:
         self.color_team2 = False
 
         self.colorteams=[{"color":"blue","sequence":0,"team":1},{"color":"red","sequence":0,"team":2}]
+
+        self.winner=""
     
     def init_tiks(self):
         for i in range(0, self.amount):
