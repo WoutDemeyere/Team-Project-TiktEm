@@ -1,14 +1,15 @@
 "use strict";
 
-const handleData = function (url, callbackFunctionName, callbackErrorFunctionName = null, method = "GET", body = null, authToken = null) {
+const lanIP = `${window.location.hostname}:5000`;
+
+const handleData = function (url, callbackFunctionName, callbackErrorFunctionName = null, method = "GET", body = null) {
   fetch(url, {
-    method: method,
-    body: body,
-    headers: {
-      "content-type": "application/json",
-      Authorization: "Bearer " + authToken,
-    },
-  })
+      method: method,
+      body: body,
+      headers: {
+        "content-type": "application/json",
+      },
+    })
     .then(function (response) {
       if (!response.ok) {
         console.warn(`>> Probleem bij de fetch(). Statuscode: ${response.status}`);

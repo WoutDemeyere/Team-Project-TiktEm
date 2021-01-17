@@ -31,7 +31,6 @@ const char* password =  "wotikrko22";
 //const char* ssid = "OnePlusWout";
 //const char* password = "stoomboot";
 const char* mqttServer = "192.168.0.111";
-//const char* mqttServer = "Raspberry";
 const int mqttPort = 1883;
 const char* mqttUser = "";
 const char* mqttPassword = "";
