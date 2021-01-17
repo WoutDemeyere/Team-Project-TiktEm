@@ -156,7 +156,7 @@ def TikTakBoomLogic(timeUntilBoom, timeUltilBoomMAX):
 
         time.sleep(0.01)
         timeLeft = timeBoom - float(time.time())
-    # ------------------------------------------------- END WHILE LOOP---------------------------------
+    # ------------------------ END WHILE LOOP-----------------
 
 
     if touchWasActivated == False and game == True:
