@@ -13,7 +13,6 @@ namespace TeamProject.mqtt
     {
         public static void test()
         {
-
             MqttClient client;
             IPAddress brokeradres = IPAddress.Parse("13.81.105.139");
             client = new MqttClient(brokeradres);

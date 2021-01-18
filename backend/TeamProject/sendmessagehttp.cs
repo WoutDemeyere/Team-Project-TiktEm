@@ -35,9 +35,6 @@ namespace TeamProject
                 outMessage = null;
                 return new StatusCodeResult(500);
             }
-
-
-            //}
         }
     }
 }
