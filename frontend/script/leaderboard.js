@@ -1,6 +1,6 @@
 var filterArray = [];
 
-class leaderboard {
+class Leaderboard {
     constructor(leaderBoardContainer, game, length=null) {
         this.container = leaderBoardContainer
         this.game = game
@@ -72,7 +72,7 @@ class leaderboard {
             console.log(this.data.length)
 
             for(const f of filterArray) {
-                if(f.pos < 3) {
+                if(f.pos < 4) {
                     this.htmlString += ` <tr class="c-table-row c-talbe-row-${f.pos}">
                                         <td class="c-table-row-text">${f.pos}</td>
                                         <td class="c-table-row-text">${f.data.name}</td>

@@ -86,9 +86,15 @@ const testdata = [
 
 const loadTable = (name) => {
     leaderboardTitle.innerHTML = gamemodeInfo[name].title;
-    //loadLeaderboard(leaderboardTable, name)
-    leaderboard = new leaderboard(leaderboardTable, name)
+
+    leaderBoardFilterOpen.addEventListener('click', function() {
+        leaderBoardFilterOpen.parentNode.classList.toggle('c-leaderboard__filter-colapse')
+    })
+
+    leaderboard = new Leaderboard(leaderboardTable, name)
     leaderboard.loadLeaderboardData();
+
+    
 }
 
 const listenToButtons = () => {
@@ -120,6 +126,7 @@ const getLeaderboardMenuDomElements = () => {
     leaderboardTable = document.querySelector('.js-leaderboard-table');
     leaderboardTitle = document.querySelector('.js-leaderboard-title');
     leaderBoardFilter = document.querySelector('.js-leaderboard-filter');
+    leaderBoardFilterOpen = document.querySelector('.js-open-filter');
 }
 
 const initLeaderBoardMenu = () => {

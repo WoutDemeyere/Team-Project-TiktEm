@@ -592,6 +592,11 @@ input:disabled {
     margin: var(--global-whitespace-md) 0 var(--global-whitespace-xxl) 0;
 }
 
+.c-icon-filter {
+    height: 40px;
+    fill: #000;
+}
+
 .c-visible-options-container {
     width: 100%;
     display: flex;
@@ -1120,15 +1125,37 @@ input:disabled {
     font-size: calc(var(--global-font-size) * 2.6);
 }
 
+
+.c-leaderboard__filter--container {
+    display: flex;
+    align-self: flex-start;
+    border-bottom: 0px solid #000;
+    width: 5%;
+    transition: width 0.5s var(--global-transition);
+}
+
+.c-leaderboard__filter:focus {
+    outline: none;
+}
+
 .c-leaderboard__filter {
     font-weight: 400;
+    color: #000;
     font-size: calc(var(--global-font-size) * 2.3);
     line-height: calc(var(--global-font-size) * 2.6);
-    background-color: var(--global-color-light-gray);
+    border-bottom: 2px solid #000;
+    /* background-color: var(--global-color-light-gray); */
 
-    width: 100%;
-    border-radius: var(--global-borderRadius);
+    width: 0%;
+    /* border-radius: var(--global-borderRadius); */
     height: 50Px;
+    text-align: center;
+    transition: width 0.3s var(--global-transition);
+}
+
+.c-leaderboard__filter-colapse,
+.c-leaderboard__filter-colapse .c-leaderboard__filter {
+    width: 100%;
 }
 
 /*
