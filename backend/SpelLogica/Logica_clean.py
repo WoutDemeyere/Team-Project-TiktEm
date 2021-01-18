@@ -424,7 +424,7 @@ def TikTakBoomLogic(timeUntilBoom, timeUltilBoomMAX, tikid):
         return "STOP"
 
 
-
+# -------------------------------------------------COLORTEAM--------------------------------------
 def colorteam():
     tiktem.reset_tiks()
     #TiktEm.reset_tiks()
@@ -519,6 +519,7 @@ def colorteamCheck(color,sequence,team):
             print(tiktem.color_team1, tiktem.color_team2)
             
             sys.exit()
+
 
 
 if __name__ == '__main__':
