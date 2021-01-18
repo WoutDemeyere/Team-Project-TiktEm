@@ -2,7 +2,8 @@ from .Tik import Tik
 import json
 import time
 
-class TiktEm: 
+
+class TiktEm:
     def __init__(self, mqtt_client, amount):
         self.mqtt = mqtt_client
         self.amount = amount
@@ -10,10 +11,12 @@ class TiktEm:
         self.init_tiks()
         self.curr_gameid = 0
         self.colorhunt_score = 0
+        
+        self.TikTakBoom_score = 0
+        self.game = False
 
         self.color_team1 = False
         self.color_team2 = False
-
         self.colorteams=[{"color":"blue","sequence":0,"team":1},{"color":"red","sequence":0,"team":2}]
     
     def init_tiks(self):
@@ -31,7 +34,9 @@ class TiktEm:
     def get_colorhunt_status(self, tik_id):
         return self.tiks[tik_id].colorhunt_status
 
+    def get_colorhunt_status(self, tik_id):
+        return self.tiks[tik_id].colorhunt_status
+
     def update_status(self, data):
         self.tiks[data['tik_id']].tikstatus = data['tik_status']
         self.tiks[data['tik_id']].lightstatus = data['light_status']
-    

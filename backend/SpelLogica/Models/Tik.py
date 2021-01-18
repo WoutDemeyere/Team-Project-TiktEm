@@ -1,6 +1,8 @@
 import json
+
+
 class Tik:
-    def __init__(self,id,tikstatus,lightstatus,red,green,blue, tone, mqtt_client):
+    def __init__(self, id, tikstatus, lightstatus, red, green, blue, tone, mqtt_client):
         self.id = id
         self.tikstatus = tikstatus
         self.lightstatus = lightstatus
@@ -25,6 +27,7 @@ class Tik:
     @property
     def tikstatus(self):
         return self._tikstatus
+
     @tikstatus.setter
     def tikstatus(self, nieuwetikstatus):
         self._tikstatus = nieuwetikstatus
@@ -32,6 +35,7 @@ class Tik:
     @property
     def lightstatus(self):
         return self._lightstatus
+
     @lightstatus.setter
     def lightstatus(self, nieuwelightstatus):
         # print(f"SETING LIGHTSTATERTUS TO {nieuwelightstatus}")
@@ -41,6 +45,7 @@ class Tik:
     def red(self):
         """The red property."""
         return self._red
+
     @red.setter
     def red(self, value):
         self._red = value
@@ -49,6 +54,7 @@ class Tik:
     def green(self):
         """The green property."""
         return self._green
+
     @green.setter
     def green(self, value):
         self._green = value
@@ -57,10 +63,11 @@ class Tik:
     def blue(self):
         """The blue property."""
         return self._blue
+
     @blue.setter
     def blue(self, value):
         self._blue = value
-    
+
     @property
     def tone(self):
         """The tone property."""
@@ -87,7 +94,8 @@ class Tik:
         self.update()
 
     def update(self):
-        data = {"tik_id":self.id, "tik_status":self.tikstatus, "light_status":self.lightstatus, "red":self.red, "green":self.green, "blue":self.blue, "tone":self.tone}
+        data = {"tik_id": self.id, "tik_status": self.tikstatus, "light_status": self.lightstatus,
+                "red": self.red, "green": self.green, "blue": self.blue, "tone": self.tone}
         data_raw = json.dumps(data)
         #print(f'tik: {self.id} : {data}')
         self.mqtt.publish(f'tiktem/tik{self.id}', data_raw)

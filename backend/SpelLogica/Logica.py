@@ -36,6 +36,9 @@ def handle_mqtt_message(client, userdata, message):
     payload = message.payload.decode()
     tiktem.update_status(payload)
 
+def init():
+    menu()
+
 def menu(data):
     tiks = initTiks()
     print(f"Kies een optie in het menu")
