@@ -86,7 +86,9 @@ const testdata = [
 
 const loadTable = (name) => {
     leaderboardTitle.innerHTML = gamemodeInfo[name].title;
-    loadLeaderboard(leaderboardTable, name)
+    //loadLeaderboard(leaderboardTable, name)
+    leaderboard = new leaderboard(leaderboardTable, name)
+    leaderboard.loadLeaderboardData();
 }
 
 const listenToButtons = () => {
@@ -106,7 +108,7 @@ const listenToButtons = () => {
     });
 
     leaderBoardFilter.addEventListener('input', function() {
-        loadLeaderboard(leaderboardTable, selectedGame, null, leaderBoardFilter.value)
+        leaderboard.filterLeaderboard(leaderBoardFilter.value)
     })
 }
 
