@@ -32,6 +32,7 @@ class TiktEm:
         return self.tiks[tik_id].colorhunt_status
 
     def update_status(self, data):
+        print(f"UPDATED: {data}")
         self.tiks[data['tik_id']].tikstatus = data['tik_status']
         self.tiks[data['tik_id']].lightstatus = data['light_status']
     

@@ -1,20 +1,29 @@
 const urlParams = new URLSearchParams(window.location.search);
 const gameName = urlParams.get('gamename');
 
-var playButton;
+var playButton, tableContainer;
 
-const loadPlayButtonHref = () => {
+const listenToPlayButton = () => {
+    playButton.addEventListener('click', function() {
+        location.href = "game.html?gamename=${gameName}"
+    })
+}
+
+const loadGameThings = () => {
     playButton.setAttribute("href", `game.html?gamename=${gameName}`);
+    loadLeaderboard(tableContainer, gameName, 5);
 }
 
 const getGameStartDomElements = () => {
+    tableContainer = document.querySelector('.js-leaderboard-table');
     playButton = document.querySelector('.js-play-button');
 }
 
 const initGameStart = () => {
     console.log('Game start script loaded!');
     getGameStartDomElements();
-    loadPlayButtonHref();
+    loadGameThings();
+    listenToPlayButton();
 }
 
 document.addEventListener('DOMContentLoaded', initGameStart);

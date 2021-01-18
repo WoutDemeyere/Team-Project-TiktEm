@@ -16,7 +16,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <!-- <script src="script/app.js"></script> -->
     <script src="script/dataHandler.js"></script>
-    <script src="script/sidemenu.js"></script>
+    <script src="script/gamemodes/gamemodes-info.js"></script>
+    <script src="script/leaderboard.js"></script>
+    <script src="script/gameend.js"></script>
     <!-- <script src="script/script.js"></script> -->
 </head>
 
@@ -80,54 +82,56 @@
             <div class="c-main-content js-main-content">
 
                 <div class="c-game-start-menu js-game-start-menu">
-                    <div class="c-info-container">
-                        <h1 class="c-title">Results</h1>
-                        <p class="c-info">
-                            Je vervolledigde het parkour in
-                        </p>
+
+                    <div class="c-result-container js-result-container">
+                        <!-- <div class="c-info-container u-mb-lg">
+                            <h1 class="c-title">Results</h1>
+                            <p class="c-info">
+                                Je vervolledigde het parkour in
+                            </p>
+                        </div>
+                        <p class="c-result__time">38.22s</p> -->
                     </div>
-
-                    <p class="c-result__time">38.22s</p>
-
+                    
                     <div class="c-leaderboard-sm-container">
-                        <span class="c-leaderboard__header">Leaderboard</span>
+                        <span class="c-leaderboard-sm__header">Leaderboard</span>
 
-                        <table class="c-leaderboard__table">
-                            <tr class="c-table-header">
+                        <table class="c-leaderboard-sm__table js-leaderboard-table">
+                            <!-- <tr class="c-table-header">
                                 <th class="c-table-header__text">Plaats</th>
                                 <th class="c-table-header__text">Naam</th>
                                 <th class="c-table-header__text">Score</th>
                             </tr>
 
                             <tr class="c-table-row c-talbe-row-1">
-                                <th class="c-table-row-text">1</th>
-                                <th class="c-table-row-text">Kattie Vanduzer</th>
-                                <th class="c-table-row-text">42.34</th>
+                                <td class="c-table-row-text">1</td>
+                                <td class="c-table-row-text">Kattie Vanduzer</td>
+                                <td class="c-table-row-text">42.34</td>
                             </tr>
 
                             <tr class="c-table-row c-talbe-row-2">
-                                <th class="c-table-row-text">2</th>
-                                <th class="c-table-row-text">Emmanuel Bise</th>
-                                <th class="c-table-row-text">42.34</th>
+                                <td class="c-table-row-text">2</td>
+                                <td class="c-table-row-text">Emmanuel Bise</td>
+                                <td class="c-table-row-text">42.34</td>
                             </tr>
 
                             <tr class="c-table-row c-talbe-row-3">
-                                <th class="c-table-row-text">3</th>
-                                <th class="c-table-row-text">German Orsborn</th>
-                                <th class="c-table-row-text">42.34</th>
+                                <td class="c-table-row-text">3</td>
+                                <td class="c-table-row-text">German Orsborn</td>
+                                <td class="c-table-row-text">42.34</td>
                             </tr>
 
                             <tr class="c-table-row">
-                                <th class="c-table-row-text">4</th>
-                                <th class="c-table-row-text">Rusty Olivares</th>
-                                <th class="c-table-row-text">42.34</th>
+                                <td class="c-table-row-text">4</td>
+                                <td class="c-table-row-text">Rusty Olivares</td>
+                                <td class="c-table-row-text">42.34</td>
                             </tr>
 
                             <tr class="c-table-row">
-                                <th class="c-table-row-text">5</th>
-                                <th class="c-table-row-text">Kenton Kellison</th>
-                                <th class="c-table-row-text">42.34</th>
-                            </tr>
+                                <td class="c-table-row-text">5</td>
+                                <td class="c-table-row-text">Kenton Kellison</td>
+                                <td class="c-table-row-text">42.34</td>
+                            </tr> -->
                         </table>
                     </div>
 

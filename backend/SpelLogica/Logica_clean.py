@@ -50,6 +50,180 @@ stop=0
 def hallo():
     return f"Try endpoint {endpoint}"
 
+@app.route(endpoint + '/leaderboard/<game>', methods=['GET'])
+def get_leaderboard(game):
+    testdata = [
+	{
+		"name": "Kenneth Cleveland",
+		"score": 5,
+		"scortype": "t"
+	},
+	{
+		"name": "Ramona Pena",
+		"score": 29,
+		"scortype": "t"
+	},
+	{
+		"name": "Carson Simpson",
+		"score": 20,
+		"scortype": "t"
+	},
+	{
+		"name": "Fulton Mcmillan",
+		"score": 16,
+		"scortype": "s"
+	},
+	{
+		"name": "Noelani Dorsey",
+		"score": 58,
+		"scortype": "t"
+	},
+	{
+		"name": "Cooper Skinner",
+		"score": 50,
+		"scortype": "t"
+	},
+	{
+		"name": "Marcia Cross",
+		"score": 53,
+		"scortype": "s"
+	},
+	{
+		"name": "Nadine Chaney",
+		"score": 1,
+		"scortype": "s"
+	},
+	{
+		"name": "Fletcher Sims",
+		"score": 8,
+		"scortype": "t"
+	},
+	{
+		"name": "MacKenzie Odonnell",
+		"score": 27,
+		"scortype": "t"
+	},
+	{
+		"name": "Brandon Haynes",
+		"score": 35,
+		"scortype": "s"
+	},
+	{
+		"name": "Harrison Olsen",
+		"score": 52,
+		"scortype": "t"
+	},
+	{
+		"name": "Duncan Moses",
+		"score": 3,
+		"scortype": "s"
+	},
+	{
+		"name": "Chancellor Horne",
+		"score": 51,
+		"scortype": "s"
+	},
+	{
+		"name": "Yvette Prince",
+		"score": 29,
+		"scortype": "s"
+	},
+	{
+		"name": "Eden Ayers",
+		"score": 28,
+		"scortype": "s"
+	},
+	{
+		"name": "Logan Serrano",
+		"score": 44,
+		"scortype": "t"
+	},
+	{
+		"name": "Whilemina Singleton",
+		"score": 47,
+		"scortype": "s"
+	},
+	{
+		"name": "Lois Noble",
+		"score": 36,
+		"scortype": "s"
+	},
+	{
+		"name": "Judith Beach",
+		"score": 57,
+		"scortype": "t"
+	},
+	{
+		"name": "Orli Stark",
+		"score": 40,
+		"scortype": "t"
+	},
+	{
+		"name": "Mollie Houston",
+		"score": 8,
+		"scortype": "t"
+	},
+	{
+		"name": "Hamish Cash",
+		"score": 12,
+		"scortype": "t"
+	},
+	{
+		"name": "Addison Adkins",
+		"score": 49,
+		"scortype": "t"
+	},
+	{
+		"name": "Jescie Camacho",
+		"score": 11,
+		"scortype": "t"
+	},
+	{
+		"name": "Charissa Horne",
+		"score": 15,
+		"scortype": "t"
+	},
+	{
+		"name": "Jordan Valenzuela",
+		"score": 41,
+		"scortype": "s"
+	},
+	{
+		"name": "Quyn Stone",
+		"score": 47,
+		"scortype": "t"
+	},
+	{
+		"name": "Moana Mclean",
+		"score": 55,
+		"scortype": "t"
+	},
+	{
+		"name": "Cullen Cummings",
+		"score": 11,
+		"scortype": "s"
+	},
+	{
+		"name": "Scarlet Faulkner",
+		"score": 4,
+		"scortype": "s"
+	},
+	{
+		"name": "Barry Holman",
+		"score": 42,
+		"scortype": "s"
+	},
+	{
+		"name": "Keane Wagner",
+		"score": 33,
+		"scortype": "t"
+	}]
+
+
+
+
+    return jsonify(testdata), 200
+
 @app.route(endpoint + '/startgame', methods=['GET'])
 def start_game():
     print("-----------------------\n")
@@ -99,6 +273,9 @@ def handle_mqtt_message(client, userdata, message):
 def speedRun():
     tiktem.reset_tiks()
 
+    tiks_left = tiktem.amount
+    socketio.emit("B2F_speedrun_tiksleft", tiks_left, broadcast=True)
+
     starttime = datetime.now()
     for item in tiktem.tiks:
         active = True
@@ -110,11 +287,14 @@ def speedRun():
             if value == True:
                 active = False
                 item.turn_off()
+
+                tiks_left = tiks_left - 1
+                socketio.emit("B2F_speedrun_tiksleft", tiks_left, broadcast=True)
         
     endtime = datetime.now()
     score = (endtime - starttime).total_seconds()
     print(f"\n+++++ Congratulations you finished the sequence in {score} seconds +++++ \n")
-    socketio.emit("B2F_speedrun_ended", score,broadcast=True)
+    socketio.emit("B2F_speedrun_ended", score, broadcast=True)
 
 def simonSays():
     tiktem.reset_tiks()
@@ -125,6 +305,9 @@ def simonSays():
         seq = random.randint(0, tiktem.amount-1)
         sequence.append(seq)
         pressed_tik = 0
+
+        socketio.emit("B2F_simonsays_sequence", len(sequence)-1, broadcast=True)
+
         
         for i in sequence:       
             tiktem.tiks[i].turn_on(0, 255, 0, 500)
@@ -156,7 +339,7 @@ def simonSays():
                             game = False
                             score = len(sequence)-1
                             print(f"\n+++++ Wrong Tik your score was {score} +++++\n")
-                            socketio.emit("B2F_score", score,broadcast=True)
+                            socketio.emit("B2F_simonsays_ended", score,broadcast=True)
                             break    
 
 def colorhunt():
@@ -184,7 +367,7 @@ def colorhunt():
 
     time.sleep(1)
     print(f"\n+++++ Congratulations you finished colorhunt with a score of {tiktem.colorhunt_score} +++++", flush=True)
-    socketio.emit("B2F_score", tiktem.colorhunt_score, broadcast=True)
+    socketio.emit("B2F_colorhunt_ended", tiktem.colorhunt_score, broadcast=True)
 
 def colorhuntlight(colorhunttype,tikid):
     tiktem.tiks[tikid].turn_off()
@@ -199,6 +382,7 @@ def colorhuntlight(colorhunttype,tikid):
             value = tiktem.get_tik_status(tikid)
             if(value==True):
                 tiktem.colorhunt_score += 4
+                socketio.emit("B2F_colorhunt_score", tiktem.colorhunt_score, broadcast=True)
                 break
 
         tiktem.tiks[tikid].turn_off()
@@ -215,6 +399,7 @@ def colorhuntlight(colorhunttype,tikid):
             value = tiktem.get_tik_status(tikid)
             if(value==True):
                 tiktem.colorhunt_score += 4
+                socketio.emit("B2F_colorhunt_score", tiktem.colorhunt_score, broadcast=True)
                 break
 
         tiktem.tiks[tikid].turn_off()
@@ -231,6 +416,7 @@ def colorhuntlight(colorhunttype,tikid):
             value = tiktem.get_tik_status(tikid)
             if(value==True):
                 tiktem.colorhunt_score += 4
+                socketio.emit("B2F_colorhunt_score", tiktem.colorhunt_score, broadcast=True)
                 break
 
         tiktem.tiks[tikid].turn_off()

@@ -341,7 +341,7 @@ input:disabled {
 
     z-index: 2;
     height: 100%;
-    width: 0;
+    width: 0px;
     background-color: var(--global-color-light-blue);
 
     display: flex;
@@ -470,6 +470,7 @@ input:disabled {
 
     overflow: hidden;
 }
+
 
 /*
     Component: Title
@@ -913,23 +914,24 @@ input:disabled {
 }
 
 .c-leaderboard-container {
-    direction: ltr;
     height: 100%;
     width: 100%;
     direction: ltr;
     border-radius: var(--global-borderRadius);
     background-color: var(--global-color-white);
+    overflow: hidden;
     /* overflow: auto; */
     /* display: flex; */
-    overflow: hidden;
+    /* overflow-y: auto; */
 }
 
 .c-leaderboard-container-temp {
     width: 200%;
     height: 100%;
-
     display: flex;
     flex-direction: row;
+    /* overflow-y: auto; */
+
 }
 
 .c-leaderboard-menu__header {
@@ -939,16 +941,16 @@ input:disabled {
     align-items: center;
 }
 
-.c-leaderboard-table {
-    overflow-y: auto;
-}
 
 .c-leaderboard-table__header {
-    margin-top: var(--global-whitespace-xl);
+    position: sticky;
+    top: 0t;
+    padding-top: var(--global-whitespace-xl);
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
+    background-color: var(--global-color-white);
 }
 
 .c-leaderboard-table__header--icons {
@@ -988,6 +990,7 @@ input:disabled {
 }
 
 .c-leaderboard-sm-container {   
+    max-height: 648px;
     margin: var(--global-whitespace-xl) 0; 
 }
 
@@ -1004,14 +1007,18 @@ input:disabled {
     width: 50%;
     padding: var(--global-whitespace-xl);
     transition: transform 0.5s var(--global-transition);
+    /* background-color: rgb(57, 224, 71); */
 }
 
 .c-leaderboard-table-container {
     width: 50%;
     height: 100%;
-    /* overflow: auto; */
-    padding: var(--global-whitespace-md);
+    /* overflow: visible; */
+    overflow-y: scroll;
+    padding: 0 var(--global-whitespace-xl);
     transition: transform 0.5s var(--global-transition);
+    /* background-color: rgb(57, 224, 216); */
+    /* overflow: visible; */
 }
 
 .c-leaderboard-sm__header {
@@ -1022,20 +1029,24 @@ input:disabled {
 .c-leaderboard-sm__table {
     border-radius: var(--global-borderRadius);
     width: 100%;
-    height: 500px;
+    /* height: 500px; */
     background-color: var(--global-color-white);
     color: #000;
 
-    padding: var(--global-whitespace-md);
+    padding: 0 var(--global-whitespace-md);
 }
+
 .c-table-header {
     width: 100%;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     padding: 0 var(--global-whitespace-lg);
+    margin-top: var(--global-whitespace-md);
 }
 
 .c-table-header__text {
+    align-self: center;
     font-weight: 300;
     font-size: calc(var(--global-font-size) * 1.8);
     color: var(--global-color-dark-green);
@@ -1049,16 +1060,34 @@ input:disabled {
     color: #000;
     display: flex;
     flex-direction: column;
-    /* padding: var(--global-whitespace-md); */
     overflow-y: scroll;
+    /* padding: var(--global-whitespace-md); */
+    
+}
+
+.c-leaderboard__table-content {
     height: auto;
+    overflow-y: scroll;
+}
+
+.c-leaderboard-sm__table {
+    border-radius: var(--global-borderRadius);
+    width: 100%;
+    height: 100%;
+    background-color: var(--global-color-white);
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    /* padding: var(--global-whitespace-md); */
+    /* overflow-y: scroll; */
+    /* height: auto; */
 }
 
 .c-table-row {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    margin: var(--global-whitespace-lg) 0;
+    margin-bottom: var(--global-whitespace-lg);
 }
 
 .c-table-row-text {
@@ -1089,6 +1118,17 @@ input:disabled {
 .c-talbe-row-3 .c-table-row-text  {
     font-weight: 400;
     font-size: calc(var(--global-font-size) * 2.6);
+}
+
+.c-leaderboard__filter {
+    font-weight: 400;
+    font-size: calc(var(--global-font-size) * 2.6);
+    line-height: calc(var(--global-font-size) * 3);
+    background-color: var(--global-color-light-gray);
+
+    width: 100%;
+    border-radius: var(--global-borderRadius);
+    height: 60Px;
 }
 
 /*

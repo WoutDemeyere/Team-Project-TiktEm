@@ -18,6 +18,7 @@
     <script src="script/dataHandler.js"></script>
     <script src="script/gamemodes/gamemodes-info.js"></script>
     <script src="script/sidemenu.js"></script>
+    <script src="script/leaderboard.js"></script>
     <script src="script/leaderboard-menu.js"></script>
 
 
@@ -82,7 +83,7 @@
                 <div class="c-hidden-flex"></div>
             </div>
 
-            <div class="c-main-content js-main-content">
+            <div class="c-main-content c-main-content__leaderboard js-main-content">
                 <div class="c-info-container">
                     <h1 class="c-title">Leaderboard</h1>
                 </div>
@@ -108,12 +109,18 @@
                                 wilt
                                 krijgen</p>
                             <div class="c-leaderboard__select-container">
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="speedrun" >Speedrun</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="simonsays" >Simon Says</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="tiktakboem" >Tik Tak Boem</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="colorhunt" >Color Hunt</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="speedrun-versus" >Speedrun versus</button>
-                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select" gamename="simonsays-versus" >Simon Says versus</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select"
+                                    gamename="speedrun">Speedrun</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select"
+                                    gamename="simonsays">Simon Says</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select"
+                                    gamename="tiktakboem">Tik Tak Boem</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select"
+                                    gamename="colorhunt">Color Hunt</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select"
+                                    gamename="speedrun-versus">Speedrun versus</button>
+                                <button class="o-button-reset c-leaderboard__select--button js-leaderboard-select"
+                                    gamename="simonsays-versus">Simon Says versus</button>
                             </div>
                         </div>
 
@@ -145,114 +152,22 @@
                                 </div>
 
                                 <p class="c-leaderboard-menu__header--title js-leaderboard-title">Speedrun</p>
+
+                                <input type="text" class="c-leaderboard__filter js-leaderboard-filter">
                             </div>
 
-                            <div class="c-leaderboard__table">
-                                <table class="c-leaderboard__table js-leaderboard-table">
-                                    <tr class="c-table-header">
+                            <table class="c-leaderboard__table js-leaderboard-table">
+                                <!-- <tr class="c-table-header">
                                         <th class="c-table-header__text">Plaats</th>
                                         <th class="c-table-header__text">Naam</th>
                                         <th class="c-table-header__text">Score</th>
-                                    </tr>
-
-                                    <tr class="c-table-row c-talbe-row-1">
-                                        <td class="c-table-row-text">1</td>
-                                        <td class="c-table-row-text">Kattie Vanduzer</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row c-talbe-row-2">
-                                        <td class="c-table-row-text">2</td>
-                                        <td class="c-table-row-text">Emmanuel Bise</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row c-talbe-row-3">
-                                        <td class="c-table-row-text">3</td>
-                                        <td class="c-table-row-text">German Orsborn</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
-                                    <tr class="c-table-row">
-                                        <td class="c-table-row-text">4</td>
-                                        <td class="c-table-row-text">Rusty Olivares</td>
-                                        <td class="c-table-row-text">42.34</td>
-                                    </tr>
+                                    </tr> -->
 
 
-                                </table>
-                            </div>
+                            </table>
+
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
