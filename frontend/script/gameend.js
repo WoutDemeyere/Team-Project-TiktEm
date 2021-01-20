@@ -7,7 +7,8 @@ var resultContainer, tableContainer;
 const loadResultHTML = () => {
     resultContainer.innerHTML = gamemodeInfo[gameName].htmlResult;
     document.querySelector('.js-score').innerHTML = score;
-    loadLeaderboard(tableContainer, gameName, 5)
+    leaderboard = new Leaderboard(tableContainer, gameName, 5);
+    leaderboard.loadLeaderboardData();
 }
 
 const getGameEndDomElements = () => {

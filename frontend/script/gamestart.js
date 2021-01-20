@@ -11,7 +11,8 @@ const listenToPlayButton = () => {
 
 const loadGameThings = () => {
     playButton.setAttribute("href", `game.html?gamename=${gameName}`);
-    loadLeaderboard(tableContainer, gameName, 5);
+    leaderboard = new Leaderboard(tableContainer, gameName, 5);
+    leaderboard.loadLeaderboardData();
 }
 
 const getGameStartDomElements = () => {

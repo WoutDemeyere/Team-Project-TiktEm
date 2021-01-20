@@ -11,6 +11,7 @@ class Leaderboard {
     }
 
     async loadLeaderboardData() {
+
         this.data = await fetch(
             `http://${lanIP}/tiktem/v1/leaderboard/${this.game}`
         )
@@ -54,6 +55,7 @@ class Leaderboard {
         this.container.innerHTML = this.htmlString;
     }
 
+
     filterLeaderboard(filter) {
         this.htmlString = `  <tr class="c-table-header">
                         <th class="c-table-header__text">Plaats</th>
@@ -93,6 +95,8 @@ class Leaderboard {
 
         this.container.innerHTML = this.htmlString;
     }
+
+    
 }
 
 // const loadLeaderboard = async (leaderboard, game, length=null, filter=null) => {

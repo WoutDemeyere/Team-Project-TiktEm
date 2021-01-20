@@ -12,6 +12,7 @@
     --global-color-dark-blue:#3FAED5;
     --global-color-light-blue:#61D1F9;
     --global-color-dark-green:#3EBD9C;
+    /* --global-color-dark-green:#65e94b; */
     --global-color-light-green:#B1EFDF;
     --global-color-gold: #daa520;
     --global-color-bronze: #cd7f32;
@@ -1171,9 +1172,21 @@ input:disabled {
 }
 
 .c-play-button__icon {
-    height: 160px;
+    height: 150px;
     stroke: var(--global-color-dark-green);
+    transition: stroke 0.1s ease-out;
 }
+
+.c-play-button {
+    outline: none;
+    
+}
+
+.c-play-button:active  .c-play-button__icon{
+    height: 150px;
+    stroke: rgb(255, 19, 255);
+}
+
 
 .c-stop-button__icon {
     height: 150px;
@@ -1279,7 +1292,10 @@ input:disabled {
 }
 
 .c-baterry-state {
-    align-self: center;
+    stroke: none !important;
+    width: 32.93px;
+    fill : #fff;
+
     /* transform: translateY(50px); */
 }
 
