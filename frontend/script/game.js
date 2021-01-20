@@ -1,5 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const gameName = urlParams.get('gamename');
+const userName = urlParams.get('username');
 
 const socket = io(`http://${lanIP}`);
 

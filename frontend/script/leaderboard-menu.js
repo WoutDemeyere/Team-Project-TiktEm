@@ -1,6 +1,5 @@
 var menuContainer,tableContainer,selectButtons, leaderboardBack, leaderboardTable, leaderboardTitle, selectedGame;  
 
-
 const testdata = [
     {
         "name": "Jose vanseste",

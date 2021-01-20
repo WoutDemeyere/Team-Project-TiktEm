@@ -4,7 +4,7 @@ var colohuntScore
 const listenToSocket = function () {
     socket.on('B2F_colorhunt_ended', function (score) {
         console.log(score)
-        location.href = `game-end.html?gamename=${gameName}&score=${score}%20punten`
+        location.href = `game-end.html?gamename=${gameName}&score=${score}%20punten&username=${userName}`
     });
 
     socket.on('B2F_colorhunt_score', function (score) {

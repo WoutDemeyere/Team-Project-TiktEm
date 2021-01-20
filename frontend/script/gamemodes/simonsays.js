@@ -4,7 +4,7 @@ var simonScore, stopButton, score;
 const listenToSocket = function () {
     socket.on('B2F_simonsays_ended', function (score) {
         console.log(score)
-        location.href = `game-end.html?gamename=${gameName}&score=${score}`
+        location.href = `game-end.html?gamename=${gameName}&score=${score}&username=${userName}`
     });
 
     socket.on('B2F_simonsays_sequence', function (sequence) {

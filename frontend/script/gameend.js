@@ -1,6 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const gameName = urlParams.get('gamename');
 const score = urlParams.get('score');
+const userName = urlParams.get('username');
 
 var resultContainer, tableContainer;
 

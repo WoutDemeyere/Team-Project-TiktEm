@@ -18,6 +18,7 @@
     --global-color-bronze: #cd7f32;
     --global-color-flash-green: rgb(24, 255, 113);
     --global-color-light-gray: #bbbaba;
+    --global-color-red: #f05555;
 
     
     --global-color-font:var(--global-color-white);
@@ -468,7 +469,6 @@ input:disabled {
     flex-direction: column;
     justify-content: space-between;
     align-content: center;
-
     overflow: hidden;
 }
 
@@ -874,13 +874,13 @@ input:disabled {
 */
 
 .c-input-container {
-}
-
-.c-form-field {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .c-input {
+    z-index: 1;
     --input-transition: all var(--global-transitionDuration-alpha) var(--global-transitionEasing-out);
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -899,6 +899,10 @@ input:disabled {
     text-align: center;
 }
 
+.c-input-error {
+    border: 2px solid var(--global-color-red);
+}
+
 .c-input::placeholder {
     color: var(--global-placeholder-color);
     text-align: center;
@@ -907,6 +911,16 @@ input:disabled {
 .c-input__bottom-text {
     font-weight: 300;
     font-size: calc(var(--global-font-size) * 1.2);
+    text-align: start;
+}
+
+.c-input-error-text {
+    font-weight: 400;
+    font-size: calc(var(--global-font-size) * 1.8);
+    text-align: center;
+    color: var(--global-color-red);
+    transform: translateY(40px);
+    transition: transform 0.3s var(--global-transition);
 }
 
 
@@ -1174,7 +1188,12 @@ input:disabled {
 .c-play-button__icon {
     height: 150px;
     stroke: var(--global-color-dark-green);
-    transition: stroke 0.1s ease-out;
+    
+}
+
+.c-play-button__icon--path {
+    stroke-width: 15px;
+    transition: stroke-width 0.1s ease-in, fill 0.1s ease-in;
 }
 
 .c-play-button {
@@ -1182,9 +1201,9 @@ input:disabled {
     
 }
 
-.c-play-button:active  .c-play-button__icon{
-    height: 150px;
-    stroke: rgb(255, 19, 255);
+.c-play-button:active .c-play-button__icon--path{
+    stroke-width: 0px;
+    fill: #b1efdf;
 }
 
 

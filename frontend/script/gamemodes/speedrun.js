@@ -12,7 +12,7 @@ const listenToSocket = function () {
         console.log(score)
 
         clearInterval(y);
-        location.href = `game-end.html?gamename=${gameName}&score=${speedrunTimer.toFixed(2)}%20s`
+        location.href = `game-end.html?gamename=${gameName}&score=${speedrunTimer.toFixed(2)}%20s&username=${userName}`
     });
 
     socket.on('B2F_speedrun_tiksleft', function (tiksLeft) {
