@@ -90,7 +90,7 @@ void setup_touch() {
   }
   touchGemiddelde = touchGemiddelde / 100;
   Serial.print("TOUCH GEMIDDELDE: ");
-  Serial.print(touchGemiddelde);
+  Serial.println(touchGemiddelde);
 }
 
 
