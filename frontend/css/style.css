@@ -1197,12 +1197,9 @@ input:disabled {
 }
 
 .c-stop-button__icon--rect{ 
+    fill: #FFF;
     stroke-width: 15px;
-    transition: stroke-width 0.1s ease-in, fill 0.1s ease-in;
-}
-
-.c-play-button {
-    outline: none;
+    transition: stroke-width 0.1s ease-out, fill 0.1s ease-out;
 }
 
 .c-play-button:active .c-play-button__icon--path{
@@ -1210,13 +1207,14 @@ input:disabled {
     fill: #b1efdf;
 }
 
-.c-play-button:active .c-stop-button__icon--rect{
+.c-play-button:active .c-stop-button__icon .c-stop-button__icon--rect{
     stroke-width: 0px;
-    fill: #b1efdf;
+    fill:#f19e9d;
 }
 
 
 .c-stop-button__icon {
+    height: 150px;
     stroke: #f05555;
 }
 

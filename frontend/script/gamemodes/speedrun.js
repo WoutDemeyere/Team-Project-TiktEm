@@ -23,15 +23,25 @@ const listenToSocket = function () {
 
 const listenToStop = () => {
     stopButton.addEventListener('click', function() {
+        console.log("stoping")
         fetch(`http://${lanIP}/tiktem/v1/stopgame`)
         .catch((err) => console.error("An error occurd", err));
+
+        countdownHTML.parentNode.style.display = "flex";
+        countdownHTML.innerHTML = "STOP";
+
+
+        setTimeout(function() {
+            countdownHTML.parentNode.style.display = "none";
+            window.location.href = `game-start.html?gamename=${gameName}`;
+          }, 2000);
     })
 }
 
 const getSpeedrunDomElements = () => {
     speedrunTimerHTML = document.querySelector('.js-timer');
     tiksLeftHTML = document.querySelector('.js-speedrun-tiks-left');
-    stopButton = document.querySelector('.js-stop');
+    stopButton = document.querySelector('.js-stop-button');
 }
 
 const callBackStartGame = () => {
@@ -39,4 +49,5 @@ const callBackStartGame = () => {
     getSpeedrunDomElements();  
     runTimer(); 
     listenToSocket();
+    listenToStop();
 }

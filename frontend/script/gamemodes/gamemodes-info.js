@@ -13,11 +13,11 @@ const gamemodeInfo = {
                 </div>
                 
                 <div class="c-play-button-container">
-                        <a href="game-start.html?gamename=speedrun">
-                            <svg class="c-stop-button__icon js-stop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.46 66.46">
-                                <rect id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" fill="#fff" stroke-linejoin="round" stroke-width="15"/>
-                            </svg>                              
-                        </a>
+                        <button class="o-button-reset c-play-button js-stop-button">
+                            <svg class="c-stop-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.46 66.46">
+                                <rect class="c-stop-button__icon--rect" id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" stroke-linejoin="round" stroke-width="15"/>
+                            </svg>
+                        </button>
                         <span class="c-play-button__text">STOP</span>
                 </div>`,
 
@@ -39,17 +39,11 @@ const gamemodeInfo = {
                 </div>
                 
                 <div class="c-play-button-container">
-                        <button class="o-button-reset c-play-button js-play-button">
+                        <button class="o-button-reset c-play-button js-stop-button">
                             <svg class="c-stop-button__icon js-stop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.46 66.46">
-                                <rect class="c-stop-button__icon--rect" id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" fill="#fff" stroke-linejoin="round" stroke-width="15"/>
+                                <rect class="c-stop-button__icon--rect" id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" stroke-linejoin="round" stroke-width="15"/>
                             </svg>
                         </button>
-
-                        <a href="game-start.html?gamename=simonsays">
-                            <svg class="c-stop-button__icon js-stop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.46 66.46">
-                                <rect id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" fill="#fff" stroke-linejoin="round" stroke-width="15"/>
-                            </svg>                              
-                        </a>
                         <span class="c-play-button__text">STOP</span>
                 </div>`,
 
@@ -75,11 +69,11 @@ const gamemodeInfo = {
                 </div>
                 
                 <div class="c-play-button-container">
-                        <a href="game-start.html?gamename=colorhunt">
-                            <svg class="c-stop-button__icon js-stop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.46 66.46">
-                                <rect id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" fill="#fff" stroke-linejoin="round" stroke-width="15"/>
-                            </svg>                              
-                        </a>
+                        <button class="o-button-reset c-play-button js-stop-button">
+                            <svg class="c-stop-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.46 66.46">
+                                <rect class="c-stop-button__icon--rect" id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" stroke-linejoin="round" stroke-width="15"/>
+                            </svg>
+                        </button>
                         <span class="c-play-button__text">STOP</span>
                 </div>`,
 
