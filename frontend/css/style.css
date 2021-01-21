@@ -261,6 +261,7 @@ input:disabled {
 */
 
 .o-button-reset {
+    outline: none;
     border: none;
     margin: 0;
     padding: 0;
@@ -1188,7 +1189,6 @@ input:disabled {
 .c-play-button__icon {
     height: 150px;
     stroke: var(--global-color-dark-green);
-    
 }
 
 .c-play-button__icon--path {
@@ -1196,9 +1196,13 @@ input:disabled {
     transition: stroke-width 0.1s ease-in, fill 0.1s ease-in;
 }
 
+.c-stop-button__icon--rect{ 
+    stroke-width: 15px;
+    transition: stroke-width 0.1s ease-in, fill 0.1s ease-in;
+}
+
 .c-play-button {
     outline: none;
-    
 }
 
 .c-play-button:active .c-play-button__icon--path{
@@ -1206,9 +1210,13 @@ input:disabled {
     fill: #b1efdf;
 }
 
+.c-play-button:active .c-stop-button__icon--rect{
+    stroke-width: 0px;
+    fill: #b1efdf;
+}
+
 
 .c-stop-button__icon {
-    height: 150px;
     stroke: #f05555;
 }
 
