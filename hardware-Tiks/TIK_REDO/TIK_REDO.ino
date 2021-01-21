@@ -1,4 +1,4 @@
-/* IMPORTS  */
+/* ------------------------- IMPORTS ------------------ */
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
@@ -8,7 +8,7 @@
 #endif
 
 /* ------------------ TIK-ELEMENTS ------------------ */
-int TIK_ID = 0;
+int TIK_ID = 3;
 
 String TIK_HOSTNAME = "Tiktem-Tik" + String(TIK_ID);
 String TIK_SUBTOPIC = "tiktem/tik" + String(TIK_ID);
@@ -19,14 +19,14 @@ boolean tik_status = false;
 
 
 /* ------------------- WIFI ------------------------ */
-const String used_wifi = "home-torre-moeder";           //"hotspot-wout", "howest-iot", "home-wout", "home-torre-moeder"
+const String used_wifi = "hotspot-wout";           //"hotspot-wout", "howest-iot", "home-wout", "home-torre-moeder"
 char* ssid = "";
 char* password = "";
 WiFiClient espClient;
 
 
 /* -------------------- MQTT ------------------------ */
-const char* mqttServer = "192.168.0.40";
+const char* mqttServer = "192.168.43.40";
 const int mqttPort = 1883;
 const char* mqttUser = "";
 const char* mqttPassword = "";
@@ -35,7 +35,7 @@ char raw_buffer[200];
 PubSubClient client(espClient);
 
 
-/* -------------------------- LED ---------------------- */
+/* -------------------------- LED --------------------- */
 const int LED_PIN = 15;
 const int NUMPIXELS = 1;
 Adafruit_NeoPixel pixels(NUMPIXELS, LED_PIN, NEO_RGB + NEO_KHZ800);
@@ -44,7 +44,7 @@ int red = 0;
 int green = 0;
 int blue = 0;
 
-int brightness = 10;
+int brightness = 255;
 int delay_on = 0;
 
 
@@ -124,6 +124,7 @@ void setup_wifi_mqtt() {     /* (& MQTT)*/
   }
   Serial.println("Connected to the WiFi network");
   led_buzzer_delay(255, 165, 0, 500, 150);
+  led_on(255, 165, 0);
 
 
   // CONNECTING TO MQTT
