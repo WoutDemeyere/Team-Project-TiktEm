@@ -1,5 +1,4 @@
-/* IMPORTS  */
-
+/* ------------------------- IMPORTS ------------------ */
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
@@ -8,40 +7,35 @@
 #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
 #endif
 
-/* TIK-ELEMENTS */
-int TIK_ID = 0;
+/* ------------------ TIK-ELEMENTS ------------------ */
+int TIK_ID = 3;
 
 String TIK_HOSTNAME = "Tiktem-Tik" + String(TIK_ID);
 String TIK_SUBTOPIC = "tiktem/tik" + String(TIK_ID);
 char TIK_HOSTNAME_ARR[20];
 char TIK_SUBTOPIC_ARR[20];
-  
 char* TIK_PUBTOPIC = "tiktem/tiksout";
-
-boolean light_status = false;
 boolean tik_status = false;
 
-/* WIFI  */
-const String used_wifi = "home-wout"; //"hotspot-wout", "howest-iot", "home-wout"
 
+/* ------------------- WIFI ------------------------ */
+const String used_wifi = "hotspot-wout";           //"hotspot-wout", "howest-iot", "home-wout", "home-torre-moeder"
 char* ssid = "";
 char* password = "";
-//char* ssid = "bosstraat";
-//char* password =  "wotikrko22";
-
 WiFiClient espClient;
 
-/* MQTT  */
-const char* mqttServer = "192.168.0.112";
+
+/* -------------------- MQTT ------------------------ */
+const char* mqttServer = "192.168.43.40";
 const int mqttPort = 1883;
 const char* mqttUser = "";
 const char* mqttPassword = "";
-
 char raw_buffer[200];
 
 PubSubClient client(espClient);
 
-/* LED  */
+
+/* -------------------------- LED --------------------- */
 const int LED_PIN = 15;
 const int NUMPIXELS = 1;
 Adafruit_NeoPixel pixels(NUMPIXELS, LED_PIN, NEO_RGB + NEO_KHZ800);
@@ -50,9 +44,11 @@ int red = 0;
 int green = 0;
 int blue = 0;
 
-int brightness = 10;
+int brightness = 255;
+int delay_on = 0;
 
-/* BUZZER  */
+
+/* ------------------------- BUZZER --------------------- */
 int freq;
 int channel = 0;
 int resolution = 8;
@@ -60,7 +56,7 @@ const int buzzerPin = 26;
 const int touchPin = 4;
 int Tone = 0;
 
-/* TOUCH  */
+/* -------------------------- TOUCH ----------------------- */
 int touchWaardeHuidig;
 int touchChangeCount = 0;
 bool touchActive = false;
@@ -68,24 +64,17 @@ int touchInActiveCount = 0;
 int touchGemiddelde = 0;
 int touchTreshold = 10;
 
-void led_on(int r, int g, int b) {
-  pixels.clear();
-  pixels.setBrightness(brightness);
-  pixels.setPixelColor(0, pixels.Color(r, g, b));
-  pixels.show();
-}
 
-void led_of() {
-  pixels.clear();
-  pixels.setBrightness(0);
-  pixels.setPixelColor(0, pixels.Color(0, 0, 0));
-  pixels.show();
-}
+/* ------------------------------------------------------------ */
+/* -------------------------- FUNCTIONS ----------------------- */
+/* ------------------------------------------------------------ */
 
-void buzzer(int buzz) {
-  ledcWriteTone(channel, buzz);
-  delay(350);
-  ledcWriteTone(channel, 0);
+/* --------------------------- SETUP ------------------------- */
+void setup() {
+  Serial.begin(115200);
+  setup_buzzer();
+  setup_touch();
+  setup_wifi_mqtt();
 }
 
 void setup_buzzer() {
@@ -95,8 +84,18 @@ void setup_buzzer() {
   ledcWriteTone(channel, 0);
 }
 
-void setup_wifi() {
+void setup_touch() {
+  for (int i = 0; i <= 100; i++) {
+    touchGemiddelde += touchRead(touchPin);
+  }
+  touchGemiddelde = touchGemiddelde / 100;
+  Serial.print("TOUCH GEMIDDELDE: ");
+  Serial.println(touchGemiddelde);
+}
 
+
+/* --------------------------- MQTT & WIFI ------------------------- */
+void setup_wifi_mqtt() {     /* (& MQTT)*/
   Serial.print("Selecting network ");
   Serial.println(used_wifi);
   
@@ -112,8 +111,10 @@ void setup_wifi() {
   } else if(used_wifi.equals("howest-iot")) {
     ssid = "Howest-IoT";
     password =  "LZe5buMyZUcDpLY";
+  } else if(used_wifi.equals("home-torre-moeder")) {
+    ssid = "telenet-9239010";
+    password = "C5paexkc6utp";
   }
-
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -121,22 +122,19 @@ void setup_wifi() {
     led_on(0, 255, 242);
     delay(500);
   }
-
   Serial.println("Connected to the WiFi network");
+  led_buzzer_delay(255, 165, 0, 500, 150);
+  led_on(255, 165, 0);
 
+
+  // CONNECTING TO MQTT
   client.setServer(mqttServer, mqttPort);
   client.setCallback(callback);
-
+  
   while (!client.connected()) {
     Serial.println("Connecting to MQTT...");
-
-    led_on(255, 165, 0);
-    buzzer(500);
-
     if (client.connect(TIK_HOSTNAME_ARR, mqttUser, mqttPassword)) {
-      led_on(0, 255, 0);
-      buzzer(800);
-      led_of();
+      led_buzzer_delay(0, 255, 0, 800, 150);
 
       Serial.print("connected as ");
       Serial.print(TIK_HOSTNAME);
@@ -147,78 +145,63 @@ void setup_wifi() {
       Serial.println(TIK_SUBTOPIC);
     }
   }
-
-
 }
 
 void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
 
-    led_on(255, 165, 0);
-     buzzer(500);
-   
+    led_buzzer_delay(255, 0, 0, 3000, 2000);
 
     if (client.connect(TIK_HOSTNAME_ARR, mqttUser, mqttPassword)) {
-      led_on(0, 255, 0);
-      buzzer(800);
-      led_of();
+      led_buzzer_delay(0, 255, 0, 800, 150);
 
-      Serial.println("connected");
+      Serial.println("reconnected to mqtt");
       client.subscribe(TIK_SUBTOPIC_ARR);
-
-      
-    } else {
+    } 
+    else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println("try again in 5 seconds");
-      delay(1000);
     }
   }
 }
 
-void setup_touch() {
-  for (int i = 0; i <= 100; i++) {
-    touchGemiddelde += touchRead(touchPin);
-  }
-  touchGemiddelde = touchGemiddelde / 100;
-}
-
-void callback(char* topic, byte* payload, unsigned int length) {
+void callback(char* topic, byte* payload, unsigned int length) { /* wordt opgeroepen als er een mqtt bericht binnen komt*/
+  // DATA INLEZEN
   StaticJsonBuffer<300> jsonBuffer;
   Serial.println("CALLBACK");
   char inData[length];
-
   Serial.print("payload: ");
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
     inData[(i)] = (char)payload[i];
   }
-
   JsonObject& root = jsonBuffer.parseObject(inData);
-
   if (!root.success()) { 
     Serial.println("Parsing failed");
     delay(1000);
     return;
   }
-
   int id = root["tik_id"];
 
-  if (id == TIK_ID) {
-    light_status = root["light_status"];
-
+  // DATA VERWERKEN
+  if (id == TIK_ID) {     // extra controle
     red = root["red"];
     green = root["green"];
     blue = root["blue"];
-
     Tone = root["tone"];
+    delay_on = root["delay_on"];
 
-    led_on(red, green, blue);
-
-    buzzer(Tone);
+    // geef een delay waarde mee om even te biepen, een 0 voor de led/buzzer aan te laten
+    if (delay_on == 0){
+      led_on(red, green, blue);
+      buzzer(Tone);
+    }
+    else{
+      led_buzzer_delay(red, green, blue, Tone, delay_on);
+    }
   }
-
   Serial.println();
   Serial.print("ID: ");
   Serial.print(id);
@@ -235,30 +218,57 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Note: ");
   Serial.print(Tone);
   Serial.print('\t');
+  Serial.print("Delay: ");
+  Serial.print(delay_on);
   Serial.println();
 }
 
-
-void setup() {
-  Serial.begin(115200);
-  setup_buzzer();
-  setup_touch();
-  setup_wifi();
-
+void update_status(boolean stat) {      // bericht naar mqtt server sturen, wordt opgeroepen als de touch sensor van state veranderd 
+  String data_raw = "{\"tik_id\":" + String(TIK_ID) +  ", \"tik_status\":" + String(stat)  + "}";
+  data_raw.toCharArray(raw_buffer, 200);
+  client.publish(TIK_PUBTOPIC, raw_buffer);
 }
 
+
+/* --------------------------- LOGIC FUNCTIONS ------------------------- */
 void loop() {
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
-
-  touchWaardeHuidig =  touchRead(touchPin);
   handle_touch_sensor();
+  delay(5);
+}
 
+void led_on(int r, int g, int b) {
+  pixels.clear();
+  pixels.setBrightness(brightness);
+  pixels.setPixelColor(0, pixels.Color(r, g, b));
+  pixels.show();
+}
+
+void led_off() {
+  pixels.clear();
+  pixels.setBrightness(0);
+  pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+  pixels.show();
+}
+
+void buzzer(int buzz) {
+  ledcWriteTone(channel, buzz);
+}
+
+void led_buzzer_delay (int r, int g, int b, int buzz, int delay_millisec){
+  led_on(r, g, b);
+  buzzer(buzz);
+  delay(delay_millisec);
+  led_off();
+  buzzer(0);
 }
 
 void handle_touch_sensor() {
+  touchWaardeHuidig =  touchRead(touchPin);
+  
   if (!touchActive) {
     if ((touchGemiddelde - touchWaardeHuidig) > touchTreshold) {
       touchChangeCount++;
@@ -268,13 +278,10 @@ void handle_touch_sensor() {
     }
 
     if (touchChangeCount > 5) {
-      tik_status = true;
-      update_status(tik_status);
-      Serial.println("TOUCHED");
-      
-      touchChangeCount = 0;
       touchActive = true;
-      ledcWriteTone(channel, 500);
+      update_status(touchActive);
+      Serial.println("TOUCHED");
+      touchChangeCount = 0;
     }
   }
 
@@ -287,17 +294,9 @@ void handle_touch_sensor() {
     }
 
     if (touchChangeCount > 50) {
-      tik_status = false;
-      update_status(tik_status);
-      touchChangeCount = 0;
       touchActive = false;
-      ledcWriteTone(channel, 0);
+      update_status(touchActive);
+      touchChangeCount = 0;
     }
   }
-}
-
-void update_status(boolean stat) {
-  String data_raw = "{\"tik_id\":" + String(TIK_ID) +  ", \"tik_status\":" + String(stat)  + ", \"light_status\":" + String(light_status) + "}"; //+ ", \"red\":" + String(red) + ", \"green\":" + String(green) + ", \"blue\":" + String(blue) + "}";
-  data_raw.toCharArray(raw_buffer, 200);
-  client.publish(TIK_PUBTOPIC, raw_buffer);
 }

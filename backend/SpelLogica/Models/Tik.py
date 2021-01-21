@@ -2,21 +2,22 @@ import json
 
 
 class Tik:
-    def __init__(self, id, tikstatus, lightstatus, red, green, blue, tone, mqtt_client):
+    def __init__(self, id, tikstatus, red, green, blue, tone, mqtt_client):
         self.id = id
         self.tikstatus = tikstatus
-        self.lightstatus = lightstatus
         self.red = red
         self.green = green
         self.blue = blue
         self.tone = tone
         self.mqtt = mqtt_client
-        self.colorhunt_status = False
+        self.delay_on = 0
+
+        # colorteam
+        self.in_use_colorTeam = False
 
     @property
     def id(self):
         return self._id
-
     @id.setter
     def id(self, nieuwid):
         if (nieuwid != ""):
@@ -27,25 +28,14 @@ class Tik:
     @property
     def tikstatus(self):
         return self._tikstatus
-
     @tikstatus.setter
     def tikstatus(self, nieuwetikstatus):
         self._tikstatus = nieuwetikstatus
 
     @property
-    def lightstatus(self):
-        return self._lightstatus
-
-    @lightstatus.setter
-    def lightstatus(self, nieuwelightstatus):
-        # print(f"SETING LIGHTSTATERTUS TO {nieuwelightstatus}")
-        self._lightstatus = nieuwelightstatus
-
-    @property
     def red(self):
         """The red property."""
         return self._red
-
     @red.setter
     def red(self, value):
         self._red = value
@@ -54,7 +44,6 @@ class Tik:
     def green(self):
         """The green property."""
         return self._green
-
     @green.setter
     def green(self, value):
         self._green = value
@@ -63,7 +52,6 @@ class Tik:
     def blue(self):
         """The blue property."""
         return self._blue
-
     @blue.setter
     def blue(self, value):
         self._blue = value
@@ -75,27 +63,45 @@ class Tik:
     @tone.setter
     def tone(self, value):
         self._tone = value
+
+    @property
+    def delay_on(self):
+        """The delay_on property."""
+        return self._delay_on
+    @delay_on.setter
+    def delay_on(self, value):
+        self._delay_on = value
+
+    def tik_is_touched_signaal(self):
+        self.turn_on_delay(0, 255, 255, 1000, 100)
     
     def turn_on(self, red, green, blue, tone):
-        self._lightstatus = True
-        self._red = red
-        self._green = green
-        self._blue = blue
-        self._tone = tone
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.tone = tone
+        self.delay_on = 0
+        self.update()
+
+    def turn_on_delay(self, red, green, blue, tone, delay_millis):
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.tone = tone
+        self.delay_on = delay_millis
         self.update()
 
     def turn_off(self):
-        self._tikstatus = False
-        self._lightstatus = False
-        self._red = 0
-        self._green = 0
-        self._blue = 0
-        self._tone = 0
+        self.tikstatus = False
+        self.red = 0
+        self.green = 0
+        self.blue = 0
+        self.tone = 0
+        self.delay_on = 0
         self.update()
 
     def update(self):
-        data = {"tik_id": self.id, "tik_status": self.tikstatus, "light_status": self.lightstatus,
-                "red": self.red, "green": self.green, "blue": self.blue, "tone": self.tone}
+        data = {"tik_id": self.id, "red": self.red, "green": self.green, "blue": self.blue, "tone": self.tone, "delay_on": self.delay_on}
         data_raw = json.dumps(data)
         #print(f'tik: {self.id} : {data}')
         self.mqtt.publish(f'tiktem/tik{self.id}', data_raw)
