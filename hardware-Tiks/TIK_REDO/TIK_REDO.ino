@@ -267,7 +267,6 @@ void led_buzzer_delay (int r, int g, int b, int buzz, int delay_millisec){
 
 void handle_touch_sensor() {
   touchWaardeHuidig =  touchRead(touchPin);
-  Serial.println(touchWaardeHuidig);
   
   if (!touchActive) {
     if ((touchGemiddelde - touchWaardeHuidig) > touchTreshold) {
