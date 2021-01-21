@@ -1,6 +1,5 @@
 /* ------------------------- IMPORTS ------------------ */
 #include <WiFi.h>
-#include "esp_wifi.h"
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include <Adafruit_NeoPixel.h>
@@ -8,12 +7,12 @@
 #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
 #endif
 
-
 /* ------------------ TIK-ELEMENTS ------------------ */
-int TIK_ID = 0;
+int TIK_ID = 3;
 
 String TIK_HOSTNAME = "Tiktem-Tik" + String(TIK_ID);
 String TIK_SUBTOPIC = "tiktem/tik" + String(TIK_ID);
+String TIK_SUBTOPIC_BATT = "tiktem/batt";
 char TIK_HOSTNAME_ARR[20];
 char TIK_SUBTOPIC_ARR[20];
 char* TIK_PUBTOPIC = "tiktem/tiksout";
@@ -21,14 +20,14 @@ boolean tik_status = false;
 
 
 /* ------------------- WIFI ------------------------ */
-const String used_wifi = "hotspot-wout";           //"hotspot-wout", "howest-iot", "home-wout", "home-torre-moeder"
+const String used_wifi = "howest-iot";           //"hotspot-wout", "howest-iot", "home-wout", "home-torre-moeder"
 char* ssid = "";
 char* password = "";
 WiFiClient espClient;
 
 
 /* -------------------- MQTT ------------------------ */
-const char* mqttServer = "192.168.43.40";
+const char* mqttServer = "172.30.248.70";
 const int mqttPort = 1883;
 const char* mqttUser = "";
 const char* mqttPassword = "";
@@ -117,26 +116,20 @@ void setup_wifi_mqtt() {     /* (& MQTT)*/
     ssid = "telenet-9239010";
     password = "C5paexkc6utp";
   }
-  
-  WiFi.mode (WIFI_STA);
-  esp_wifi_set_ps (WIFI_PS_NONE);   // zorgen dat hij niet in energie bespaar stand gaat
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
     Serial.println("Connecting to WiFi..");
     led_on(0, 255, 242);
-    WiFi.begin(ssid, password);
     delay(8000);
+    WiFi.begin(ssid, password);
   }
-  
   Serial.println("Connected to the WiFi network");
-  Serial.print("CONNECTED WITH IP: ");
-  Serial.println(WiFi.localIP());
   led_buzzer_delay(255, 165, 0, 500, 150);
   led_on(255, 165, 0);
 
 
-  // ------------------------------------ CONNECTING TO MQTT -----------------------------------------
+  // CONNECTING TO MQTT
   client.setServer(mqttServer, mqttPort);
   client.setCallback(callback);
   
@@ -160,7 +153,7 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
 
-    led_buzzer_delay(255, 0, 0, 3000, 200);
+    led_buzzer_delay(255, 0, 0, 3000, 2000);
 
     if (client.connect(TIK_HOSTNAME_ARR, mqttUser, mqttPassword)) {
       led_buzzer_delay(0, 255, 0, 800, 150);
@@ -233,7 +226,7 @@ void callback(char* topic, byte* payload, unsigned int length) { /* wordt opgero
 }
 
 void update_status(boolean stat) {      // bericht naar mqtt server sturen, wordt opgeroepen als de touch sensor van state veranderd 
-  String data_raw = "{\"tik_id\":" + String(TIK_ID) +  ", \"tik_status\":" + String(stat) + "}";
+  String data_raw = "{\"tik_id\":" + String(TIK_ID) +  ", \"tik_status\":" + String(stat)  + "}";
   data_raw.toCharArray(raw_buffer, 200);
   client.publish(TIK_PUBTOPIC, raw_buffer);
 }
@@ -246,7 +239,7 @@ void loop() {
   }
   client.loop();
   handle_touch_sensor();
-  delay(1);
+  delay(5);
 }
 
 void led_on(int r, int g, int b) {
@@ -304,6 +297,7 @@ void handle_touch_sensor() {
 
     if (touchChangeCount > 50) {
       touchActive = false;
+      update_status(touchActive);
       touchChangeCount = 0;
     }
   }

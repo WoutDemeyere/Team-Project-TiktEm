@@ -39,7 +39,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
 # TIKS config
-amountOfTiks = 2
+amountOfTiks = 4
 tiktem = TiktEm(mqtt, amountOfTiks)
 
 
@@ -129,10 +129,10 @@ def handle_mqtt_message(client, userdata, message):
 
 def mqtt_test():
     while True:
-        tiktem.tiks[0].turn_on(255, 255, 255, 500)
-        time.sleep(0.5)
-        tiktem.tiks[0].turn_off()
-        time.sleep(0.5)
+        tiktem.tiks[3].turn_on(255, 0, 0, 0)
+        time.sleep(0.3)
+        tiktem.tiks[3].turn_off()
+        time.sleep(0.3)
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------------
@@ -160,7 +160,7 @@ def speedRun():
         sequentie = sequentie_3_tiks
     elif tiktem.amount == 4:
         sequentie = sequentie_4_tiks
-    tik_id = sequentie[sequentie_place_counter]
+    tik_id = sequentie[0]
 
     while tiktem.game_on == True:
         if tik_is_up == False:
@@ -457,8 +457,8 @@ def colorTeam():
     
     # first tik for both teams
     tiks = tiktem.tiks              # alle beschikbare tiks ophalen
-    #x = threading.Thread(target=colorTeamLogic, args=("red", tiks))       # vierkante haakjes want anders wilt threading meerdere argumenten
-    #x.start()
+    x = threading.Thread(target=colorTeamLogic, args=("red", tiks))       # vierkante haakjes want anders wilt threading meerdere argumenten
+    x.start()
     y = threading.Thread(target=colorTeamLogic, args=("blue", tiks))
     y.start()
 
@@ -470,7 +470,7 @@ def colorTeam():
     if tiktem.score_red > tiktem.score_blue:
         print(f"TEAM ROOD HEEFT GEWONNEN MET ROOD: {tiktem.score_red} TEGEN BLAUW: {tiktem.score_blue}")
     else:
-        print(f"TEAM BLAUW HEEFT GEWONNEN MET BLAUW: {tiktem.score_red} TEGEN ROOD: {tiktem.score_blue}")
+        print(f"TEAM BLAUW HEEFT GEWONNEN MET BLAUW: {tiktem.score_blue} TEGEN ROOD: {tiktem.score_red}")
 
 
 
@@ -532,5 +532,4 @@ if __name__ == '__main__':
     mqtt.subscribe('tiktem/tiksout')
     tiktem.reset_tiks()
     # mqtt_test()
-    socketio.run(app, debug=False, host='0.0.0.0', port=5000)
     socketio.run(app, debug=False, host='0.0.0.0', port=5000)

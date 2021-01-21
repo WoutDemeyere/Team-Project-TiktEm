@@ -39,8 +39,10 @@ class TiktEm:
             tik.turn_on_delay(255, 0, 255, 200, 200)
     
     def get_tik_status(self, tik_id):
-        return self.tiks[tik_id].tikstatus
+        tik_status_now = self.tiks[tik_id].tikstatus
+        if tik_status_now == True:
+            self.tiks[tik_id].tikstatus = False
+        return tik_status_now
 
     def update_status(self, data):
-        print(f"UPDATED: {data}")
         self.tiks[data['tik_id']].tikstatus = data['tik_status']
