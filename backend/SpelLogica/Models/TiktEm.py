@@ -42,4 +42,5 @@ class TiktEm:
         return self.tiks[tik_id].tikstatus
 
     def update_status(self, data):
+        print(f"UPDATED: {data}")
         self.tiks[data['tik_id']].tikstatus = data['tik_status']
