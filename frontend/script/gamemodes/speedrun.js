@@ -8,14 +8,22 @@ const runTimer = () => {
 }
 
 const listenToSocket = function () {
+    console.log("U DIKKE MAMA")
+
+    socket.emit('yeet', 'yeeteerskeeter');
+    
     socket.on('B2F_speedrun_ended', function (score) {
+        console.log("ENDEN")
         console.log(score)
 
         clearInterval(y);
+        stopGame();
+        
         location.href = `game-end.html?gamename=${gameName}&score=${speedrunTimer.toFixed(2)}%20s&username=${userName}`
     });
 
     socket.on('B2F_speedrun_tiksleft', function (tiksLeft) {
+        console.log("TIKS LEFT")
         console.log(tiksLeft)
         tiksLeftHTML.innerHTML = tiksLeft;
     });
@@ -24,8 +32,7 @@ const listenToSocket = function () {
 const listenToStop = () => {
     stopButton.addEventListener('click', function() {
         console.log("stoping")
-        fetch(`http://${lanIP}/tiktem/v1/stopgame`)
-        .catch((err) => console.error("An error occurd", err));
+        stopGame();
 
         countdownHTML.parentNode.style.display = "flex";
         countdownHTML.innerHTML = "STOP";
@@ -38,6 +45,11 @@ const listenToStop = () => {
     })
 }
 
+const stopGame = () => {
+    fetch(`http://${lanIP}/tiktem/v1/stopgame`)
+    .catch((err) => console.error("An error occurd", err));
+}
+
 const getSpeedrunDomElements = () => {
     speedrunTimerHTML = document.querySelector('.js-timer');
     tiksLeftHTML = document.querySelector('.js-speedrun-tiks-left');
@@ -47,7 +59,9 @@ const getSpeedrunDomElements = () => {
 const callBackStartGame = () => {
     console.log(`Starting ${gamemodeInfo[gameName].title}`);
     getSpeedrunDomElements();  
-    runTimer(); 
     listenToSocket();
+    runTimer(); 
     listenToStop();
+
+    console.log(socket)
 }

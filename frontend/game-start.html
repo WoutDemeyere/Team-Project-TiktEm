@@ -14,8 +14,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
     <script src="script/dataHandler.js"></script>
+    <script src="script/gamemodes/gamemodes-info.js"></script>
     <script src="script/leaderboard.js"></script>
     <script src="script/gamestart.js"></script>
     <!-- <script src="script/script.js"></script> -->
@@ -92,7 +94,7 @@
                 <div class="c-input-container">
                     <span class="c-input-error-text js-error-text">Vul een naam in a.u.b</span>
                     <input class="c-input js-email-input" type="text" id="username" placeholder="Username"
-                        required>
+                        required autofocus>
                     <span class="c-input__bottom-text">Opgepast: deze username zal voor iedereen zichtbaar zijn,
                         kies verstandig.</span>
                 </div>

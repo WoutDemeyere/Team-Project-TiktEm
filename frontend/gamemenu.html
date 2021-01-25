@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <!-- <script src="script/app.js"></script> -->
     <script src="script/dataHandler.js"></script>
+    <script src="script/gamemodes/gamemodes-info.js"></script>
     <script src="script/gamemenu.js"></script>
     <script src="script/sidemenu.js"></script>
 
@@ -142,144 +143,104 @@
 
                                         <ul class="o-list c-options-container">
                                             <p class="c-coll-ul-header">Selecteer een game modus</p>
-                                            <li class="c-option-field">
+                                            <li class="c-option-field js-game-option" gameid="1">
                                                 <input type="radio" class="o-hide-accessible c-option--hidden"
                                                     id="radio1" name="radios">
                                                 <label class="c-custom-option" for="radio1" onclick="">
-                                                    <span class="c-custom-option__fake-input u-color-neutral-light">
+                                                    <span class="c-custom-option__fake-input u-color-neutral-light js-title">
                                                         Speedrun
                                                     </span>
                                                 </label>
 
                                                 <div class="c-collapsible-content">
-                                                    <p class="c-coll-info">Er zal een vaste sequentie van Tik's
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
                                                         oplichten.
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
 
                                                     <div class="c-coll-play-container">
-                                                        <a href="game-start.html?gamename=speedrun">
-                                                            <svg class="c-icon-play" data-name="Layer 1"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 78.42 84.62">
-                                                                <defs>
-                                                                    <style>
-                                                                        .cls-1 {
-                                                                            stroke-linejoin: round;
-                                                                            stroke-width: 15px;
-                                                                        }
-                                                                    </style>
-                                                                </defs>
-                                                                <polygon class="cls-1"
-                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                        <button onclick="location.href='game-start.html?gamename=speedrun'" class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon" data-name="play icon"
+                                                                    d="M7.5,7.5v64l56.881-32Z" stroke-linejoin="round" />
                                                             </svg>
-                                                        </a>
+                                                        </button>
 
                                                     </div>
                                                 </div>
                                             </li>
 
-                                            <li class="c-option-field">
+                                            <li class="c-option-field js-game-option" gameid="2">
                                                 <input type="radio" class="o-hide-accessible c-option--hidden"
                                                     id="radio2" name="radios">
                                                 <label class="c-custom-option" for="radio2" onclick="">
-                                                    <span class="c-custom-option__fake-input u-color-neutral-light">
+                                                    <span class="c-custom-option__fake-input u-color-neutral-light js-title">
                                                         Simon Says
                                                     </span>
                                                 </label>
 
                                                 <div class="c-collapsible-content">
-                                                    <p class="c-coll-info">Er zal een vaste sequentie van Tik's
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
                                                         oplichten.
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <a href="game-start.html?gamename=simonsays">
-                                                            <svg class="c-icon-play" data-name="Layer 1"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 78.42 84.62">
-                                                                <defs>
-                                                                    <style>
-                                                                        .cls-1 {
-                                                                            stroke-linejoin: round;
-                                                                            stroke-width: 15px;
-                                                                        }
-                                                                    </style>
-                                                                </defs>
-                                                                <polygon class="cls-1"
-                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                        <button onclick="location.href='game-start.html?gamename=simonsays'" class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon" data-name="play icon"
+                                                                    d="M7.5,7.5v64l56.881-32Z" stroke-linejoin="round" />
                                                             </svg>
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </li>
 
-                                            <li class="c-option-field">
+                                            <li class="c-option-field js-game-option" gameid="3">
                                                 <input type="radio" class="o-hide-accessible c-option--hidden"
                                                     id="radio3" name="radios">
                                                 <label class="c-custom-option" for="radio3" onclick="">
-                                                    <span class="c-custom-option__fake-input u-color-neutral-light">
+                                                    <span class="c-custom-option__fake-input u-color-neutral-light js-title">
                                                         Tik Tak Boem
                                                     </span>
                                                 </label>
 
                                                 <div class="c-collapsible-content">
-                                                    <p class="c-coll-info">Er zal een vaste sequentie van Tik's
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
                                                         oplichten.
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <a href="game-start.html?gamename=tiktakboem">
-                                                            <svg class="c-icon-play" data-name="Layer 1"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 78.42 84.62">
-                                                                <defs>
-                                                                    <style>
-                                                                        .cls-1 {
-                                                                            stroke-linejoin: round;
-                                                                            stroke-width: 15px;
-                                                                        }
-                                                                    </style>
-                                                                </defs>
-                                                                <polygon class="cls-1"
-                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                        <button onclick="location.href='game-start.html?gamename=tiktakboem'" class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon" data-name="play icon"
+                                                                    d="M7.5,7.5v64l56.881-32Z" stroke-linejoin="round" />
                                                             </svg>
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </li>
 
-                                            <li class="c-option-field">
+                                            <li class="c-option-field js-game-option" gameid="4">
                                                 <input type="radio" class="o-hide-accessible c-option--hidden"
                                                     id="radio4" name="radios">
                                                 <label class="c-custom-option" for="radio4" onclick="">
-                                                    <span class="c-custom-option__fake-input u-color-neutral-light">
+                                                    <span class="c-custom-option__fake-input u-color-neutral-light js-title">
                                                         Colorhunt
                                                     </span>
                                                 </label>
 
                                                 <div class="c-collapsible-content">
-                                                    <p class="c-coll-info">Er zal een vaste sequentie van Tik's
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
                                                         oplichten.
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <a href="game-start.html?gamename=colorhunt">
-                                                            <svg class="c-icon-play" data-name="Layer 1"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 78.42 84.62">
-                                                                <defs>
-                                                                    <style>
-                                                                        .cls-1 {
-                                                                            stroke-linejoin: round;
-                                                                            stroke-width: 15px;
-                                                                        }
-                                                                    </style>
-                                                                </defs>
-                                                                <polygon class="cls-1"
-                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                        <button onclick="location.href='game-start.html?gamename=colorhunt'" class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon" data-name="play icon"
+                                                                    d="M7.5,7.5v64l56.881-32Z" stroke-linejoin="round" />
                                                             </svg>
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -349,72 +310,53 @@
 
                                         <ul class="o-list c-options-container">
                                             <p class="c-coll-ul-header">Selecteer een game modus</p>
-                                            <li class="c-option-field">
+                                            <li class="c-option-field js-game-option" gameid="5">
                                                 <input type="radio" class="o-hide-accessible c-option--hidden"
                                                     id="m-radio1" name="m-radios">
                                                 <label class="c-custom-option" for="m-radio1">
-                                                    <span class="c-custom-option__fake-input u-color-neutral-light">
+                                                    <span class="c-custom-option__fake-input u-color-neutral-light js-title">
                                                         Speedrun versus
                                                     </span>
                                                 </label>
 
                                                 <div class="c-collapsible-content">
-                                                    <p class="c-coll-info">Er zal een vaste sequentie van Tik's
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
                                                         oplichten.
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <a href="game-start.html?gamename=speedrun-versus">
-                                                            <svg class="c-icon-play" data-name="Layer 1"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 78.42 84.62">
-                                                                <defs>
-                                                                    <style>
-                                                                        .cls-1 {
-                                                                            stroke-linejoin: round;
-                                                                            stroke-width: 15px;
-                                                                        }
-                                                                    </style>
-                                                                </defs>
-                                                                <polygon class="cls-1"
-                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                        <button onclick="location.href='game-start.html?gamename=speedrun-versus'" class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon" data-name="play icon"
+                                                                    d="M7.5,7.5v64l56.881-32Z" stroke-linejoin="round" />
                                                             </svg>
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </li>
 
-                                            <li class="c-option-field">
+                                            <li class="c-option-field js-game-option" gameid="6">
                                                 <input type="radio" class="o-hide-accessible c-option--hidden"
                                                     id="m-radio2" name="m-radios">
                                                 <label class="c-custom-option" for="m-radio2">
-                                                    <span class="c-custom-option__fake-input u-color-neutral-light">
+                                                    <span class="c-custom-option__fake-input u-color-neutral-light js-title">
                                                         Simon Says Versus
                                                     </span>
                                                 </label>
 
                                                 <div class="c-collapsible-content">
-                                                    <p class="c-coll-info">Er zal een vaste sequentie van Tik's
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
                                                         oplichten.
                                                         Aan jou de taak om deze één voor één tegen de klok af te tikken.
                                                     </p>
                                                     <div class="c-coll-play-container">
-                                                        <a href="game-start.html?gamename=simonsays-versus">
-                                                            <svg class="c-icon-play" data-name="Layer 1"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 78.42 84.62">
-                                                                <defs>
-                                                                    <style>
-                                                                        .cls-1 {
-                                                                            stroke-linejoin: round;
-                                                                            stroke-width: 15px;
-                                                                        }
-                                                                    </style>
-                                                                </defs>
-                                                                <polygon class="cls-1"
-                                                                    points="7.5 7.5 7.5 77.12 70.92 42.31 7.5 7.5" />
+                                                        <button onclick="location.href='game-start.html?gamename=simonsays-versus'" class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon" data-name="play icon"
+                                                                    d="M7.5,7.5v64l56.881-32Z" stroke-linejoin="round" />
                                                             </svg>
-                                                        </a>
+                                                        </button>
+                                                        
                                                     </div>
                                                 </div>
                                             </li>

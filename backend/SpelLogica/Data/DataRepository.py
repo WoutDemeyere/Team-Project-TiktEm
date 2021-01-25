@@ -26,9 +26,22 @@ class DataRepository:
 
     @staticmethod
     def insertscore(name, score, gameid ):
-        scoretype = "s"
-        if(gameid == 1 or gameid == 3):
-            scoretype = "t"
-        sql = 'INSERT INTO Scores (name, score, gameid, scoretype) VALUES (%s, %s, %s, %s);'
-        params = [name, score, gameid, scoretype]
+        sql = 'SELECT * FROM Scores where name = %s AND gameid = %s'
+        params = [name,gameid]
+        existing = Database.get_rows(sql,params)
+        if(len(existing) > 0):
+            if(gameid == 1):
+                if(score < existing[0]["score"]):
+                    sql = 'UPDATE Scores SET score = %s WHERE id = %s'
+                    params = [score, existing[0]["id"]]
+            else:
+                if(score > existing[0]["score"]):
+                    sql = 'UPDATE Scores SET score = %s WHERE id = %s'
+                    params = [score, existing[0]["id"]]
+        else:
+            scoretype = "s"
+            if(gameid == 1 or gameid == 3):
+                scoretype = "t"
+            sql = 'INSERT INTO Scores (name, score, gameid, scoretype) VALUES (%s, %s, %s, %s);'
+            params = [name, score, gameid, scoretype]
         return Database.execute_sql(sql,params)
