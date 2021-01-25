@@ -44,7 +44,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
 # TIKS config
-amountOfTiks = 2
+amountOfTiks = 4
 tiktem = TiktEm(mqtt, amountOfTiks)
 
 
@@ -190,10 +190,17 @@ def handle_mqtt_message(client, userdata, message):
 
 def mqtt_test():
     while True:
+<<<<<<< HEAD
         tiktem.tiks[0].turn_on(255, 255, 255, 500)
         time.sleep(0.1)
         tiktem.tiks[0].turn_off()
         time.sleep(0.1)
+=======
+        tiktem.tiks[3].turn_on(255, 0, 0, 0)
+        time.sleep(0.3)
+        tiktem.tiks[3].turn_off()
+        time.sleep(0.3)
+>>>>>>> a49ac150e6ac76a148fe855547af4fa09faf1b20
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------------
@@ -223,11 +230,15 @@ def speedRun(username, gameid):
         sequentie = sequentie_3_tiks
     elif tiktem.amount == 4:
         sequentie = sequentie_4_tiks
+<<<<<<< HEAD
 
     tiks_left = len(sequentie)
     socketio.emit("B2F_speedrun_tiksleft", tiks_left, broadcast=True)
 
     tik_id = sequentie[sequentie_place_counter]
+=======
+    tik_id = sequentie[0]
+>>>>>>> a49ac150e6ac76a148fe855547af4fa09faf1b20
 
     while tiktem.game_on == True:
         if tik_is_up == False:
@@ -543,8 +554,8 @@ def colorTeam(username, gameid):
     
     # first tik for both teams
     tiks = tiktem.tiks              # alle beschikbare tiks ophalen
-    #x = threading.Thread(target=colorTeamLogic, args=("red", tiks))       # vierkante haakjes want anders wilt threading meerdere argumenten
-    #x.start()
+    x = threading.Thread(target=colorTeamLogic, args=("red", tiks))       # vierkante haakjes want anders wilt threading meerdere argumenten
+    x.start()
     y = threading.Thread(target=colorTeamLogic, args=("blue", tiks))
     y.start()
 
@@ -558,9 +569,13 @@ def colorTeam(username, gameid):
         socketio.emit("B2F_colorteam_ended", jsonify(colorteam_scoredata), broadcast=True)
         print(f"TEAM ROOD HEEFT GEWONNEN MET ROOD: {tiktem.score_red} TEGEN BLAUW: {tiktem.score_blue}")
     else:
+<<<<<<< HEAD
         colorteam_scoredata = {'winner': 'blue', 'score-red': tiktem.score_red, 'score-blue': tiktem.score_blue}
         socketio.emit("B2F_colorteam_ended", jsonify(colorteam_scoredata), broadcast=True)
         print(f"TEAM BLAUW HEEFT GEWONNEN MET BLAUW: {tiktem.score_red} TEGEN ROOD: {tiktem.score_blue}")
+=======
+        print(f"TEAM BLAUW HEEFT GEWONNEN MET BLAUW: {tiktem.score_blue} TEGEN ROOD: {tiktem.score_red}")
+>>>>>>> a49ac150e6ac76a148fe855547af4fa09faf1b20
 
 def colorTeamLogic(teamColor, tiks):
     global colorTeamTiksDuration
@@ -699,8 +714,14 @@ def simonSaysVS(username, gameid):
 
 if __name__ == '__main__':
     mqtt.subscribe('tiktem/tiksout')
+<<<<<<< HEAD
     mqtt.subscribe('tiktem/batt/update')
     # tiktem.reset_tiks()
     #mqtt_test()
     socketio.run(app, debug=False, host='0.0.0.0', port=5000)
     # socketio.run(app, debug=False, host='0.0.0.0', port=5000)
+=======
+    tiktem.reset_tiks()
+    # mqtt_test()
+    socketio.run(app, debug=False, host='0.0.0.0', port=5000)
+>>>>>>> a49ac150e6ac76a148fe855547af4fa09faf1b20
