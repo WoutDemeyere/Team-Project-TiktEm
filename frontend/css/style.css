@@ -537,7 +537,7 @@ input:disabled {
 
 .c-icon-play {
     height: 90px;
-    fill: var(--global-color-dark-green);
+    fill: var(--global-color-light-green);
     stroke: var(--global-color-dark-green);
 }
 
@@ -810,6 +810,11 @@ input:disabled {
     align-items: center;
 }
 
+.c-coll-play-container a {
+    outline: none !important;
+
+}
+
 .c-coll-info {
     padding: var(--global-whitespace-xs);
     width: 75%;
@@ -819,7 +824,7 @@ input:disabled {
 
 /* .c-option--hidden:active ~ .c-collapsible-content, */
 .c-option--hidden:checked ~ .c-collapsible-content {
-    height: 140px ;
+    height: 270px;
     transition: height 0.2s var(--global-transition);
 }
 
@@ -1105,13 +1110,44 @@ input:disabled {
 }
 
 .c-table-row {
+    padding: 0 var(--global-whitespace-md);
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: var(--global-whitespace-lg);
 }
 
+.c-table-row-highlight .c-table-row-text{
+    font-weight: 400;
+    color: var(--global-color-light-blue);
+}
+
+
+.c-table-row-highligh-line {
+    border-radius: 5px;
+    width: 50px;
+    border: 2px solid var(--global-color-light-blue);
+    color: #FFF;
+}
+
+.c-table-row--message-container {
+    margin-top: var(--global-whitespace-xxl);
+}
+
+.c-table-row--message {
+    font-weight: 500;
+    font-size: calc(var(--global-font-size) * 2.5);
+}
+
+.c-table-row--error {
+    color: var(--global-color-red);
+    font-weight: 500;
+    font-size: calc(var(--global-font-size) * 2.5);
+}
+
 .c-table-row-text {
+    text-align: center;
     font-weight: 300;
     font-size: calc(var(--global-font-size) * 2.5);
 }
@@ -1245,6 +1281,7 @@ input:disabled {
     justify-content: space-around;
     padding: var(--global-whitespace-lg);
 }
+
 
 .c-game-info__header {
     color: #000;

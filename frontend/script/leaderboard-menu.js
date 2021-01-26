@@ -101,7 +101,8 @@ const listenToButtons = () => {
         select.addEventListener('click', function() {
             menuContainer.classList.add('c-move-left');
             tableContainer.classList.add('c-move-left');
-
+            leaderBoardFilter.autofocus;
+            
             selectedGame = select.getAttribute('gamename')
             loadTable(selectedGame);
         })
@@ -117,6 +118,12 @@ const listenToButtons = () => {
     })
 }
 
+const resetTiks = () => {
+    fetch(`http://${lanIP}/tiktem/v1/reset`)
+    .catch((err) => console.error("An error occurd", err));
+}
+
+
 const getLeaderboardMenuDomElements = () => {
     menuContainer = document.querySelector('.js-leaderboard-menu-container');
     tableContainer = document.querySelector('.js-leaderboard-table-container');
@@ -131,6 +138,7 @@ const getLeaderboardMenuDomElements = () => {
 const initLeaderBoardMenu = () => {
     console.log('Countdown script loaded!')
     getLeaderboardMenuDomElements();
+    resetTiks();
     listenToButtons();
 }
 

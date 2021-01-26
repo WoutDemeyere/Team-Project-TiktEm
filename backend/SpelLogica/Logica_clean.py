@@ -63,6 +63,10 @@ stop=0
 def hallo():
     return f"Try endpoint {endpoint}"
 
+@app.route(endpoint + '/leaderboard/<game>', methods=['GET'])
+def get_leaderboard(game):
+    data = DataRepository.getscoreboard(game)
+    return jsonify(data), 200
 
 @app.route(endpoint + '/startgame', methods=['GET'])
 def start_game():
@@ -130,6 +134,9 @@ def mqtt_test():
 # -------------------------------------------------SPEEDRUN----------------------------------------
 def speedRun():
     tiktem.reset_tiks()
+
+    tiks_left = tiktem.amount
+    socketio.emit("B2F_speedrun_tiksleft", tiks_left, broadcast=True)
 
     starttime = datetime.now()
     for item in tiktem.tiks:
@@ -525,5 +532,4 @@ def colorteamCheck(color,sequence,team):
 if __name__ == '__main__':
     mqtt.subscribe('tiktem/tiksout')
     #mqtt_test()
-    socketio.run(app, debug=False, host='0.0.0.0', port=5000)
     socketio.run(app, debug=False, host='0.0.0.0', port=5000)

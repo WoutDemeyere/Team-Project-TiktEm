@@ -11,6 +11,7 @@ class Tik:
         self.tone = tone
         self.mqtt = mqtt_client
         self.delay_on = 0
+        self.batt_level = 0
 
         # colorteam
         self.in_use_colorTeam = False
@@ -72,6 +73,14 @@ class Tik:
     def delay_on(self, value):
         self._delay_on = value
 
+    @property
+    def batt_level(self):
+        """The batt_level property."""
+        return self._batt_level
+    @batt_level.setter
+    def batt_level(self, value):
+        self._batt_level = value
+
     def tik_is_touched_signaal(self):
         self.turn_on_delay(0, 255, 255, 1000, 100)
     
@@ -105,3 +114,4 @@ class Tik:
         data_raw = json.dumps(data)
         #print(f'tik: {self.id} : {data}')
         self.mqtt.publish(f'tiktem/tik{self.id}', data_raw)
+    

@@ -46,3 +46,17 @@ class TiktEm:
 
     def update_status(self, data):
         self.tiks[data['tik_id']].tikstatus = data['tik_status']
+
+    def get_batt_levels(self):
+        self.mqtt.publish('tiktem/batt/status', '{"thing": "hello"}') #Trigger battery send on tik
+
+        time.sleep(1.5)
+        batt_levels = []
+        for tik in self.tiks:
+            batt_levels.append({'id': tik.id, 'batt_level': tik.batt_level})
+        return batt_levels
+
+
+    def update_batt_status(self, data):
+        print(f"UPDATED BATT LEVEL: {data}")
+        self.tiks[data['tik_id']].batt_level = data['batt_status']

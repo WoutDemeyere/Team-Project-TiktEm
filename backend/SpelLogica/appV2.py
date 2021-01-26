@@ -1,6 +1,7 @@
 #   Custom Models
 from Models.Tik import Tik
 from Models.TiktEm import TiktEm
+from Data.DataRepository import DataRepository
 
 #   Flask Imports
 from flask import Flask, render_template, request, jsonify
@@ -16,6 +17,7 @@ import os
 import json
 import threading
 import sys
+import eventlet
 #from rich import print
 
 
@@ -23,6 +25,9 @@ import sys
 # Flask Config
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '!superSECRETrealyhardTOGUESS!'
+
+#Fix threading with socketio
+eventlet.monkey_patch()
 
 # MQTT Config
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -70,38 +75,60 @@ endpoint = '/tiktem/v1'
 def hallo():
     return f"Try endpoint {endpoint}"
 
+@app.route(endpoint + '/leaderboard/<game>', methods=['GET'])
+def get_leaderboard(game):
+    print(game)
+
+    try:
+        data = DataRepository.getscoreboard(game)
+        return jsonify(data), 200
+    except:
+        return jsonfiy({'status': 'Er ging iets mis bij het lezen van het leaderboard'}), 500
+
+@app.route(endpoint + '/gameinfo', methods=['GET'])
+def get_gameinfo():
+    try:
+        data = DataRepository.readgames()
+        return jsonify(data), 200
+    except:
+        return jsonfiy({'status': 'Er ging iets mis bij het lezen van de game info'}), 500
 
 @app.route(endpoint + '/startgame', methods=['GET'])
 def start_game():
     print("-----------------------\n")
 
+    socketio.emit("STARTED", "STARTED", broadcast=True)
+
     game_id = int(request.args.get('gameid'))
 
+    username = request.args.get('username')
     try:
         if game_id < 7:
             if game_id == 1:
                 print("- Starting Speedrun -\n")
                 print("-----\n")
-                x = threading.Thread(target=speedRun)
+                x = threading.Thread(target=speedRun, args=(username, game_id))
                 x.start()
             elif game_id == 2:
                 print("- Starting Simon Says (singleplayer) -\n")
-                x = threading.Thread(target=simonSays)
+                x = threading.Thread(target=simonSays, args=(username, game_id))
                 x.start()
             elif game_id == 3:
                 print("- Starting TikTakBoem -\n")
-                x = threading.Thread(target=TikTakBoomStart)
+                x = threading.Thread(target=TikTakBoomStart, args=(username, game_id))
                 x.start()
             elif game_id == 4:
                 print("- Starting Colorhunt (singleplayer) -\n")
-                x = threading.Thread(target=colorhunt)
+                x = threading.Thread(target=colorhunt, args=(username, game_id))
                 x.start()
             elif game_id == 5:
                 print("- Starting color team")
-                x = threading.Thread(target=colorTeam)
+                x = threading.Thread(target=colorTeam, args=(username, game_id))
                 x.start()
             elif game_id == 6:
-                pass
+                print("- Starting Simon Says VS")
+                x = threading.Thread(target=simonSaysVS, args=(username, game_id))
+                x.start()
 
             return jsonify(f"Started game {game_id}"), 200
 
@@ -110,12 +137,41 @@ def start_game():
 
     except ValueError:
         print(f"><--->< Game id {game_id} is not valid")
-        return jsonify(f"Wrong game id: {game_id}"), 400
+        return jsonfiy({'status': 'Onbestaande game ID'}), 500
 
     except Exception as ex:
         print(f"><--->< Something went wrong : {ex}")
-        return jsonify(f"Something went wrong"), 500
+        return jsonfiy({'status': 'Er ging iets mis bij het starten van de game'}), 500
 
+@app.route(endpoint + '/stopgame', methods=['GET'])
+def stop_game():
+    print("Stopping Game")
+    
+    try:
+        tiktem.game_on = False
+        return jsonify({'status': 'OK'}), 200
+    except:
+        return jsonfiy({'status': 'Er ging iets mis bij het stoppen van de game'}), 500
+
+@app.route(endpoint + '/reset', methods=['GET'])
+def reset_tiks():
+    print("Reseting tiks")
+
+    try:
+        tiktem.reset_tiks()
+        return jsonify({'status': 'OK'}), 200
+    except:
+        return jsonfiy({'status': 'Er ging iets mis bij het resetten van de tiks'}), 500
+
+@app.route(endpoint + '/batteries', methods=['GET'])
+def get_battery_levels():
+    print("Getting battery levels")
+    
+    try:
+        battery_levels = tiktem.get_batt_levels()
+        return jsonify(battery_levels), 200
+    except:
+        return jsonfiy({'status': 'Er ging iets mis bij het inlezen van de batterij status'}), 500
 
 # ----------------------------------------------------------------------------------------------------------------------------------------
 # -----------------------------------------------------------------MQTT-------------------------------------------------------------------
@@ -124,15 +180,27 @@ def start_game():
 def handle_mqtt_message(client, userdata, message):
     payload = message.payload.decode()
     payload_dict = json.loads(payload)
-    tiktem.update_status(payload_dict)
+
+    if(message.topic == "tiktem/tiksout"):
+        tiktem.update_status(payload_dict)
+
+    elif(message.topic == "tiktem/batt/update"):
+        tiktem.update_batt_status(payload_dict)
 
 
 def mqtt_test():
     while True:
+<<<<<<< HEAD
+        tiktem.tiks[0].turn_on(255, 255, 255, 500)
+        time.sleep(0.1)
+        tiktem.tiks[0].turn_off()
+        time.sleep(0.1)
+=======
         tiktem.tiks[3].turn_on(255, 0, 0, 0)
         time.sleep(0.3)
         tiktem.tiks[3].turn_off()
         time.sleep(0.3)
+>>>>>>> a49ac150e6ac76a148fe855547af4fa09faf1b20
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------------
@@ -140,7 +208,7 @@ def mqtt_test():
 # ----------------------------------------------------------------------------------------------------------------------------------------
 
 # -------------------------------------------------SPEEDRUN-------------------------------------------
-def speedRun():
+def speedRun(username, gameid):
     global sequentie_2_tiks
     global sequentie_3_tiks
     global sequentie_4_tiks
@@ -153,6 +221,8 @@ def speedRun():
     tik_is_up = False
     sequentie_place_counter = 0
 
+    
+
     # de juiste sequentie ophalen voor het aantal gebruikte tiks
     if tiktem.amount == 2:
         sequentie = sequentie_2_tiks        # NOG ERROR LOGGING INVOEGEN
@@ -160,7 +230,15 @@ def speedRun():
         sequentie = sequentie_3_tiks
     elif tiktem.amount == 4:
         sequentie = sequentie_4_tiks
+<<<<<<< HEAD
+
+    tiks_left = len(sequentie)
+    socketio.emit("B2F_speedrun_tiksleft", tiks_left, broadcast=True)
+
+    tik_id = sequentie[sequentie_place_counter]
+=======
     tik_id = sequentie[0]
+>>>>>>> a49ac150e6ac76a148fe855547af4fa09faf1b20
 
     while tiktem.game_on == True:
         if tik_is_up == False:
@@ -176,12 +254,18 @@ def speedRun():
             sequentie_place_counter += 1
             tik_is_up = False
 
+            tiks_left = tiks_left - 1
+            socketio.emit("B2F_speedrun_tiksleft", tiks_left, broadcast=True)
+
             if sequentie_place_counter == 10:
                 # spel is gedaan
                 tiktem.score = time.time() - starttime
-                print(f"\n+++++ Congratulations you finished the sequence in {tiktem.score} seconds +++++ \n")
+
+                DataRepository.insertscore(username, tiktem.score, gameid)
                 socketio.emit("B2F_speedrun_ended", tiktem.score, broadcast=True)
+                print(f"\n+++++ Congratulations you finished the sequence in {tiktem.score} seconds +++++ \n")         
                 break
+
             tik_id = sequentie[sequentie_place_counter]
         
         time.sleep(0.005)
@@ -190,7 +274,7 @@ def speedRun():
 
 
 # -------------------------------------------------SIMONSAYS----------------------------------------
-def simonSays():
+def simonSays(username, gameid):
     tiktem.reset_tiks()
     tiktem.game_on = True
     tiktem.score = 0
@@ -209,8 +293,11 @@ def simonSays():
                 tiktem.tiks[i].turn_on_delay(0, 0, 255, 500, 500)
                 print(f"-+- Tik nr {tiktem.tiks[i].id} lit up, remember it!\n")
                 time.sleep(1)
+                tiktem.tiks[i].turn_off()
             else:
                 break       # game has stopped
+            
+        socketio.emit("B2F_simonsays_sequence", len(sequence), broadcast=True)
 
         if tiktem.game_on == True:
             for i in sequence:
@@ -227,6 +314,7 @@ def simonSays():
                                     if tik.id == i:         # JUIST
                                         tik.turn_on_delay(0, 255, 0, 800, 300)
                                         time.sleep(0.6)
+                                        tik.turn_off()
 
                                     elif tik.id != i:       # FOUT
                                         tik.turn_on_delay(255, 0, 0, 200, 500)
@@ -235,7 +323,8 @@ def simonSays():
                                         if tiktem.score == 2:       # geen punten als je het van de eerste keer fout hebt
                                             tiktem.score = 0
                                         print(f"\n+++++ Wrong Tik your score was {tiktem.score} +++++\n")
-                                        socketio.emit("B2F_score", tiktem.score, broadcast=True)
+                                        DataRepository.insertscore(username, tiktem.score, gameid)
+                                        socketio.emit("B2F_simonsays_ended", tiktem.score, broadcast=True)
                                         break  
                             else:
                                 break           # game has stopped  
@@ -245,7 +334,7 @@ def simonSays():
                 
 
 # -------------------------------------------------COLORHUNT------------------------------------------
-def colorhunt():
+def colorhunt(username, gameid):
     global colorhuntTime
 
     tiktem.reset_tiks()
@@ -268,7 +357,8 @@ def colorhunt():
     tiktem.game_end_sequentie_tiks()
 
     print(f"\n+++++ Congratulations you finished colorhunt with a score of {tiktem.score} +++++", flush=True)
-    socketio.emit("B2F_score", tiktem.score, broadcast=True)
+    DataRepository.insertscore(username, tiktem.score, gameid)
+    socketio.emit("B2F_colorhunt_ended", tiktem.score, broadcast=True)
 
 
 def colorhuntlight(colorhunttype, tikid):
@@ -280,6 +370,7 @@ def colorhuntlight(colorhunttype, tikid):
             valueTouch = tiktem.get_tik_status(tikid)
             if(valueTouch == True):
                 tiktem.score += 3
+                socketio.emit("B2F_colorhunt_score", tiktem.score, broadcast=True)
                 tiktem.tiks[tikid].tik_is_touched_signaal()
                 break
             time.sleep(0.005)
@@ -292,6 +383,7 @@ def colorhuntlight(colorhunttype, tikid):
             valueTouch = tiktem.get_tik_status(tikid)
             if(valueTouch == True):
                 tiktem.score += 2
+                socketio.emit("B2F_colorhunt_score", tiktem.score, broadcast=True)
                 tiktem.tiks[tikid].tik_is_touched_signaal()
                 break
             time.sleep(0.005)
@@ -303,6 +395,7 @@ def colorhuntlight(colorhunttype, tikid):
             valueTouch = tiktem.get_tik_status(tikid)
             if(valueTouch == True):
                 tiktem.score += 1
+                socketio.emit("B2F_colorhunt_score", tiktem.score, broadcast=True)
                 tiktem.tiks[tikid].tik_is_touched_signaal()
                 break
             time.sleep(0.005)
@@ -326,7 +419,7 @@ def get_color_type():
 
 
 # -------------------------------------------------TIKTAKBOOM--------------------------------------
-def TikTakBoomStart():
+def TikTakBoomStart(username, gameid):
     tiktem.reset_tiks()
     tiktem.score = 0
     tiktem.game_on = True
@@ -341,7 +434,8 @@ def TikTakBoomStart():
 
     tiktem.game_end_sequentie_tiks()            # ze allemaal eens oplichten om de gebruiker te laten weten dat de game gedaan is
     print("DE SCORE IS " + str(tiktem.score))
-    socketio.emit("B2F_score", tiktem.score, broadcast=True)
+    DataRepository.insertscore(username, gameid, tiktem.score)
+    socketio.emit("B2F_tiktak_ended", tiktem.score, broadcast=True)
 
 
 
@@ -371,9 +465,12 @@ def TikTakBoomThread(tikid):
 
         elif gameResult == "AFGETIKT":
             tiktem.score += 1
+            socketio.emit("B2F_tiktak_score", tiktem.score, broadcast=True)
             print("AFGETIKT")
             # aftik signaal
             tiktem.tiks[tikid].tik_is_touched_signaal()
+            time.sleep(0.2)
+            tiktem.tiks[tikid].turn_off();
             time.sleep(sleepTime)
 
         elif gameResult == "STOP":
@@ -430,7 +527,7 @@ def TikTakBoomLogic(timeUntilBoom, timeUltilBoomMAX, tikid):
 
 
     if touchWasActivated == False and tiktem.game_on == True:
-        # ----------------------------------------------
+        # ------------------------------------------------
         # TIME IS OP --> kaboem
         # ------------------------------------------------
         return "KABAM"
@@ -442,14 +539,14 @@ def TikTakBoomLogic(timeUntilBoom, timeUltilBoomMAX, tikid):
         return "AFGETIKT"
 
     elif tiktem.game_on == False:
-        # --------------------------------------------------
+        # -----------------------------------------------
         # andere tik is ontploft of player stopt het spel
-        # --------------------------------------------------
+        # -----------------------------------------------
         return "STOP"
 
 
 # -------------------------------------------------COLORTEAM------------------------------------------
-def colorTeam():
+def colorTeam(username, gameid):
     tiktem.reset_tiks()
     tiktem.score_red = 0
     tiktem.score_blue = 0
@@ -463,16 +560,22 @@ def colorTeam():
     y.start()
 
     while(tiktem.game_on == True):
-        time.sleep(0.01)
+        time.sleep(0.1)
     
     tiktem.game_end_sequentie_tiks()
     
     if tiktem.score_red > tiktem.score_blue:
+        colorteam_scoredata = {'winner': 'red', 'score-red': tiktem.score_red, 'score-blue': tiktem.score_blue}
+        socketio.emit("B2F_colorteam_ended", jsonify(colorteam_scoredata), broadcast=True)
         print(f"TEAM ROOD HEEFT GEWONNEN MET ROOD: {tiktem.score_red} TEGEN BLAUW: {tiktem.score_blue}")
     else:
+<<<<<<< HEAD
+        colorteam_scoredata = {'winner': 'blue', 'score-red': tiktem.score_red, 'score-blue': tiktem.score_blue}
+        socketio.emit("B2F_colorteam_ended", jsonify(colorteam_scoredata), broadcast=True)
+        print(f"TEAM BLAUW HEEFT GEWONNEN MET BLAUW: {tiktem.score_red} TEGEN ROOD: {tiktem.score_blue}")
+=======
         print(f"TEAM BLAUW HEEFT GEWONNEN MET BLAUW: {tiktem.score_blue} TEGEN ROOD: {tiktem.score_red}")
-
-
+>>>>>>> a49ac150e6ac76a148fe855547af4fa09faf1b20
 
 def colorTeamLogic(teamColor, tiks):
     global colorTeamTiksDuration
@@ -501,6 +604,8 @@ def colorTeamLogic(teamColor, tiks):
 
             if teamColor == "red":
                 tiktem.score_red += 1
+                socketio.emit("B2F_colorteam_score_red", tiktem.score_red, broadcast=True)
+
                 print(f"RED: {tiktem.score_red}")
                 if tiktem.score_red == colorTeamTiksDuration:
                     tiktem.game_on = False
@@ -512,6 +617,8 @@ def colorTeamLogic(teamColor, tiks):
 
             elif teamColor == "blue":
                 tiktem.score_blue += 1
+                socketio.emit("B2F_colorteam_score_blue", tiktem.score_blue, broadcast=True)
+
                 print(f"BLAUW: {tiktem.score_blue}")
                 if tiktem.score_blue == colorTeamTiksDuration:
                     tiktem.game_on = False
@@ -525,11 +632,96 @@ def colorTeamLogic(teamColor, tiks):
 
     time.sleep(1)
     tik.in_use_colorTeam = False        # tik weer beschikbaar stellen 
-       
+
+# -------------------------------------------------Simon Says VS------------------------------------------
+
+def simonSaysVS(username, gameid):
+    playeramount = 2
+    tiktem.reset_tiks()
+    tiktem.game_on = True
+    tiktem.score = 0
+    player = 1
+    sequence = []
+    for i in range(0, 2):
+        seq = random.randint(0, tiktem.amount-1)
+        sequence.append(seq)
+
+    while tiktem.game_on == True:
+
+        for i in sequence:
+            if tiktem.game_on == True:
+                tiktem.tiks[i].turn_on_delay(0, 0, 255, 500, 500)
+                print(f"-+- Tik nr {tiktem.tiks[i].id} lit up, remember it!\n")
+                time.sleep(1)
+                tiktem.tiks[i].turn_off()
+            else:
+                break       # game has stopped
+
+        if tiktem.game_on == True:
+            for i in sequence:
+                if tiktem.game_on == True:
+                    # print(sequence)
+                    pressed = False
+                    while pressed == False and tiktem.game_on == True:
+                        for tik in tiktem.tiks:
+                            if tiktem.game_on == True:
+                                valueTouch = tiktem.get_tik_status(tik.id)
+                                if valueTouch == True:
+                                    pressed = True
+                                    print("PRESSED")
+
+                                    if tik.id == i:         # JUIST
+                                        tik.turn_on(0, 255, 0, 800)
+                                        time.sleep(0.6)
+                                        tik.turn_off()
+                                        
+
+                                    elif tik.id != i:       # FOUT
+                                        tik.turn_on_delay(255, 0, 0, 200, 500)
+                                        tiktem.game_on = False
+                                        print(f"\n+++++ Wrong Tik player {player} lost +++++\n")
+                                        socketio.emit("B2F_score", tiktem.score, broadcast=True)
+                                        break  
+                            else:
+                                break           # game has stopped  
+                        time.sleep(0.005)
+                else:
+                    break                       # game has stopped  
+            
+            if tiktem.game_on == True:
+                waiting = True
+                while waiting:
+                    for tik in tiktem.tiks:
+                        if tiktem.get_tik_status(tik.id) == True:
+                            print('ADDED NEW tik to sequence')
+                            tik.turn_on(0,0,255, 800)
+                            time.sleep(0.4)
+                            tik.turn_off()
+                            sequence.append(tik.id)
+                            waiting = False
+                        time.sleep(0.1)
+                    time.sleep(0.1)
+            
+            if player == playeramount:
+                player = 1
+            else:
+                player +=1
+
+
+
+
 
 
 if __name__ == '__main__':
     mqtt.subscribe('tiktem/tiksout')
+<<<<<<< HEAD
+    mqtt.subscribe('tiktem/batt/update')
+    # tiktem.reset_tiks()
+    #mqtt_test()
+    socketio.run(app, debug=False, host='0.0.0.0', port=5000)
+    # socketio.run(app, debug=False, host='0.0.0.0', port=5000)
+=======
     tiktem.reset_tiks()
     # mqtt_test()
     socketio.run(app, debug=False, host='0.0.0.0', port=5000)
+>>>>>>> a49ac150e6ac76a148fe855547af4fa09faf1b20

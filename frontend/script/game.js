@@ -2,7 +2,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const gameName = urlParams.get('gamename');
 const userName = urlParams.get('username');
 
-const socket = io(`http://${lanIP}`);
+// const socket = io(`http://${lanIP}`);
+const socket = io(`http://${window.location.hostname}:5000`);
+console.log(socket)
 
 var mainContent, gameTitleHTML;
 var countdownHTML, number = 1, countdownEnd = false;
@@ -17,7 +19,7 @@ const handelCountdown = () => {
         } else if(number < 0) { 
             clearInterval(x);  
 
-            fetch(`http://${lanIP}/tiktem/v1/startgame?gameid=${gamemodeInfo[gameName].id}`)
+            fetch(`http://${lanIP}/tiktem/v1/startgame?gameid=${gamemodeInfo[gameName].id}&username=${userName}`)
             .catch((err) => console.error("An error occurd", err));
             callBackStartGame();
 
@@ -35,9 +37,11 @@ const loadGameScript = () => {
     document.head.appendChild(script);
 }
 
-const loadGameHTML = () => {
+const loadGameHTML = () => {   
     gameTitleHTML.innerHTML = gamemodeInfo[gameName].title
     mainContent.innerHTML += gamemodeInfo[gameName].html
+
+    console.log(gamemodeInfo[gameName])
 }
 
 const callbackShowErrorGame = () => {
@@ -57,6 +61,10 @@ const initGame = () => {
     handelCountdown();
     loadGameScript();
     loadGameHTML();
+
+    socket.on("connect", function () {
+        console.log("Verbonden met de socekt")
+    });
 
 }
 
