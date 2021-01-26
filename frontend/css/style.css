@@ -95,13 +95,13 @@ html {
 */
 
 ::-moz-selection {
-    background: orange;
+    background: var(--global-color-light-green);
     color: white;
     text-shadow: none;
 }
 
 ::selection {
-    background: orange;
+    background: var(--global-color-light-green);
     color: white;
     text-shadow: none;
 }
