@@ -11,7 +11,7 @@
 
 
 /* ------------------ TIK-ELEMENTS ------------------ */
-int TIK_ID = 1;
+int TIK_ID = 3;
 
 String TIK_HOSTNAME = "Tiktem-Tik" + String(TIK_ID);
 String TIK_SUBTOPIC = "tiktem/tik" + String(TIK_ID);
@@ -24,14 +24,14 @@ boolean tik_status = false;
 
 
 /* ------------------- WIFI ------------------------ */
-const String used_wifi = "home-wout";           //"hotspot-wout", "howest-iot", "home-wout", "home-torre-moeder"
+const String used_wifi = "hotspot-wout";           //"hotspot-wout", "howest-iot", "home-wout", "home-torre-moeder"
 char* ssid = "";
 char* password = "";
 WiFiClient espClient;
 
 
 /* -------------------- MQTT ------------------------ */
-const char* mqttServer = "192.168.0.112";
+const char* mqttServer = "192.168.43.72";
 const int mqttPort = 1883;
 const char* mqttUser = "";
 const char* mqttPassword = "";
