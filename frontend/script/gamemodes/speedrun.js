@@ -13,8 +13,8 @@ const listenToSocket = function () {
     socket.emit('yeet', 'yeeteerskeeter');
     
     socket.on('B2F_speedrun_ended', function (score) {
-        console.log("ENDEN")
-        console.log(score)
+        //console.log("ENDEN")
+        //console.log(score)
 
         clearInterval(y);
         stopGame();
@@ -23,8 +23,8 @@ const listenToSocket = function () {
     });
 
     socket.on('B2F_speedrun_tiksleft', function (tiksLeft) {
-        console.log("TIKS LEFT")
-        console.log(tiksLeft)
+        //console.log("TIKS LEFT")
+        //console.log(tiksLeft)
         tiksLeftHTML.innerHTML = tiksLeft;
     });
 }

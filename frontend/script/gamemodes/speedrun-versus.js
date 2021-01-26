@@ -1,17 +1,17 @@
 const listenToSocket = function () {
     socket.on('B2F_colorteam_ended', function (score) {
-        console.log('ENDED')
-        console.log(score)
+        //console.log('ENDED')
+        //console.log(score)
         location.href = `game-end.html?gamename=${gameName}&score=${score}`
     });
 
     socket.on('B2F_colorteam_score_red', function (score) {
-        console.log(score)
+        //console.log(score)
         scoreRed.innerHTML = score;
     });
 
     socket.on('B2F_colorteam_score_blue', function (score) {
-        console.log(score)
+        //console.log(score)
         scoreBlue.innerHTML = score;
     });
 }

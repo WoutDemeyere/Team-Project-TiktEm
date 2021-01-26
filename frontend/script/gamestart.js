@@ -24,7 +24,8 @@ const loadGameThings = () => {
     playButton.setAttribute("href", `game.html?gamename=${gameName}`);
 
     if(gamemodeInfo[gameName].id>4) {
-        tableContainer.parentNode.parentNode.querySelector(".c-info-container").style.display = 'none';
+        tableContainer.parentNode.parentNode.querySelector(".c-info").innerHTML = 'Deze gamemode heeft geen leaderboard';
+        tableContainer.parentNode.parentNode.querySelector(".c-title").style.display = 'none';
         tableContainer.parentNode.parentNode.querySelector(".c-input-container").style.display = 'none';
         tableContainer.parentNode.style.display = 'none';
 
@@ -45,7 +46,7 @@ const getGameStartDomElements = () => {
     playButton = document.querySelector('.js-play-button');
     usernameInput = document.querySelector('.js-email-input');
 
-    console.log(Cookies.get('username'))
+    //console.log(Cookies.get('username'))
     if(Cookies.get('username') != undefined)usernameInput.value = Cookies.get('username')
 }
 

@@ -136,7 +136,7 @@ const getLeaderboardMenuDomElements = () => {
 }
 
 const initLeaderBoardMenu = () => {
-    console.log('Countdown script loaded!')
+    console.log('Leaderboard script loaded!')
     getLeaderboardMenuDomElements();
     resetTiks();
     listenToButtons();

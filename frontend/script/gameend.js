@@ -9,7 +9,7 @@ const loadResultHTML = () => {
     resultContainer.innerHTML = gamemodeInfo[gameName].htmlResult;
    
     if(gamemodeInfo[gameName].id>4) {
-        console.log(score)
+        //console.log(score)
         document.querySelector('.js-score').innerHTML = score;
         document.querySelector('.c-leaderboard-sm-container').style.display = 'none'; 
     } else {

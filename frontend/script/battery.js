@@ -8,7 +8,7 @@ const handleBaterry = () => {
     for(const bat of batteries) {
         var percentage = 0
         currId = bat.getAttribute("tikid");
-        console.log(currId)
+        //console.log(currId)
 
         battery_levels.forEach(function(bat) {
             if(bat.id == currId)percentage = bat.batt_level;
@@ -31,14 +31,7 @@ const getBatteryLevels = async () => {
     battery_levels = await fetch(
         `http://${lanIP}/tiktem/v1/batteries`
     )
-    .then(response => {
-        stat = response.json()
-        if (!response.ok) {
-            window.alert("Er is een probleem met het inlezen van het batterij niveau.") 
-            window.location.href = `gamemenu.html`
-        }
-        return response.json()
-    })
+    .then((r) => (r.json()))
     .catch((err) => window.alert("Er is een probleem met de server"));
     console.log(battery_levels);
 

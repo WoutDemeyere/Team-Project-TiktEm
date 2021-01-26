@@ -60,7 +60,7 @@ sequentie_3_tiks = [1, 0, 2, 1, 2, 1, 0, 1, 2, 0]
 sequentie_4_tiks = [1, 3, 0, 2, 0, 1, 3, 0, 2, 3]
 
 # colorhunt
-colorhuntTime = 20
+colorhuntTime = 30
 
 # colorteam
 colorTeamTiksDuration = 5

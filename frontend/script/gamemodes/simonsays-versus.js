@@ -1,11 +1,11 @@
 const listenToSocket = function () {
     socket.on('B2F_simonsaysvs_ended', function (score) {
-        console.log(score)
+        //console.log(score)
         location.href = `game-end.html?gamename=${gameName}&score=${score}`
     });
 
     socket.on('B2F_simonsaysvs_player', function (score) {
-        console.log(score)
+        //console.log(score)
         scoreHTML.innerHTML = score;
     });
 }

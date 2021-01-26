@@ -89,6 +89,11 @@ const gamemodeInfo = {
         "id": 4,
         "desc" : "",
         "html": `<div class="c-game-info-container">
+                    <p class="c-game-info__header">Overige tijd</p>
+                    <p class="c-game-time__time js-timer">00.00</p>
+                </div>
+        
+                <div class="c-game-info-container">
                     <p class="c-game-info__header">Huidige score</p>
                     <p class="c-game-time__time js-score">0</p>
                 </div>

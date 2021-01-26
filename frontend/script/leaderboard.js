@@ -35,9 +35,9 @@ class Leaderboard {
                         <th class="c-table-header__text">Score</th>
                     </tr>`;
 
-        console.log(this.length)
+        //console.log(this.length)
         for(var i = 0; i < this.length; i++) {
-            console.log(i)
+            //console.log(i)
             if(i < 3) {
                 this.htmlString += ` <tr class="c-table-row c-talbe-row-${i+1}">
                                     <td class="c-table-row-text">${i+1}</td>
@@ -57,14 +57,14 @@ class Leaderboard {
     }
 
     highlightName(name) {
-        console.log("data")
-        console.log(this.data)
+        //console.log("data")
+        //console.log(this.data)
         var highlight = 0
         for(var i = 0; i < this.data.length; i++) {
             if(this.data[i].name==name)highlight={'pos':i, 'item': this.data[i]};
         }
 
-        console.log(highlight)
+        //console.log(highlight)
 
         this.htmlString = `  <tr class="c-table-header">
                         <th class="c-table-header__text">Plaats</th>
@@ -130,7 +130,7 @@ class Leaderboard {
                 if(this.data[i].name.toUpperCase().search(filter) > -1) filterArray.push({'pos': i+1, 'data': this.data[i]})
             }
 
-            console.log(this.data.length)
+            //console.log(this.data.length)
 
             for(const f of filterArray) {
                 if(f.pos < 4) {
@@ -156,7 +156,7 @@ class Leaderboard {
     }
 
     showError() {
-        console.log("Erreur")
+        //("Erreur")
         this.htmlString = ` <tr class="c-table-row c-table-row--message-container"> 
                                 <td class="c-table-row--error">There is something wrong with the server</td>      
                             </tr>`

@@ -1,14 +1,21 @@
-var colohuntScore
+var colohuntScore, colorhuntTimer=30, colorhuntTimerHTML;
+
+const runTimer = () => {
+    y = setInterval(() => {
+        colorhuntTimer -= 0.01;
+        colorhuntTimerHTML.innerHTML = colorhuntTimer.toFixed(2);
+    }, 10);
+}
 
 
 const listenToSocket = function () {
     socket.on('B2F_colorhunt_ended', function (score) {
-        console.log(score)
+        //console.log(score)
         location.href = `game-end.html?gamename=${gameName}&score=${score}%20punten&username=${userName}`
     });
 
     socket.on('B2F_colorhunt_score', function (score) {
-        console.log(score)
+        //console.log(score)
         colohuntScore.innerHTML = score;
     });
 }
@@ -33,6 +40,7 @@ const listenToStop = () => {
 const getColorhuntDomElements = () => {
     colohuntScore = document.querySelector('.js-score');
     stopButton = document.querySelector('.js-stop-button');
+    colorhuntTimerHTML = document.querySelector('.js-timer');
 }
 
 const callBackStartGame = () => {
@@ -40,4 +48,5 @@ const callBackStartGame = () => {
     getColorhuntDomElements();  
     listenToSocket();
     listenToStop();
+    runTimer();
 }

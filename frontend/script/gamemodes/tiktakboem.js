@@ -2,12 +2,12 @@ var tiktakScore;
 
 const listenToSocket = function () {
     socket.on('B2F_tiktak_ended', function (score) {
-        console.log(score)
+        //console.log(score)
         location.href = `game-end.html?gamename=${gameName}&score=${score}%20punten&username=${userName}`
     });
 
     socket.on('B2F_tiktak_score', function (score) {
-        console.log(score)
+        //console.log(score)
         tiktakScore.innerHTML = score;
     });
 }

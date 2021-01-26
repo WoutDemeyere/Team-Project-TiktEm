@@ -4,14 +4,14 @@ const userName = urlParams.get('username');
 
 // const socket = io(`http://${lanIP}`);
 const socket = io(`http://${window.location.hostname}:5000`);
-console.log(socket)
+//console.log(socket)
 
 var mainContent, gameTitleHTML;
 var countdownHTML, number = 5, countdownEnd = false;
 
 const handelCountdown = () => {
     x = setInterval(function() {
-        console.log(number)
+        //console.log(number)
         number -= 1;
 
         if(number == 0) {
@@ -26,7 +26,6 @@ const handelCountdown = () => {
                     window.alert("Er is al een game bezig") 
                     window.location.href = `gamemenu.html`
                 } 
-                //return stat.  //we only get here if there is no error
               })
             .catch((err) => console.error("An error occurd", err));
             callBackStartGame();
@@ -53,8 +52,6 @@ const loadGameScript = () => {
 const loadGameHTML = () => {   
     gameTitleHTML.innerHTML = gamemodeInfo[gameName].title
     mainContent.innerHTML += gamemodeInfo[gameName].html
-
-    console.log(gamemodeInfo[gameName])
 }
 
 const callbackShowErrorGame = () => {
