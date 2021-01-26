@@ -1,17 +1,12 @@
 const listenToSocket = function () {
     socket.on('B2F_simonsaysvs_ended', function (score) {
         console.log(score)
-        location.href = `game-end.html?gamename=${gameName}&score=${score}%20punten&username=${userName}`
+        location.href = `game-end.html?gamename=${gameName}&score=${score}`
     });
 
-    socket.on('B2F_simonsaysvs_score_1', function (score) {
+    socket.on('B2F_simonsaysvs_player', function (score) {
         console.log(score)
-        score1.innerHTML = score;
-    });
-
-    socket.on('B2F_simonsaysvs_score_2', function (score) {
-        console.log(score)
-        score2.innerHTML = score;
+        scoreHTML.innerHTML = score;
     });
 }
 
@@ -33,8 +28,7 @@ const listenToStop = () => {
 }
 
 const getSimonSaysVSDomElements = () => {
-    score1 = document.querySelector('.js-score-1');
-    score2 = document.querySelector('.js-score-2');
+    scoreHTML = document.querySelector('.js-score');
     stopButton = document.querySelector('.js-stop-button');
 }
 

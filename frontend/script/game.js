@@ -7,7 +7,7 @@ const socket = io(`http://${window.location.hostname}:5000`);
 console.log(socket)
 
 var mainContent, gameTitleHTML;
-var countdownHTML, number = 1, countdownEnd = false;
+var countdownHTML, number = 5, countdownEnd = false;
 
 const handelCountdown = () => {
     x = setInterval(function() {
@@ -20,6 +20,14 @@ const handelCountdown = () => {
             clearInterval(x);  
 
             fetch(`http://${lanIP}/tiktem/v1/startgame?gameid=${gamemodeInfo[gameName].id}&username=${userName}`)
+            .then( response => {
+                stat = response.json()
+                if (!response.ok) {
+                    window.alert("Er is al een game bezig") 
+                    window.location.href = `gamemenu.html`
+                } 
+                //return stat.  //we only get here if there is no error
+              })
             .catch((err) => console.error("An error occurd", err));
             callBackStartGame();
 
@@ -29,6 +37,11 @@ const handelCountdown = () => {
         }
 
     }, 1000)
+}
+
+const stoppGame = () => {
+    fetch(`http://${lanIP}/tiktem/v1/stopgame`)
+    .catch((err) => console.error("An error occurd", err));
 }
 
 const loadGameScript = () => {

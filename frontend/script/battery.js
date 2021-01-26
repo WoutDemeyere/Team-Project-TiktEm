@@ -4,15 +4,7 @@ function mapp(x, in_min, in_max, out_min, out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-const tempStatus = {
-    0 : 100,
-    1 : 60,
-    2 : 21,
-    3 : 10
-}
-
 const handleBaterry = () => {
-   
     for(const bat of batteries) {
         var percentage = 0
         currId = bat.getAttribute("tikid");
@@ -39,8 +31,15 @@ const getBatteryLevels = async () => {
     battery_levels = await fetch(
         `http://${lanIP}/tiktem/v1/batteries`
     )
-    .then((r) => r.json())
-    .catch((err) => console.error("An error occurd", err));
+    .then(response => {
+        stat = response.json()
+        if (!response.ok) {
+            window.alert("Er is een probleem met het inlezen van het batterij niveau.") 
+            window.location.href = `gamemenu.html`
+        }
+        return response.json()
+    })
+    .catch((err) => window.alert("Er is een probleem met de server"));
     console.log(battery_levels);
 
     handleBaterry();

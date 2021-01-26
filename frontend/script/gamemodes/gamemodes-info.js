@@ -135,24 +135,19 @@ const gamemodeInfo = {
 
         "htmlResult":`<div class="c-info-container u-mb-lg">
                             <h1 class="c-title">Results</h1>
-                            <p class="c-info">
-                                Je eindscore was
+                            <p class="c-info-multi">
+                                Winner
                             </p>
                         </div>
-                        <p class="c-result__time js-score">0</p>`
+                        <p class="c-result__time js-score"></p>`
     },
     "simonsays-versus": {
         "title": "Simon Says Versus",
         "id": 6,
         "desc" : "",
         "html": `<div class="c-game-info-container">
-                    <p class="c-game-info__header">Score Player 1</p>
-                    <p class="c-game-time__time js-score-1">0</p>
-                </div>
-
-                <div class="c-game-info-container">
-                    <p class="c-game-info__header">Score Player 2</p>
-                    <p class="c-game-time__time js-score-2">0</p>
+                    <p class="c-game-info__header">Het is aan player</p>
+                    <p class="c-game-time__time js-score">0</p>
                 </div>
                 
                 <div class="c-play-button-container">
@@ -166,8 +161,8 @@ const gamemodeInfo = {
 
         "htmlResult":`<div class="c-info-container u-mb-lg">
                             <h1 class="c-title">Results</h1>
-                            <p class="c-info">
-                                Je eindscore was
+                            <p class="c-info-multi">
+                                Winner
                             </p>
                         </div>
                         <p class="c-result__time js-score">0</p>`
@@ -179,7 +174,7 @@ const getGameinfo = async () => {
         `http://${lanIP}/tiktem/v1/gameinfo`
     )
     .then((r) => r.json())
-    .catch((err) => console.error("An error occurd", err));
+    .catch((err) => window.alert("Er is een probleem met de server."));
     return data;
 }
 

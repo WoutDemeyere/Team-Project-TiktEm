@@ -45,6 +45,8 @@
     --global-whitespace-xl:calc(var(--global-baseline)*6);/*30px*/ 
     --global-whitespace-xxl:calc(var(--global-baseline)*8);
 
+    --global-max-width: 800px;
+
     /* nav */
     --nav-link-color: var(--global-color-white);
 
@@ -57,6 +59,7 @@
     --global-input-error-borderColor: var(--global-color-error);
 }
 
+
 /*------------------------------------*\
 #GENERIC
 \*------------------------------------*/
@@ -68,14 +71,14 @@
 */
 
 html {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: var(--global-font-size);
+    line-height:  1.5;
     color: var(--global-color-font);
     font-family: 'Ubuntu', sans-serif;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: white;
+    background-color: var(--global-color-light-blue);
 }
 
 *,
@@ -313,9 +316,19 @@ input:disabled {
     Component: Main
 */
 .c-main{
+    position: relative;
+    /* max-width: var(--global-max-width); */
+    width: 100%;
     margin: 0 auto;
-    height: 100vh;
-    /* max-width: 500px; */
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .c-main {
+        height: 80%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }
 
 /*
@@ -328,6 +341,7 @@ input:disabled {
     padding-top: var(--global-whitespace-lg);
     background-color: var(--global-color-background);
     height: 100vh;
+    
 
     display: flex;
     flex-direction: column;
@@ -339,7 +353,7 @@ input:disabled {
 */
 
 .c-side-menu {
-    position: fixed;
+    position: absolute;
     overflow: hidden;
 
     z-index: 2;
@@ -506,6 +520,16 @@ input:disabled {
     align-self: center;
 }
 
+.c-info-multi {
+    font-weight: 400;
+    width: 85%;
+    margin-top: calc(var(--global-whitespace-xxl)*4);
+    font-size: calc(var(--global-font-size) * 7);
+    line-height: calc(var(--global-font-size) * 7.3);
+    text-align: center;
+    align-self: center;
+}
+
 .c-info-under {
     font-weight: 300;
     width: 85%;
@@ -519,6 +543,7 @@ input:disabled {
 /*
     Component: Icons
 */
+
 .c-icon__musc {
     stroke: #FFF;
     height: 650px;
@@ -597,6 +622,55 @@ input:disabled {
 .c-icon-filter {
     height: 40px;
     fill: #000;
+}
+
+@media (min-width: 1120px) {
+    .c-icon__musc {
+        height: 350px;
+    }
+    
+    .c-icon__single {
+        height: 150px;
+    }
+    
+    .c-icon__single-col {
+        margin-top: var(--global-whitespace-md);
+        height: 55px;
+    }
+    
+    .c-icon-play {
+        height: 45px;
+    }
+    
+    .c-icon-burger {
+        height: 25px;
+    }
+    
+    .c-icon-back {
+        height: 15.5px;
+    }
+    
+    .c-icon-close {
+        height: 25px;
+    }
+    
+    .c-icon-leaderboard {
+        height: 60px;
+    }
+    
+    .c-icon-leaderboard-back {
+        height: 25px;
+    }
+    
+    .c-icon-battery {
+        height: 175px;
+    }
+    
+    
+    .c-icon-filter {
+        height: 20px;
+        fill: #000;
+    }
 }
 
 .c-visible-options-container {

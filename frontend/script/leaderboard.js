@@ -16,9 +16,8 @@ class Leaderboard {
             `http://${lanIP}/tiktem/v1/leaderboard/${gamemodeInfo[this.game].id}`
         )
         .then((r) => r.json())
-        .catch((err) => console.error('An err ocurd'));
+        .catch((err) => window.alert("Er is een probleem met de server"));
 
-        //console.log(this.data);
         highlightname==null?this.loadLeaderboardHTML():this.highlightName(highlightname)
     }
 
@@ -29,7 +28,6 @@ class Leaderboard {
 
         if(this.data.length<this.length)this.length=this.data.length;
 
-        // console.log(this.container)
 
         this.htmlString = `  <tr class="c-table-header">
                         <th class="c-table-header__text">Plaats</th>
@@ -54,8 +52,6 @@ class Leaderboard {
                                 </tr>`
             }
         }
-
-    
 
         this.container.innerHTML = this.htmlString;
     }

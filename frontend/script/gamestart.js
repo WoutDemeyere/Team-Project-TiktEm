@@ -7,7 +7,7 @@ const listenToPlayButton = () => {
     playButton.addEventListener('click', function() {
         username = usernameInput.value;
 
-        if(!isEmpty(username)) {
+        if(!isEmpty(username) || gamemodeInfo[gameName].id>4) {
             Cookies.set('username', username)
             location.href = `game.html?gamename=${gameName}&username=${username}`
             usernameInput.classList.remove('c-input-error');
@@ -24,6 +24,12 @@ const loadGameThings = () => {
     playButton.setAttribute("href", `game.html?gamename=${gameName}`);
 
     if(gamemodeInfo[gameName].id>4) {
+        tableContainer.parentNode.parentNode.querySelector(".c-info-container").style.display = 'none';
+        tableContainer.parentNode.parentNode.querySelector(".c-input-container").style.display = 'none';
+        tableContainer.parentNode.style.display = 'none';
+
+        playButton.parentNode.style.height = '100%';  
+        playButton.parentNode.style['justify-content'] = 'center';      
         tableContainer.innerHTML = `<tr class="c-table-row c-table-row--message-container"> 
                                         <td class="c-table-row--message">This gamemode has no leaderboard</td>      
                                     </tr>`  

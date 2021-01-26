@@ -4,23 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TiktEm - Gamemode menu</title>
+    <title>TiktEm - Game start</title>
     <meta name="description" content="This is my HTML5 boilerplate.">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="css/normalize.css">
-    <!-- <link rel="stylesheet" href="css/screenV2.css"> -->
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
     <script src="script/dataHandler.js"></script>
     <script src="script/gamemodes/gamemodes-info.js"></script>
     <script src="script/leaderboard.js"></script>
     <script src="script/gamestart.js"></script>
-    <!-- <script src="script/script.js"></script> -->
 </head>
 
 <body>
@@ -93,8 +98,8 @@
 
                 <div class="c-input-container">
                     <span class="c-input-error-text js-error-text">Vul een naam in a.u.b</span>
-                    <input class="c-input js-email-input" type="text" id="username" placeholder="Username"
-                        required autofocus>
+                    <input class="c-input js-email-input" type="text" id="username" placeholder="Username" required
+                        autofocus>
                     <span class="c-input__bottom-text">Opgepast: deze username zal voor iedereen zichtbaar zijn,
                         kies verstandig.</span>
                 </div>
@@ -103,41 +108,6 @@
                     <span class="c-leaderboard-sm__header">Leaderboard</span>
 
                     <table class="c-leaderboard-sm__table js-leaderboard-table">
-                        <!-- <tr class="c-table-header">
-                            <th class="c-table-header__text">Plaats</th>
-                            <th class="c-table-header__text">Naam</th>
-                            <th class="c-table-header__text">Score</th>
-                        </tr>
-
-                        <tr class="c-table-row c-talbe-row-1">
-                            <td class="c-table-row-text">1</td>
-                            <td class="c-table-row-text">Kattie Vanduzer</td>
-                            <td class="c-table-row-text">42.34</td>
-                        </tr>
-
-                        <tr class="c-table-row c-talbe-row-2">
-                            <td class="c-table-row-text">2</td>
-                            <td class="c-table-row-text">Emmanuel Bise</td>
-                            <td class="c-table-row-text">42.34</td>
-                        </tr>
-
-                        <tr class="c-table-row c-talbe-row-3">
-                            <td class="c-table-row-text">3</td>
-                            <td class="c-table-row-text">German Orsborn</td>
-                            <td class="c-table-row-text">42.34</td>
-                        </tr>
-
-                        <tr class="c-table-row">
-                            <td class="c-table-row-text">4</td>
-                            <td class="c-table-row-text">Rusty Olivares</td>
-                            <td class="c-table-row-text">42.34</td>
-                        </tr>
-
-                        <tr class="c-table-row">
-                            <td class="c-table-row-text">5</td>
-                            <td class="c-table-row-text">Kenton Kellison</td>
-                            <td class="c-table-row-text">42.34</td>
-                        </tr> -->
                     </table>
                 </div>
 
@@ -149,7 +119,6 @@
                         </svg>
                     </button>
                     <span class="c-play-button__text">PLAY</span>
-
                 </div>
 
             </div>

@@ -1,7 +1,8 @@
 const listenToSocket = function () {
     socket.on('B2F_colorteam_ended', function (score) {
+        console.log('ENDED')
         console.log(score)
-        location.href = `game-end.html?gamename=${gameName}&score=${score}%20punten&username=${userName}`
+        location.href = `game-end.html?gamename=${gameName}&score=${score}`
     });
 
     socket.on('B2F_colorteam_score_red', function (score) {

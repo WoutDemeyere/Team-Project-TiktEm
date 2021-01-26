@@ -7,9 +7,18 @@ var resultContainer, tableContainer, playButton;
 
 const loadResultHTML = () => {
     resultContainer.innerHTML = gamemodeInfo[gameName].htmlResult;
-    document.querySelector('.js-score').innerHTML = score;
-    leaderboard = new Leaderboard(tableContainer, gameName, 5);
-    leaderboard.loadLeaderboardData(userName);
+   
+    if(gamemodeInfo[gameName].id>4) {
+        console.log(score)
+        document.querySelector('.js-score').innerHTML = score;
+        document.querySelector('.c-leaderboard-sm-container').style.display = 'none'; 
+    } else {
+        document.querySelector('.js-score').innerHTML = score;
+        leaderboard = new Leaderboard(tableContainer, gameName, 5);
+        leaderboard.loadLeaderboardData(userName);
+    }
+
+    
 }
 
 const listenToPlayButton = () => {

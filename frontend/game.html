@@ -4,25 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TiktEm - Gamemode menu</title>
+    <title>TiktEm - Game</title>
     <meta name="description" content="This is my HTML5 boilerplate.">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="css/normalize.css">
-    <!-- <link rel="stylesheet" href="css/screenV2.css"> -->
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
         integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script> -->
 
     <script src="script/dataHandler.js"></script>
     <script src="script/gamemodes/gamemodes-info.js"></script>
     <script src="script/game.js"></script>
-    <!-- <script src="script/countdown.js"></script> -->
-
 </head>
 
 <body>
@@ -30,17 +33,7 @@
         <div class="c-app">
 
             <div class="c-header-logo-solo u-mb-md">
-                <!-- <svg class="c-icon c-icon-burger js-sidenav-open" id="menu-black-18dp"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none" />
-                    <path id="Path_15" data-name="Path 15"
-                        d="M4,18H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2Zm0-5H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Z"
-                        fill="#fff" />
-                </svg> -->
-
                 <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
-
-                <!-- <div class="c-hidden-flex"></div> -->
             </div>
 
             <div class="c-countdown-container">
@@ -51,25 +44,6 @@
                 <div class="c-info-container">
                     <h1 class="c-title js-title"></h1>
                 </div>
-
-                <!-- <div class="c-game-info-container">
-                        <p class="c-game-info__header">Verstreken tijd</p>
-                        <p class="c-game-time__time js-timer">00.00</p>
-                    </div>
-
-                    <div class="c-game-info-container">
-                        <p class="c-game-info__header">Te tikken Tiks</p>
-                        <p class="c-game-info__tiks js-speedrun-tiks-left">0</p>
-                    </div> 
-
-                    <div class="c-play-button-container">
-                        <a href="game.html">
-                            <svg class="c-stop-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.46 66.46">
-                                <rect id="stop_icon" data-name="stop icon" width="51.46" height="51.46" transform="translate(7.5 7.5)" fill="#fff" stroke-linejoin="round" stroke-width="15"/>
-                            </svg>                              
-                        </a>
-                        <span class="c-play-button__text">STOP</span>
-                    </div> -->
             </div>
         </div>
     </div>

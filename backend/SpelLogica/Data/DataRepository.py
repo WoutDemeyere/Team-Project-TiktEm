@@ -16,7 +16,8 @@ class DataRepository:
     
     @staticmethod
     def getscoreboard(gameid):
-        if(gameid == 1):
+        
+        if(int(gameid) == 1):
             sql = 'SELECT * FROM Scores where gameid = %s ORDER BY score ASC'
         else: 
             sql = 'SELECT * FROM Scores where gameid = %s ORDER BY score DESC'
@@ -26,9 +27,12 @@ class DataRepository:
 
     @staticmethod
     def insertscore(name, score, gameid ):
+        print(name, score, gameid)
         sql = 'SELECT * FROM Scores where name = %s AND gameid = %s'
+        gameid = int(gameid)
         params = [name,gameid]
         existing = Database.get_rows(sql,params)
+        print(existing)
         if(len(existing) > 0):
             if(gameid == 1):
                 if(score < existing[0]["score"]):
@@ -40,8 +44,10 @@ class DataRepository:
                     params = [score, existing[0]["id"]]
         else:
             scoretype = "s"
-            if(gameid == 1 or gameid == 3):
+            if(gameid == 1):
                 scoretype = "t"
             sql = 'INSERT INTO Scores (name, score, gameid, scoretype) VALUES (%s, %s, %s, %s);'
             params = [name, score, gameid, scoretype]
+        
+    
         return Database.execute_sql(sql,params)
