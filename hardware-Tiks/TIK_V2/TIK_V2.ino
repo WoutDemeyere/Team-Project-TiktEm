@@ -128,7 +128,7 @@ void setup_wifi_mqtt() {     /* (& MQTT)*/
 
   reg_b = READ_PERI_REG(SENS_SAR_READ_CTRL2_REG);
   WiFi.mode (WIFI_STA);
-  esp_wifi_set_ps (WIFI_PS_NONE);   // zorgen dat hij niet in energie bespaar stand gaat
+  esp_wifi_set_ps(WIFI_PS_NONE);   // zorgen dat hij niet in energie bespaar stand gaat
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
