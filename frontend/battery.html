@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TiktEm - Battery</title>
+    <meta name="description" content="This is my HTML5 boilerplate.">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <script src="script/dataHandler.js"></script>
+    <script src="script/sidemenu.js"></script>
+    <script src="script/battery.js"></script>
+
+
+</head>
+
+<body>
+    <div class="c-main">
+        <div class="c-side-menu js-side-menu">
+            <div class="c-side-menu__header">
+                <svg class="c-icon-close js-sidenav-close" data-name="cross close" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 18 18">
+                    <path id="Path_16" data-name="Path 16" d="M0,0H18V18H0Z" fill="none" />
+                    <line id="Line_5" data-name="Line 5" x2="13.24" y2="10.7" transform="translate(2.51 3.55)"
+                        fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                    <line id="Line_6" data-name="Line 6" x1="13.24" y2="10.7" transform="translate(2.51 3.55)"
+                        fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                </svg>
+
+                <p class="c-side-menu__header--title">Menu</p>
+
+                <div class="c-hidden-flex"></div>
+            </div>
+
+            <div class="c-side-menu__nav">
+                <nav>
+                    <ul class="o-list c-nav">
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a href="gamemenu.html" class="c-nav-item__link">Play</a>
+                            <hr class="c-nav-line">
+                        </li>
+
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a href="leaderboard.html" class="c-nav-item__link">Leaderboard</a>
+                            <hr class="c-nav-line">
+                        </li>
+
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a href="battery.html" class="c-nav-item__link">Battery status</a>
+                            <hr class="c-nav-line">
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="c-app js-main-app">
+
+            <div class="c-header u-mb-md">
+                <svg class="c-icon c-icon-burger js-sidenav-open" id="menu-black-18dp"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none" />
+                    <path id="Path_15" data-name="Path 15"
+                        d="M4,18H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2Zm0-5H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Z"
+                        fill="#fff" />
+                </svg>
+
+                <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
+
+                <div class="c-hidden-flex"></div>
+            </div>
+
+            <div class="c-main-content js-main-content">
+                <div class="c-info-container">
+                    <h1 class="c-title">Battery</h1>
+                    <p class="c-info">
+                        De TiktEm's zullen nu oplichten in het kleur van hun aangegeven batterij percentage.
+                    </p>
+
+                    <p class="c-info-under">Gelieve de rood oplichtende TiktEm's op te laden.</p>
+                </div>
+
+                <div class="c-batterys-container u-mb-xl">
+                    <div class="c-battery-container">
+                        <div class="c-battery">
+                            <svg class="c-icon-battery c-icon-battery-container" id="battery"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.13 113.91">
+                                <rect class="c-baterry-state js-batery-state" tikid="0" id="Rectangle_11"
+                                    data-name="Rectangle 11" rx="7.06" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="1" />
+                                <rect id="Rectangle_12" data-name="Rectangle 12" width="16.51" height="3" rx="1.5"
+                                    transform="translate(22.89 0.5)" fill="#fff" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="1" />
+                                <rect id="Rectangle_13" data-name="Rectangle 13" width="54.13" height="99.57" rx="16.09"
+                                    transform="translate(4 10.34)" fill="none" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="8" />
+                            </svg>
+                            <p class="c-battery__percentage">0%</p>
+                        </div>
+                        <p class="c-battery__number">1</p>
+                    </div>
+
+                    <div class="c-battery-container">
+                        <p class="c-battery__number">2</p>
+                        <div class="c-battery">
+                            <svg class="c-icon-battery" id="battery" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 62.13 113.91">
+                                <rect class="c-baterry-state js-batery-state" tikid="1" id="Rectangle_11"
+                                    data-name="Rectangle 11" rx="7.06" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="1" />
+                                <rect id="Rectangle_12" data-name="Rectangle 12" width="16.51" height="3" rx="1.5"
+                                    transform="translate(22.89 0.5)" fill="#fff" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="1" />
+                                <rect id="Rectangle_13" data-name="Rectangle 13" width="54.13" height="99.57" rx="16.09"
+                                    transform="translate(4 10.34)" fill="none" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="8" />
+                            </svg>
+                            <p class="c-battery__percentage">0%</p>
+                        </div>
+                    </div>
+
+                    <div class="c-battery-container">
+                        <div class="c-battery">
+                            <svg class="c-icon-battery" id="battery" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 62.13 113.91">
+                                <rect class="c-baterry-state js-batery-state" tikid="2" id="Rectangle_11"
+                                    data-name="Rectangle 11" rx="7.06" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="1" />
+                                <rect id="Rectangle_12" data-name="Rectangle 12" width="16.51" height="3" rx="1.5"
+                                    transform="translate(22.89 0.5)" fill="#fff" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="1" />
+                                <rect id="Rectangle_13" data-name="Rectangle 13" width="54.13" height="99.57" rx="16.09"
+                                    transform="translate(4 10.34)" fill="none" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="8" />
+                            </svg>
+                            <p class="c-battery__percentage">0%</p>
+                        </div>
+                        <p class="c-battery__number">3</p>
+                    </div>
+
+                    <div class="c-battery-container">
+                        <p class="c-battery__number">4</p>
+                        <div class="c-battery">
+                            <svg class="c-icon-battery" id="battery" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 62.13 113.91">
+                                <rect class="c-baterry-state js-batery-state" tikid="3" id="Rectangle_11"
+                                    data-name="Rectangle 11" rx="7.06" c-baterry-state stroke="#fff"
+                                    stroke-linejoin="round" stroke-width="1" />
+                                <rect id="Rectangle_12" data-name="Rectangle 12" width="16.51" height="3" rx="1.5"
+                                    transform="translate(22.89 0.5)" fill="#fff" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="1" />
+                                <rect id="Rectangle_13" data-name="Rectangle 13" width="54.13" height="99.57" rx="16.09"
+                                    transform="translate(4 10.34)" fill="none" stroke="#fff" stroke-linejoin="round"
+                                    stroke-width="8" />
+                            </svg>
+                            <p class="c-battery__percentage">0%</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</body>
+
+</html>

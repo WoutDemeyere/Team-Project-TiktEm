@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TiktEm - Gamemode menu</title>
+    <meta name="description" content="This is my HTML5 boilerplate.">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <script src="script/dataHandler.js"></script>
+    <script src="script/gamemodes/gamemodes-info.js"></script>
+    <script src="script/gamemenu.js"></script>
+    <script src="script/sidemenu.js"></script>
+
+</head>
+
+<body>
+    <div class="c-main">
+        <div class="c-side-menu js-side-menu">
+            <div class="c-side-menu__header">
+                <svg class="c-icon-close js-sidenav-close" data-name="cross close" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 18 18">
+                    <path id="Path_16" data-name="Path 16" d="M0,0H18V18H0Z" fill="none" />
+                    <line id="Line_5" data-name="Line 5" x2="13.24" y2="10.7" transform="translate(2.51 3.55)"
+                        fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                    <line id="Line_6" data-name="Line 6" x1="13.24" y2="10.7" transform="translate(2.51 3.55)"
+                        fill="#fff" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" />
+                </svg>
+
+                <p class="c-side-menu__header--title">Menu</p>
+
+                <div class="c-hidden-flex"></div>
+            </div>
+
+            <div class="c-side-menu__nav">
+                <nav>
+                    <ul class="o-list c-nav">
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a href="gamemenu.html" class="c-nav-item__link">Play</a>
+                            <hr class="c-nav-line">
+                        </li>
+
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a href="leaderboard.html" class="c-nav-item__link">Leaderboard</a>
+                            <hr class="c-nav-line">
+                        </li>
+
+                        <li class="c-nav-item js-nav-item">
+                            <hr class="c-nav-line">
+                            <a href="battery.html" class="c-nav-item__link">Battery status</a>
+                            <hr class="c-nav-line">
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="c-app js-main-app">
+
+            <div class="c-header u-mb-md">
+                <svg class="c-icon c-icon-burger js-sidenav-open" id="menu-black-18dp"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path id="Path_14" data-name="Path 14" d="M0,0H24V24H0Z" fill="none" />
+                    <path id="Path_15" data-name="Path 15"
+                        d="M4,18H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2Zm0-5H20a1,1,0,0,0,0-2H4a1,1,0,0,0,0,2ZM3,7A1,1,0,0,0,4,8H20a1,1,0,0,0,0-2H4A1,1,0,0,0,3,7Z"
+                        fill="#fff" />
+                </svg>
+
+                <img src="img/logo.png" alt="Tiktem" class="c-logo-image">
+
+                <div class="c-hidden-flex"></div>
+            </div>
+
+            <div class="c-main-content js-main-content">
+                <div class="c-info-container">
+                    <h1 class="c-title">Alleen of met vrienden?</h1>
+                    <p class="c-info">
+                        Bij TiktEm is er de mogelijkheid om records te zetten op het score bord of elkaar te verslaan in
+                        multiplayer games.
+                    </p>
+                </div>
+
+                <ul class="o-list c-main-list-container">
+
+                    <li class="c-button-icon-cont">
+                        <svg class="c-icon c-icon__single" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 160.7 161.81">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: none;
+                                        stroke-linecap: round;
+                                        stroke-linejoin: round;
+                                        stroke-width: 15px;
+                                    }
+                                </style>
+                            </defs>
+                            <path class="cls-1" d="M36.44,182.69c11.57-81,129.36-83.06,145.7,0"
+                                transform="translate(-28.94 -28.38)" />
+                            <circle class="cls-1" cx="80.35" cy="50.14" r="42.64" />
+                        </svg>
+
+                        <div class="c-option-field-main">
+                            <input type="radio" class="o-hide-accessible c-main-option-hidden js-single"
+                                id="select-radio1" name="radios-main">
+                            <label class="c-custom-option-main" for="select-radio1">
+
+                                <div class="c-option-button-container c-custom-option__fake-input--main">
+                                    <div class="c-custom-option__fake-input--text">
+                                        Singleplayer
+                                    </div>
+
+                                    <div class="c-collapsable-content-main">
+                                        <div class="c-coll-header">
+                                            <svg class="c-icon c-icon__single-col" data-name="Layer 1"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160.7 161.81">
+                                                <defs>
+                                                    <style>
+                                                        .cls-1 {
+                                                            fill: none;
+                                                            stroke-linecap: round;
+                                                            stroke-linejoin: round;
+                                                            stroke-width: 15px;
+                                                        }
+                                                    </style>
+                                                </defs>
+                                                <path class="cls-1" d="M36.44,182.69c11.57-81,129.36-83.06,145.7,0"
+                                                    transform="translate(-28.94 -28.38)" />
+                                                <circle class="cls-1" cx="80.35" cy="50.14" r="42.64" />
+                                            </svg>
+                                            <span class="c-coll-title">Singleplayer</span>
+                                        </div>
+
+                                        <ul class="o-list c-options-container">
+                                            <p class="c-coll-ul-header">Selecteer een game modus</p>
+                                            <li class="c-option-field js-game-option" gameid="1">
+                                                <input type="radio" class="o-hide-accessible c-option--hidden"
+                                                    id="radio1" name="radios">
+                                                <label class="c-custom-option" for="radio1" onclick="">
+                                                    <span
+                                                        class="c-custom-option__fake-input u-color-neutral-light js-title">
+                                                        Speedrun
+                                                    </span>
+                                                </label>
+
+                                                <div class="c-collapsible-content">
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
+                                                        oplichten.
+                                                        Aan jou de taak om deze één voor één tegen de klok af te tikken.
+                                                    </p>
+
+                                                    <div class="c-coll-play-container">
+                                                        <button
+                                                            onclick="location.href='game-start.html?gamename=speedrun'"
+                                                            class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon"
+                                                                    data-name="play icon" d="M7.5,7.5v64l56.881-32Z"
+                                                                    stroke-linejoin="round" />
+                                                            </svg>
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li class="c-option-field js-game-option" gameid="2">
+                                                <input type="radio" class="o-hide-accessible c-option--hidden"
+                                                    id="radio2" name="radios">
+                                                <label class="c-custom-option" for="radio2" onclick="">
+                                                    <span
+                                                        class="c-custom-option__fake-input u-color-neutral-light js-title">
+                                                        Simon Says
+                                                    </span>
+                                                </label>
+
+                                                <div class="c-collapsible-content">
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
+                                                        oplichten.
+                                                        Aan jou de taak om deze één voor één tegen de klok af te tikken.
+                                                    </p>
+                                                    <div class="c-coll-play-container">
+                                                        <button
+                                                            onclick="location.href='game-start.html?gamename=simonsays'"
+                                                            class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon"
+                                                                    data-name="play icon" d="M7.5,7.5v64l56.881-32Z"
+                                                                    stroke-linejoin="round" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li class="c-option-field js-game-option" gameid="3">
+                                                <input type="radio" class="o-hide-accessible c-option--hidden"
+                                                    id="radio3" name="radios">
+                                                <label class="c-custom-option" for="radio3" onclick="">
+                                                    <span
+                                                        class="c-custom-option__fake-input u-color-neutral-light js-title">
+                                                        Tik Tak Boem
+                                                    </span>
+                                                </label>
+
+                                                <div class="c-collapsible-content">
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
+                                                        oplichten.
+                                                        Aan jou de taak om deze één voor één tegen de klok af te tikken.
+                                                    </p>
+                                                    <div class="c-coll-play-container">
+                                                        <button
+                                                            onclick="location.href='game-start.html?gamename=tiktakboem'"
+                                                            class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon"
+                                                                    data-name="play icon" d="M7.5,7.5v64l56.881-32Z"
+                                                                    stroke-linejoin="round" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li class="c-option-field js-game-option" gameid="4">
+                                                <input type="radio" class="o-hide-accessible c-option--hidden"
+                                                    id="radio4" name="radios">
+                                                <label class="c-custom-option" for="radio4" onclick="">
+                                                    <span
+                                                        class="c-custom-option__fake-input u-color-neutral-light js-title">
+                                                        Colorhunt
+                                                    </span>
+                                                </label>
+
+                                                <div class="c-collapsible-content">
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
+                                                        oplichten.
+                                                        Aan jou de taak om deze één voor één tegen de klok af te tikken.
+                                                    </p>
+                                                    <div class="c-coll-play-container">
+                                                        <button
+                                                            onclick="location.href='game-start.html?gamename=colorhunt'"
+                                                            class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon"
+                                                                    data-name="play icon" d="M7.5,7.5v64l56.881-32Z"
+                                                                    stroke-linejoin="round" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </label>
+                        </div>
+                    </li>
+
+                    <li class="c-button-icon-cont">
+                        <svg class="c-icon c-icon__single" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 209.38 161.81">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: none;
+                                        stroke-linecap: round;
+                                        stroke-linejoin: round;
+                                        stroke-width: 15px;
+                                    }
+                                </style>
+                            </defs>
+                            <path class="cls-1" d="M12.6,183.49c11.57-81,129.36-83.06,145.7,0"
+                                transform="translate(-5.1 -29.18)" />
+                            <circle class="cls-1" cx="80.35" cy="50.14" r="42.64" />
+                            <path class="cls-1"
+                                d="M131.74,36.68c43.92,3.49,59.92,47.06,22.81,83.83,45.62,10.21,52.43,63,52.43,63"
+                                transform="translate(-5.1 -29.18)" />
+                        </svg>
+
+                        <div class="c-option-field-main">
+                            <input type="radio" class="o-hide-accessible c-main-option-hidden js-multi"
+                                id="select-radio2" name="radios-main">
+
+                            <label class="c-custom-option-main" for="select-radio2">
+                                <div class="c-option-button-container c-custom-option__fake-input--main">
+                                    <div class="c-custom-option__fake-input--text">
+                                        Multiplayer
+                                    </div>
+
+                                    <div class="c-collapsable-content-main">
+                                        <div class="c-coll-header">
+                                            <svg class="c-icon c-icon__single-col" data-name="Layer 1"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209.38 161.81">
+                                                <defs>
+                                                    <style>
+                                                        .cls-1 {
+                                                            fill: none;
+                                                            stroke-linecap: round;
+                                                            stroke-linejoin: round;
+                                                            stroke-width: 15px;
+                                                        }
+                                                    </style>
+                                                </defs>
+                                                <path class="cls-1" d="M12.6,183.49c11.57-81,129.36-83.06,145.7,0"
+                                                    transform="translate(-5.1 -29.18)" />
+                                                <circle class="cls-1" cx="80.35" cy="50.14" r="42.64" />
+                                                <path class="cls-1"
+                                                    d="M131.74,36.68c43.92,3.49,59.92,47.06,22.81,83.83,45.62,10.21,52.43,63,52.43,63"
+                                                    transform="translate(-5.1 -29.18)" />
+                                            </svg>
+                                            <span class="c-coll-title">Multiplayer</span>
+                                        </div>
+
+                                        <ul class="o-list c-options-container">
+                                            <p class="c-coll-ul-header">Selecteer een game modus</p>
+                                            <li class="c-option-field js-game-option" gameid="5">
+                                                <input type="radio" class="o-hide-accessible c-option--hidden"
+                                                    id="m-radio1" name="m-radios">
+                                                <label class="c-custom-option" for="m-radio1">
+                                                    <span
+                                                        class="c-custom-option__fake-input u-color-neutral-light js-title">
+                                                        Speedrun versus
+                                                    </span>
+                                                </label>
+
+                                                <div class="c-collapsible-content">
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
+                                                        oplichten.
+                                                        Aan jou de taak om deze één voor één tegen de klok af te tikken.
+                                                    </p>
+                                                    <div class="c-coll-play-container">
+                                                        <button
+                                                            onclick="location.href='game-start.html?gamename=speedrun-versus'"
+                                                            class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon"
+                                                                    data-name="play icon" d="M7.5,7.5v64l56.881-32Z"
+                                                                    stroke-linejoin="round" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li class="c-option-field js-game-option" gameid="6">
+                                                <input type="radio" class="o-hide-accessible c-option--hidden"
+                                                    id="m-radio2" name="m-radios">
+                                                <label class="c-custom-option" for="m-radio2">
+                                                    <span
+                                                        class="c-custom-option__fake-input u-color-neutral-light js-title">
+                                                        Simon Says Versus
+                                                    </span>
+                                                </label>
+
+                                                <div class="c-collapsible-content">
+                                                    <p class="c-coll-info js-desc">Er zal een vaste sequentie van Tik's
+                                                        oplichten.
+                                                        Aan jou de taak om deze één voor één tegen de klok af te tikken.
+                                                    </p>
+                                                    <div class="c-coll-play-container">
+                                                        <button
+                                                            onclick="location.href='game-start.html?gamename=simonsays-versus'"
+                                                            class="o-button-reset c-play-button js-play-button">
+                                                            <svg class="c-icon-play" xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 71.889 79">
+                                                                <path class="c-play-button__icon--path" id="play_icon"
+                                                                    data-name="play icon" d="M7.5,7.5v64l56.881-32Z"
+                                                                    stroke-linejoin="round" />
+                                                            </svg>
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+
+                            </label>
+                        </div>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
